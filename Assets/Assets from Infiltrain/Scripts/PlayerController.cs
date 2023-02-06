@@ -15,12 +15,12 @@ public class PlayerController : MonoBehaviour
     private float leftBound = -500;
     public bool isOnGround = true;
     public bool isOnDead = false;
-    public bool protection = true;
+    public bool protection = false;
     public bool isAlive;
     public AudioClip lossSound1;
     public AudioClip lossSound2;
     public AudioClip lossSound3;
-    public AudioClip winSound;
+    public AudioClip winSound; 
     public AudioClip trainSound;
 
 
@@ -62,9 +62,9 @@ public class PlayerController : MonoBehaviour
 
         // Player movement
 
-        playerRb.AddForce(Vector3.right * speed * horizontalInput * forceMultiplier);
+        playerRb.AddForce(Vector3.right * speed * verticalInput * forceMultiplier);
 
-        playerRb.AddForce(Vector3.forward * speed * verticalInput * forceMultiplier * 1.5f);
+        playerRb.AddForce(Vector3.forward * speed * horizontalInput * forceMultiplier * -1.5f);
 
         // Constrain the Z
 
@@ -169,8 +169,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator ProtectionCooldownRoutine()
     {
-        yield return new WaitForSeconds(4);
-        protection = true;
+        yield return new WaitForSeconds(100);
+        protection = false;
     }
 
 
