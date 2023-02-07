@@ -20,11 +20,11 @@ public class PlayerController : MonoBehaviour
     public AudioClip lossSound1;
     public AudioClip lossSound2;
     public AudioClip lossSound3;
-    public AudioClip winSound; 
+    //public AudioClip winSound; 
     public AudioClip trainSound;
 
 
-    private float win = 505;
+    //private float win = 505;
     private float speed = 8.0f;
     public float jumpForce = 16;
     private float minLeftSpeed = 20;
@@ -83,13 +83,13 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (transform.position.x > win)
-        {
-            gameManager.GameOverWon();
-            playerRb.constraints = RigidbodyConstraints.FreezePosition;
+        //if (transform.position.x > win)
+        //{
+            //gameManager.GameOverWon();
+            //playerRb.constraints = RigidbodyConstraints.FreezePosition;
 
-            playerRb.freezeRotation = true;
-        }
+            //playerRb.freezeRotation = true;
+        //}
 
 
 
