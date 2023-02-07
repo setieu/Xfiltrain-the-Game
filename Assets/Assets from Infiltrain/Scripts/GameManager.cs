@@ -26,7 +26,14 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI credits;
     public TextMeshProUGUI timer;
     public GameObject toolAssist;
-    
+    public TextMeshProUGUI xcord;
+    public TextMeshProUGUI ycord;
+    public TextMeshProUGUI zcord;
+    public GameObject player;
+    //public float xCord = player.transform.position.x + 32;
+    //public float yCord = player.transform.position.y - 4.56f;
+    //public float zCord = player.transform.position.z - 3.6f;
+
 
     public Button restartButton;
 
@@ -70,6 +77,9 @@ public class GameManager : MonoBehaviour
             timePassed = Time.time - startedTime;
             timer.text = "Time: " + (int)timePassed;
 
+            //xcord.text = "X:" + xCord;
+            //ycord.text = "Y:" + yCord;
+            //zcord.text = "Z:" + zCord;
         }
     }
     private void OnCollisionEnter(Collision collision)
