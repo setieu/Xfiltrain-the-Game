@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip trainSound;
 
 
+    public GameObject player;
     //private float win = 505;
     private float speed = 8.0f;
     public float jumpForce = 16;
@@ -33,8 +34,8 @@ public class PlayerController : MonoBehaviour
     public Rigidbody playerRb;
     private GameManager gameManager;
     private AudioSource playerAudio;
-
-
+    public Camera cam;
+    
 
 
     // Start is called before the first frame update
@@ -56,50 +57,85 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+     
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
 
 
-        // Player movement
+        float mouseX = Input.GetAxis("Mouse X");
+        transform.Rotate(0, mouseX * 1000 * Time.deltaTime, 0);
 
-        playerRb.AddForce(Vector3.right * speed * verticalInput * forceMultiplier);
 
-        playerRb.AddForce(Vector3.forward * speed * horizontalInput * forceMultiplier * -1.5f);
+        // Get the mouse position in world space
+        Vector3 mousePos = Input.mousePosition;
+        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, Camera.main.transform.position.y - transform.position.y));
+
+        // Calculate the direction the player needs to face
+        Vector3 direction = (mousePos - transform.position).normalized;
+
+        // Set the player's rotation to face the mouse cursor
+        transform.rotation = Quaternion.LookRotation(direction);
+
+
+
+
+
+
+
+
+
 
         // Constrain the Z
 
 
-        if (protection)
+        //if (protection)
         {
-            if (transform.position.z < zRange1)
+            //if (transform.position.z < zRange1)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, zRange1);
+                //transform.position = new Vector3(transform.position.x, transform.position.y, zRange1);
             }
 
-            if (transform.position.z > zRange2)
+            //if (transform.position.z > zRange2)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, zRange2);
+                //transform.position = new Vector3(transform.position.x, transform.position.y, zRange2);
             }
         }
 
 
+
+        if(gameManager.gameActive == true)
+        {
+
+        }
+
+
+
+
+        // Player movement
+
+        //playerRb.AddForce(Vector3.right * speed * verticalInput * forceMultiplier);
+
+        //playerRb.AddForce(Vector3.forward * speed * horizontalInput * forceMultiplier * -1.5f);
+
+
+
         //if (transform.position.x > win)
         //{
-            //gameManager.GameOverWon();
-            //playerRb.constraints = RigidbodyConstraints.FreezePosition;
+        //gameManager.GameOverWon();
+        //playerRb.constraints = RigidbodyConstraints.FreezePosition;
 
-            //playerRb.freezeRotation = true;
+        //playerRb.freezeRotation = true;
         //}
 
 
 
 
         // Make the player Jump
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
-        {
-            playerRb.AddForce(Vector3.up * jumpForce * forceMultiplier, ForceMode.Impulse);
-            isOnGround = false;
-        }
+        //if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+        //{
+        //playerRb.AddForce(Vector3.up * jumpForce * forceMultiplier, ForceMode.Impulse);
+        //isOnGround = false;
+        //}
 
 
         //flings player if on dead
@@ -155,6 +191,8 @@ public class PlayerController : MonoBehaviour
             protection = false;
             StartCoroutine(ProtectionCooldownRoutine());
         }
+
+
         //check if player touches enemy to fling them
         if (collision.gameObject.CompareTag("Enemy"))
         {
