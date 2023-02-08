@@ -26,10 +26,10 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI credits;
     public TextMeshProUGUI timer;
     public GameObject toolAssist;
-    public TextMeshProUGUI xcord;
-    public TextMeshProUGUI ycord;
-    public TextMeshProUGUI zcord;
-    public GameObject player;
+   // public TextMeshProUGUI xcord;
+   // public TextMeshProUGUI ycord;
+   // public TextMeshProUGUI zcord;
+   // public GameObject player;
     //public float xCord = player.transform.position.x + 32;
     //public float yCord = player.transform.position.y - 4.56f;
     //public float zCord = player.transform.position.z - 3.6f;
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
 
         stamina = 50;
         throwRate = throwRate /= difficulty;
-        StartCoroutine(SpawnTarget());
+        //StartCoroutine(SpawnTarget());
         playerController.playerRb.constraints = RigidbodyConstraints.None;
         titleScreen.SetActive(false);
         toolAssist.SetActive(true);
@@ -112,20 +112,20 @@ public class GameManager : MonoBehaviour
         Physics.gravity /= 3;
     }
 
-    IEnumerator SpawnTarget()
-    {
-        while (gameActive)
-        {
-            yield return new WaitForSeconds(throwRate);
-            int index = Random.Range(0, arrayRange);
+   // IEnumerator SpawnTarget()
+    //{
+    //    while (gameActive)
+    //    {
+     //       yield return new WaitForSeconds(throwRate);
+     //       int index = Random.Range(0, arrayRange);
 
 
-            Instantiate(targetPrefabs[index]);
+    //        Instantiate(targetPrefabs[index]);
 
 
-        }
+    //    }
 
-    }
+    //}
 
 
 
