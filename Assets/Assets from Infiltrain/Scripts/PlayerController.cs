@@ -62,19 +62,18 @@ public class PlayerController : MonoBehaviour
         float verticalInput = Input.GetAxisRaw("Vertical");
 
 
-        float mouseX = Input.GetAxis("Mouse X");
-        transform.Rotate(0, mouseX * 1000 * Time.deltaTime, 0);
 
 
-        // Get the mouse position in world space
+
         Vector3 mousePos = Input.mousePosition;
         mousePos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, Camera.main.transform.position.y - transform.position.y));
 
         // Calculate the direction the player needs to face
         Vector3 direction = (mousePos - transform.position).normalized;
 
-        // Set the player's rotation to face the mouse cursor
-        transform.rotation = Quaternion.LookRotation(direction);
+        // Set the player's rotation to face the mouse cursor, while locking the X and Z rotations
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Euler(0, targetRotation.eulerAngles.y, 0);
 
 
 
@@ -99,13 +98,6 @@ public class PlayerController : MonoBehaviour
             {
                 //transform.position = new Vector3(transform.position.x, transform.position.y, zRange2);
             }
-        }
-
-
-
-        if(gameManager.gameActive == true)
-        {
-
         }
 
 
