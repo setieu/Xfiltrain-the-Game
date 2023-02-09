@@ -159,8 +159,8 @@ public class PlayerController : MonoBehaviour
         // Player movement
         if(gameManager.gameActive)
         {
-            playerRb.transform.Translate(Vector3.right * speed * -horizontalInput * forceMultiplier * Time.deltaTime);
-            playerRb.transform.Translate(Vector3.forward * speed * -verticalInput * forceMultiplier * -1.5f * Time.deltaTime);
+            playerRb.transform.Translate(Vector3.right * speed * verticalInput * forceMultiplier * Time.deltaTime, Space.World);
+            playerRb.transform.Translate(Vector3.forward * speed * horizontalInput * forceMultiplier * -1.5f * Time.deltaTime, Space.World);
         }    
 
 

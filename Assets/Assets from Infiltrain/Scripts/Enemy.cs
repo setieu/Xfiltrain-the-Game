@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         player = GameObject.Find("Player");
 
-        transform.position = SpawnPosition();
+        //transform.position = SpawnPosition();
     }
 
     // Update is called once per frame
