@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject player;
     //private float win = 505;
-    private float speed = 8.0f;
+    private float speed = 0.08f;
     public float jumpForce = 16;
     private float minLeftSpeed = 20;
     private float maxLeftSpeed = 22;
@@ -133,16 +133,6 @@ public class PlayerController : MonoBehaviour
         }
 
 
-
-
-        // Player movement
-
-        //playerRb.AddForce(Vector3.right * speed * verticalInput * forceMultiplier);
-
-        //playerRb.AddForce(Vector3.forward * speed * horizontalInput * forceMultiplier * -1.5f);
-
-
-
         //if (transform.position.x > win)
         //{
         //gameManager.GameOverWon();
@@ -153,6 +143,12 @@ public class PlayerController : MonoBehaviour
 
 
 
+        // Player movement
+
+        //playerRb.AddForce(Vector3.right * speed * verticalInput * forceMultiplier);
+
+        //playerRb.AddForce(Vector3.forward * speed * horizontalInput * forceMultiplier * -1.5f);
+
 
         // Make the player Jump
         //if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
@@ -160,7 +156,20 @@ public class PlayerController : MonoBehaviour
         //playerRb.AddForce(Vector3.up * jumpForce * forceMultiplier, ForceMode.Impulse);
         //isOnGround = false;
         //}
+        // Player movement
+        if(gameManager.gameActive)
+        {
+            playerRb.transform.Translate(Vector3.right * speed * -horizontalInput * forceMultiplier * Time.deltaTime);
+            playerRb.transform.Translate(Vector3.forward * speed * -verticalInput * forceMultiplier * -1.5f * Time.deltaTime);
+        }    
 
+
+        // Make the player Jump
+       // if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+       // {
+       //     playerRb.transform.Translate(Vector3.up * jumpForce * forceMultiplier * Time.deltaTime);
+       //     isOnGround = false;
+       // }
 
         //flings player if on dead
         if (isOnDead)
