@@ -35,7 +35,20 @@ public class PlayerController : MonoBehaviour
     private GameManager gameManager;
     private AudioSource playerAudio;
     public Camera cam;
-    
+
+
+
+    //Chatgpt code
+    private Quaternion initialRotation;
+
+    public bool lockXRotation = false;
+    public bool lockYRotation = false;
+    public bool lockZRotation = false;
+
+
+
+
+
 
 
     // Start is called before the first frame update
@@ -52,6 +65,10 @@ public class PlayerController : MonoBehaviour
 
         playerRb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
         //if a controls screen is wanted, move the isalive out of the void start
+
+
+        // Store the initial rotation of the player
+        initialRotation = transform.rotation;
     }
 
     // Update is called once per frame
@@ -61,20 +78,35 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
 
+        if (gameManager.gameActive == true)
+        {
+            lockXRotation = true;
+            lockYRotation = false;
+            lockZRotation = true;
+        }
+        else
+        {
+            lockXRotation = true;
+            lockYRotation = true;
+            lockZRotation = true;
+        }
 
 
-
-
+        // Get the mouse position in world space
         Vector3 mousePos = Input.mousePosition;
         mousePos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, Camera.main.transform.position.y - transform.position.y));
 
         // Calculate the direction the player needs to face
         Vector3 direction = (mousePos - transform.position).normalized;
 
-        // Set the player's rotation to face the mouse cursor, while locking the X and Z rotations
+        // Set the player's rotation to face the mouse cursor, while preserving the initial x and z rotations
         Quaternion targetRotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Euler(0, targetRotation.eulerAngles.y, 0);
 
+        float xRotation = lockXRotation ? initialRotation.eulerAngles.x : targetRotation.eulerAngles.x;
+        float yRotation = lockYRotation ? initialRotation.eulerAngles.y : targetRotation.eulerAngles.y;
+        float zRotation = lockZRotation ? initialRotation.eulerAngles.z : targetRotation.eulerAngles.z;
+
+        transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation);
 
 
 
