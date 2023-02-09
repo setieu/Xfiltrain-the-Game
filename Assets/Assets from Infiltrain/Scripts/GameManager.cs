@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     public Button restartButton;
 
-    private bool gameActive;
+    public bool gameActive;
 
 
 
