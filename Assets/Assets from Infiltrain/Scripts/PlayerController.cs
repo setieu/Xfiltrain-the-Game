@@ -46,14 +46,17 @@ public class PlayerController : MonoBehaviour
     public bool lockZRotation = false;
 
 
-
-
+    //Animations
+    Animator animator;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
+        //Animations
+        animator = GetComponent<Animator>();
+
         playerAudio = GetComponent<AudioSource>();
         playerRb = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
@@ -111,6 +114,9 @@ public class PlayerController : MonoBehaviour
 
 
 
+
+        //Animations
+        animator.SetBool("walking", true);
 
 
 
