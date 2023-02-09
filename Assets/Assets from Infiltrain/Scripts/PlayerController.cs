@@ -24,8 +24,9 @@ public class PlayerController : MonoBehaviour
     public AudioClip trainSound;
 
 
+    public GameObject player;
     //private float win = 505;
-    private float speed = 8.0f;
+    private float speed = 0.08f;
     public float jumpForce = 16;
     private float minLeftSpeed = 20;
     private float maxLeftSpeed = 22;
@@ -33,6 +34,19 @@ public class PlayerController : MonoBehaviour
     public Rigidbody playerRb;
     private GameManager gameManager;
     private AudioSource playerAudio;
+    public Camera cam;
+
+
+
+    //Chatgpt code
+    private Quaternion initialRotation;
+
+    public bool lockXRotation = false;
+    public bool lockYRotation = false;
+    public bool lockZRotation = false;
+
+
+
 
 
 
@@ -51,56 +65,111 @@ public class PlayerController : MonoBehaviour
 
         playerRb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
         //if a controls screen is wanted, move the isalive out of the void start
+
+
+        // Store the initial rotation of the player
+        initialRotation = transform.rotation;
     }
 
     // Update is called once per frame
     void Update()
     {
+     
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
 
+        if (gameManager.gameActive == true)
+        {
+            lockXRotation = true;
+            lockYRotation = false;
+            lockZRotation = true;
+        }
+        else
+        {
+            lockXRotation = true;
+            lockYRotation = true;
+            lockZRotation = true;
+        }
 
-        // Player movement
 
-        playerRb.AddForce(Vector3.right * speed * verticalInput * forceMultiplier);
+        // Get the mouse position in world space
+        Vector3 mousePos = Input.mousePosition;
+        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, Camera.main.transform.position.y - transform.position.y));
 
-        playerRb.AddForce(Vector3.forward * speed * horizontalInput * forceMultiplier * -1.5f);
+        // Calculate the direction the player needs to face
+        Vector3 direction = (mousePos - transform.position).normalized;
+
+        // Set the player's rotation to face the mouse cursor, while preserving the initial x and z rotations
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+        float xRotation = lockXRotation ? initialRotation.eulerAngles.x : targetRotation.eulerAngles.x;
+        float yRotation = lockYRotation ? initialRotation.eulerAngles.y : targetRotation.eulerAngles.y;
+        float zRotation = lockZRotation ? initialRotation.eulerAngles.z : targetRotation.eulerAngles.z;
+
+        transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation);
+
+
+
+
+
+
+
+
 
         // Constrain the Z
 
 
-        if (protection)
+        //if (protection)
         {
-            if (transform.position.z < zRange1)
+            //if (transform.position.z < zRange1)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, zRange1);
+                //transform.position = new Vector3(transform.position.x, transform.position.y, zRange1);
             }
 
-            if (transform.position.z > zRange2)
+            //if (transform.position.z > zRange2)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, zRange2);
+                //transform.position = new Vector3(transform.position.x, transform.position.y, zRange2);
             }
         }
 
 
         //if (transform.position.x > win)
         //{
-            //gameManager.GameOverWon();
-            //playerRb.constraints = RigidbodyConstraints.FreezePosition;
+        //gameManager.GameOverWon();
+        //playerRb.constraints = RigidbodyConstraints.FreezePosition;
 
-            //playerRb.freezeRotation = true;
+        //playerRb.freezeRotation = true;
         //}
 
 
 
+        // Player movement
+
+        //playerRb.AddForce(Vector3.right * speed * verticalInput * forceMultiplier);
+
+        //playerRb.AddForce(Vector3.forward * speed * horizontalInput * forceMultiplier * -1.5f);
+
 
         // Make the player Jump
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+        //if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+        //{
+        //playerRb.AddForce(Vector3.up * jumpForce * forceMultiplier, ForceMode.Impulse);
+        //isOnGround = false;
+        //}
+        // Player movement
+        if(gameManager.gameActive)
         {
-            playerRb.AddForce(Vector3.up * jumpForce * forceMultiplier, ForceMode.Impulse);
-            isOnGround = false;
-        }
+            playerRb.transform.Translate(Vector3.right * speed * verticalInput * forceMultiplier * Time.deltaTime, Space.World);
+            playerRb.transform.Translate(Vector3.forward * speed * horizontalInput * forceMultiplier * -1.5f * Time.deltaTime, Space.World);
+        }    
 
+
+        // Make the player Jump
+       // if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+       // {
+       //     playerRb.transform.Translate(Vector3.up * jumpForce * forceMultiplier * Time.deltaTime);
+       //     isOnGround = false;
+       // }
 
         //flings player if on dead
         if (isOnDead)
@@ -155,6 +224,8 @@ public class PlayerController : MonoBehaviour
             protection = false;
             StartCoroutine(ProtectionCooldownRoutine());
         }
+
+
         //check if player touches enemy to fling them
         if (collision.gameObject.CompareTag("Enemy"))
         {
