@@ -167,12 +167,7 @@ public class PlayerController : MonoBehaviour
         //playerRb.AddForce(Vector3.up * jumpForce * forceMultiplier, ForceMode.Impulse);
         //isOnGround = false;
         //}
-        // Player movement
-        if(gameManager.gameActive)
-        {
-            playerRb.transform.Translate(Vector3.right * speed * verticalInput * forceMultiplier * Time.deltaTime, Space.World);
-            playerRb.transform.Translate(Vector3.forward * speed * horizontalInput * forceMultiplier * -1.5f * Time.deltaTime, Space.World);
-        }    
+        
 
 
         // Make the player Jump
