@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
     //Animations
     Animator animator;
 
+    
 
 
     // Start is called before the first frame update
@@ -117,11 +118,30 @@ public class PlayerController : MonoBehaviour
         {
             playerRb.transform.Translate(Vector3.right * speed * verticalInput * forceMultiplier * Time.deltaTime, Space.World);
             playerRb.transform.Translate(Vector3.forward * speed * horizontalInput * forceMultiplier * -1.5f * Time.deltaTime, Space.World);
+
+            
         }
 
 
+
+
         //Animations
-        animator.SetBool("walking", true);
+        if (horizontalInput < 0)
+        {
+            animator.SetBool("walkleft", true);
+        }else if (horizontalInput > 0)
+        {
+            animator.SetBool("walkright", true);
+        }else if (verticalInput != 0)
+        {
+            animator.SetBool("walking", true);
+        }
+        else
+        {
+            animator.SetBool("walking", false);
+            animator.SetBool("walkright", false);
+            animator.SetBool("walkleft", false);
+        }
 
 
 
