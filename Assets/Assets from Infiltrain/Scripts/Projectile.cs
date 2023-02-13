@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
     private float minLeftSpeed = 32;
     private float maxLeftSpeed = 38;
     private float maxTorque = 30;
+    public float ddownforce = 3;
     private float leftBound = -200;
     public float forcemultiplier;
     public GameObject player;
@@ -26,11 +27,12 @@ public class Projectile : MonoBehaviour
 
         projectileRb = GetComponent<Rigidbody>();
 
-        projectileRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
-        projectileRb.AddForce(RandomUpForce(), ForceMode.Impulse);
+       // projectileRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
+       // projectileRb.AddForce(RandomUpForce(), ForceMode.Impulse);
+       projectileRb.AddForce(Downforce(), ForceMode.Impulse);
         projectileRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
 
-            transform.position = SpawnPosition();
+          //  transform.position = SpawnPosition();
 
 
     }
@@ -51,27 +53,31 @@ public class Projectile : MonoBehaviour
     }
 
 
-    Vector3 RandomLeftForce()
+   Vector3 RandomLeftForce()
     {
         return Vector3.left * Random.Range(minLeftSpeed, maxLeftSpeed) * forcemultiplier;
     }
-    Vector3 RandomUpForce()
+    Vector3 Downforce()
     {
-        return Vector3.up * Random.Range(minUpSpeed, maxUpSpeed) * forcemultiplier;
+        return Vector3.down * ddownforce * forcemultiplier;
     }
+   // Vector3 RandomUpForce()
+   // {
+   //     return Vector3.up * Random.Range(minUpSpeed, maxUpSpeed) * forcemultiplier;
+   // }
     float RandomTorque()
     {
         return Random.Range(-maxTorque, maxTorque) * forcemultiplier;
     }
 
 
-    Vector3 SpawnPosition()
-    {
+  //  Vector3 SpawnPosition()
+  //  {
 
-        Vector3 spawnPosition = new Vector3(player.transform.position.x + 60, 8, Random.Range(1.2f,6.2f));
-        return spawnPosition;
+   //     Vector3 spawnPosition = new Vector3(player.transform.position.x + 60, 8, Random.Range(1.2f,6.2f));
+   //     return spawnPosition;
 
-    }
+   // }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -81,10 +87,10 @@ public class Projectile : MonoBehaviour
             projectileRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
         }
 
-        if(collision.gameObject.CompareTag("Ground") && collision.gameObject.CompareTag("Player"))
-        {
-            playerController.isOnGround = true;
-        }
+      //  if(collision.gameObject.CompareTag("Ground") && collision.gameObject.CompareTag("Player"))
+       // {
+       //     playerController.isOnGround = true;
+       // }
 
     }
 }
