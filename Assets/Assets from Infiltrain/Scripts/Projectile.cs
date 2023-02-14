@@ -29,7 +29,7 @@ public class Projectile : MonoBehaviour
 
        // projectileRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
        // projectileRb.AddForce(RandomUpForce(), ForceMode.Impulse);
-       projectileRb.AddForce(Downforce(), ForceMode.Impulse);
+     //  projectileRb.AddForce(Downforce(), ForceMode.Impulse);
         projectileRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
 
           //  transform.position = SpawnPosition();
@@ -57,10 +57,10 @@ public class Projectile : MonoBehaviour
     {
         return Vector3.left * Random.Range(minLeftSpeed, maxLeftSpeed) * forcemultiplier;
     }
-    Vector3 Downforce()
-    {
-        return Vector3.down * ddownforce * forcemultiplier;
-    }
+    //Vector3 Downforce()
+    //{
+   //     return Vector3.down * ddownforce * forcemultiplier;
+   // }
    // Vector3 RandomUpForce()
    // {
    //     return Vector3.up * Random.Range(minUpSpeed, maxUpSpeed) * forcemultiplier;
