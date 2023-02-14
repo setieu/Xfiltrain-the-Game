@@ -15,6 +15,7 @@ public class Projectile : MonoBehaviour
     private float leftBound = -200;
     public float forcemultiplier;
     public GameObject player;
+    public float despawnTime = 5f;
 
     private PlayerController playerController;
 
@@ -32,11 +33,15 @@ public class Projectile : MonoBehaviour
      //  projectileRb.AddForce(Downforce(), ForceMode.Impulse);
         projectileRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
 
-          //  transform.position = SpawnPosition();
+        //  transform.position = SpawnPosition();
 
-
+        StartCoroutine(Despawn());
     }
-
+    IEnumerator Despawn()
+    {
+        yield return new WaitForSeconds(despawnTime);
+        Destroy(gameObject);
+    }
     // Update is called once per frame
     void Update()
     {

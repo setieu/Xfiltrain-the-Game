@@ -42,7 +42,7 @@ public class Yeeter : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                if (Time.time - lastSpawnTime >= 2f)
+                if (Time.time - lastSpawnTime >= 1.5f)
                 {
                     // Choose a random object to spawn from the array
                     int randomIndex = Random.Range(0, objectsToSpawn.Length);
