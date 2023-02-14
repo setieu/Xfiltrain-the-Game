@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject player;
     //private float win = 505;
-    private float speed = 0.08f;
+    private float speed = 0.125f;
     public float jumpForce = 16;
     private float minLeftSpeed = 20;
     private float maxLeftSpeed = 22;
