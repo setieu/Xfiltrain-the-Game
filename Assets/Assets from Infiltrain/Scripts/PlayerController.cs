@@ -19,7 +19,8 @@ public class PlayerController : MonoBehaviour
     public bool isAlive;
     public AudioClip lossSound1;
     public AudioClip lossSound2;
-    public AudioClip lossSound3;
+
+    //public AudioClip lossSound3;
     //public AudioClip winSound; 
     public AudioClip trainSound;
 
@@ -78,9 +79,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
+
 
         if (gameManager.gameActive == true)
         {
@@ -118,8 +119,6 @@ public class PlayerController : MonoBehaviour
         {
             playerRb.transform.Translate(Vector3.right * speed * verticalInput * forceMultiplier * Time.deltaTime, Space.World);
             playerRb.transform.Translate(Vector3.forward * speed * horizontalInput * forceMultiplier * -1.5f * Time.deltaTime, Space.World);
-
-            
         }
 
 
@@ -135,8 +134,7 @@ public class PlayerController : MonoBehaviour
         }else if (verticalInput != 0)
         {
             animator.SetBool("walking", true);
-        }
-        else
+        }else
         {
             animator.SetBool("walking", false);
             animator.SetBool("walkright", false);
