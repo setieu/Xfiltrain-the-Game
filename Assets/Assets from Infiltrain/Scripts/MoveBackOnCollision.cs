@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MoveBackOnCollision : MonoBehaviour
 {
+    private float leftBound = -100;
     public float speed = 100f;
     // Start is called before the first frame update
     void Start()
@@ -14,11 +15,15 @@ public class MoveBackOnCollision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //Destroy flatcar when out of bounds
+        if (transform.position.x < leftBound && gameObject.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
+        }
     }
-    void OnCollisionEnter(Collision col)
+    void OnTriggerEnter(Collider other)
     {
-        if (col.gameObject.tag == "Enemy")
+        if (other.gameObject.CompareTag("Enemy"))
         {
             StartCoroutine(MoveBack());
         }
