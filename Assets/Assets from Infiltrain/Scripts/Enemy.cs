@@ -61,11 +61,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    Vector3 SpawnPosition()
-    {
+    //Vector3 SpawnPosition()
+    //{
 
-        Vector3 spawnPosition = new Vector3(player.transform.position.x + 50, 8, Random.Range(1.2f, 6.2f));
-        return spawnPosition;
+   //     Vector3 spawnPosition = new Vector3(player.transform.position.x + 50, 8, Random.Range(1.2f, 6.2f));
+    //    return spawnPosition;
 
-    }
+   // }
 }

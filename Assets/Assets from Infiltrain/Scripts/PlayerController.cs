@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
 
-        if (gameManager.gameActive == true)
+        if (gameManager.gameActive)
         {
             lockXRotation = true;
             lockYRotation = false;
