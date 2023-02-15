@@ -7,25 +7,29 @@ public class PogHider : MonoBehaviour
     public GameObject objectToSpawn;
     public float spawnDelay = 2f;
     public float waveDelay = 2f;
-    public int waveSize = 100;
+    public int waveSize = 1;
     public float minSpawnDistance = 5f;
+    public float minYOffset = 1f;
+    public float maxYOffset = 2f;
+    public float minZ = 10f;
+    public float maxZ = 20f;
+    public float minX = -10f;
+    public float maxX = 10f;
 
     private float lastWaveTime;
     private int objectsSpawnedInCurrentWave;
     private Transform playerTransform;
-    //Gamemanager
     private GameManager gameManager;
-
 
     private void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         playerTransform = GetComponent<Transform>();
     }
- 
+
     private void Update()
     {
-        if(gameManager.gameActive)
+        if (gameManager.gameActive)
         {
             if (Time.time - lastWaveTime >= waveDelay)
             {
@@ -39,7 +43,11 @@ public class PogHider : MonoBehaviour
 
     private IEnumerator SpawnWave()
     {
-        if(gameManager.gameActive)
+        // Increment wave size at the start of each wave
+        waveSize++;
+        objectsSpawnedInCurrentWave = 0;
+
+        if (gameManager.gameActive)
         {
             while (objectsSpawnedInCurrentWave < waveSize)
             {
@@ -59,13 +67,29 @@ public class PogHider : MonoBehaviour
 
     private Vector3 GetValidSpawnPosition()
     {
+        int tries = 0;
+        Vector3 spawnPosition = Vector3.zero;
 
-        Vector3 spawnPosition = playerTransform.position + Random.onUnitSphere * minSpawnDistance * 2;
-        spawnPosition.y = playerTransform.position.y;
-
-        if (Vector3.Distance(playerTransform.position, spawnPosition) < minSpawnDistance)
+        while (tries < 100)
         {
-            return Vector3.zero;
+            spawnPosition = playerTransform.position + new Vector3(Random.Range(minX, maxX), Random.Range(minYOffset, maxYOffset), Random.Range(minZ, maxZ));
+
+
+            if (Vector3.Distance(playerTransform.position, spawnPosition) < minSpawnDistance)
+            {
+                tries++;
+                continue;
+            }
+
+            Collider[] colliders = Physics.OverlapSphere(spawnPosition, 3.5f);
+
+            if (colliders.Length > 1)
+            {
+                tries++;
+                continue;
+            }
+
+            break;
         }
 
         return spawnPosition;
