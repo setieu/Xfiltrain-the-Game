@@ -47,12 +47,7 @@ public class PlayerController : MonoBehaviour
     public bool lockZRotation = false;
 
 
-
-    private bool isWA = Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A);
-    private bool isWD = Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D);
-    private bool isSA = Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A);
-    private bool isSD = Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D);
-
+    
 
 
 
@@ -140,109 +135,181 @@ public class PlayerController : MonoBehaviour
 
 
         float playerRotationy = transform.eulerAngles.y;
+
+
+
+        if (playerRotationy > 67.5 || playerRotationy < 112.5)
+        {
+            if (verticalInput > 0)
+            {
+                animator.SetBool("walking", true);
+            }
+
+            else
+            {
+                animator.SetBool("walking", false);
+                animator.SetBool("walkright", false);
+                animator.SetBool("walkleft", false);
+                animator.SetBool("walkBack", false);
+                animator.SetBool("fLeft", false);
+                animator.SetBool("fRight", false);
+                animator.SetBool("bLeft", false);
+                animator.SetBool("bRight", false);
+            }
+        }
+        else if (playerRotationy > 112.5 || playerRotationy < 157.5)
+        {
+            if (verticalInput > 0)
+            {
+                animator.SetBool("fRight", true);
+            }
+
+            else
+            {
+                animator.SetBool("walking", false);
+                animator.SetBool("walkright", false);
+                animator.SetBool("walkleft", false);
+                animator.SetBool("walkBack", false);
+                animator.SetBool("fLeft", false);
+                animator.SetBool("fRight", false);
+                animator.SetBool("bLeft", false);
+                animator.SetBool("bRight", false);
+            }
+        }
+        else if (playerRotationy > 157.5 || playerRotationy < 202.5)
+        {
+            if (verticalInput > 0)
+            {
+                animator.SetBool("walkright", true);
+            }
+
+            else
+            {
+                animator.SetBool("walking", false);
+                animator.SetBool("walkright", false);
+                animator.SetBool("walkleft", false);
+                animator.SetBool("walkBack", false);
+                animator.SetBool("fLeft", false);
+                animator.SetBool("fRight", false);
+                animator.SetBool("bLeft", false);
+                animator.SetBool("bRight", false);
+            }
+        }
+        else if (playerRotationy > 202.5 || playerRotationy < 247.5)
+        {
+            if (verticalInput > 0)
+            {
+                animator.SetBool("bRight", true);
+            }
+
+            else
+            {
+                animator.SetBool("walking", false);
+                animator.SetBool("walkright", false);
+                animator.SetBool("walkleft", false);
+                animator.SetBool("walkBack", false);
+                animator.SetBool("fLeft", false);
+                animator.SetBool("fRight", false);
+                animator.SetBool("bLeft", false);
+                animator.SetBool("bRight", false);
+            }
+        }
+        else if (playerRotationy > 247.5 || playerRotationy < 292.5)
+        {
+            if (verticalInput > 0)
+            {
+                animator.SetBool("walkBack", true);
+            }
+
+            else
+            {
+                animator.SetBool("walking", false);
+                animator.SetBool("walkright", false);
+                animator.SetBool("walkleft", false);
+                animator.SetBool("walkBack", false);
+                animator.SetBool("fLeft", false);
+                animator.SetBool("fRight", false);
+                animator.SetBool("bLeft", false);
+                animator.SetBool("bRight", false);
+            }
+        }
+        else if (playerRotationy > 292.5 || playerRotationy < 337.5)
+        {
+            if (verticalInput > 0)
+            {
+                animator.SetBool("bLeft", true);
+            }
+
+            else
+            {
+                animator.SetBool("walking", false);
+                animator.SetBool("walkright", false);
+                animator.SetBool("walkleft", false);
+                animator.SetBool("walkBack", false);
+                animator.SetBool("fLeft", false);
+                animator.SetBool("fRight", false);
+                animator.SetBool("bLeft", false);
+                animator.SetBool("bRight", false);
+            }
+        }
+        else if (playerRotationy > 337.5 || playerRotationy < 22.5)
+        {
+            if (verticalInput > 0)
+            {
+                animator.SetBool("walkleft", true);
+            }
+
+            else
+            {
+                animator.SetBool("walking", false);
+                animator.SetBool("walkright", false);
+                animator.SetBool("walkleft", false);
+                animator.SetBool("walkBack", false);
+                animator.SetBool("fLeft", false);
+                animator.SetBool("fRight", false);
+                animator.SetBool("bLeft", false);
+                animator.SetBool("bRight", false);
+            }
+        }
+        else if (playerRotationy > 22.5 || playerRotationy < 67.5)
+        {
+            if (verticalInput > 0)
+            {
+                animator.SetBool("fLeft", true);
+            }
+
+            else
+            {
+                animator.SetBool("walking", false);
+                animator.SetBool("walkright", false);
+                animator.SetBool("walkleft", false);
+                animator.SetBool("walkBack", false);
+                animator.SetBool("fLeft", false);
+                animator.SetBool("fRight", false);
+                animator.SetBool("bLeft", false);
+                animator.SetBool("bRight", false);
+            }
+        }
+
         
-
-        Debug.Log(playerRotationy);
-
-        if (horizontalInput < 0)
-        {
-            if (playerRotationy > 45 || playerRotationy < 135)
-            {
-                animator.SetBool("walking", true);
-                Debug.Log("A");
-
-            }else if (playerRotationy > 135 || playerRotationy < 225)
-            {
-                animator.SetBool("walkright", true);
-            }
-            else if(playerRotationy > 225 || playerRotationy < 315)
-            {
-                animator.SetBool("walkBack", true);
-            }
-            else if(playerRotationy > 315 || playerRotationy < 45)
-            {
-                animator.SetBool("walkleft", true);
-            }
+        //else if (horizontalInput < 0)
+        //{
             
-        }else if (horizontalInput > 0)
-        {
+        
+            
+        //}else if (horizontalInput > 0)
+        //{
 
-            if (playerRotationy > 45 || playerRotationy < 135)
-            {
-                animator.SetBool("walkright", true);
-            }
-            else if (playerRotationy > 135 || playerRotationy < 225)
-            {
-                animator.SetBool("walkBack", true);
-            }
-            else if (playerRotationy > 225 || playerRotationy < 315)
-            {
-                animator.SetBool("walkleft", true);
-            }
-            else if (playerRotationy > 315 || playerRotationy < 45)
-            {
-                animator.SetBool("walking", true);
-            }
+            
 
 
 
             
-        }else if (verticalInput > 0)
-        {
-            if (playerRotationy > 45 || playerRotationy < 135)
-            {
-                animator.SetBool("walking", true);
-            }
-            else if (playerRotationy > 135 || playerRotationy < 225)
-            {
-                animator.SetBool("walkright", true);
-            }
-            else if (playerRotationy > 225 || playerRotationy < 315)
-            {
-                animator.SetBool("walkBack", true);
-            }
-            else if (playerRotationy > 315 || playerRotationy < 45)
-            {
-                animator.SetBool("walkleft", true);
-            }
-
-
-
-
+        //}else if(verticalInput < 0)
+        //{
             
-        }else if(verticalInput < 0)
-        {
-            if (playerRotationy > 45 || playerRotationy < 135)
-            {
-                animator.SetBool("walkBack", true);
-            }
-            else if (playerRotationy > 135 || playerRotationy < 225)
-            {
-                animator.SetBool("walkleft", true);
-            }
-            else if (playerRotationy > 225 || playerRotationy < 315)
-            {
-                animator.SetBool("walking", true);
-            }
-            else if (playerRotationy > 315 || playerRotationy < 45)
-            {
-                animator.SetBool("walkright", true);
-            }
-
-
-            
-        }
-        else
-        {
-            animator.SetBool("walking", false);
-            animator.SetBool("walkright", false);
-            animator.SetBool("walkleft", false);
-            animator.SetBool("walkBack", false);
-            animator.SetBool("fLeft", false);
-            animator.SetBool("fRight", false);
-            animator.SetBool("bLeft", false);
-            animator.SetBool("bRight", false);
-        }
+        //}
+       
 
 
 
