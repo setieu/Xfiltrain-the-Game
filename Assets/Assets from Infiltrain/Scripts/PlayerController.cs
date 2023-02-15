@@ -46,17 +46,14 @@ public class PlayerController : MonoBehaviour
     public bool lockZRotation = false;
 
 
-    //Animations
-    Animator animator;
+
+
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        //Animations
-        animator = GetComponent<Animator>();
-
         playerAudio = GetComponent<AudioSource>();
         playerRb = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
@@ -81,7 +78,7 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
 
-        if (gameManager.gameActive == true)
+        if (gameManager.gameActive)
         {
             lockXRotation = true;
             lockYRotation = false;
@@ -112,16 +109,8 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation);
 
 
-        // Player movement
-        if (gameManager.gameActive)
-        {
-            playerRb.transform.Translate(Vector3.right * speed * verticalInput * forceMultiplier * Time.deltaTime, Space.World);
-            playerRb.transform.Translate(Vector3.forward * speed * horizontalInput * forceMultiplier * -1.5f * Time.deltaTime, Space.World);
-        }
 
 
-        //Animations
-        animator.SetBool("walking", true);
 
 
 
@@ -167,7 +156,12 @@ public class PlayerController : MonoBehaviour
         //playerRb.AddForce(Vector3.up * jumpForce * forceMultiplier, ForceMode.Impulse);
         //isOnGround = false;
         //}
-        
+        // Player movement
+        if(gameManager.gameActive)
+        {
+            playerRb.transform.Translate(Vector3.right * speed * verticalInput * forceMultiplier * Time.deltaTime, Space.World);
+            playerRb.transform.Translate(Vector3.forward * speed * horizontalInput * forceMultiplier * -1.5f * Time.deltaTime, Space.World);
+        }    
 
 
         // Make the player Jump
