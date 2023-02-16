@@ -35,6 +35,11 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        //Destroy enemy when out of bounds
+        if (transform.position.x < leftBound && gameObject.CompareTag("PogHider"))
+        {
+            Destroy(gameObject);
+        }
 
     }
     Vector3 RandomLeftForce()
