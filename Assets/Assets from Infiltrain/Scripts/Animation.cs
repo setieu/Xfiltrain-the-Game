@@ -4,9 +4,7 @@ public class Animation : MonoBehaviour
 {
     public Animator animator;
     private GameManager gameManager;
-
-
-
+    private PlayerController playerController;
 
 
 
@@ -15,6 +13,7 @@ public class Animation : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        
     }
 
     // Update is called once per frame
@@ -32,7 +31,7 @@ public class Animation : MonoBehaviour
        
 
         //Animations
-        float playerRotationy = transform.eulerAngles.y;
+        float angle = transform.rotation.eulerAngles.y;
 
         // Direction Integer Key \\
 
@@ -46,9 +45,10 @@ public class Animation : MonoBehaviour
         // 6: Left
         // 7: Front-Left
 
-        if ((playerRotationy > 67.5 || playerRotationy < 112.5)) //Facing Forwards
-        {
 
+        //Facing Forwards
+        if ((angle >= 67.5f && angle <= 112.5f)) 
+        {
             if(wKey)
             {
                 if(aKey) //Walk Forwards Left
@@ -112,38 +112,481 @@ public class Animation : MonoBehaviour
             else
             {
                 animator.SetInteger("direction", -1);
+            }   
+        }
+
+
+        // Facing Forwards Right
+        else if ((angle >= 112.5f && angle < 157.5f)) 
+        {
+            if(wKey)
+            {
+                if(aKey) //Walk Forwards Left
+                {
+                    animator.SetInteger("direction", 6);
+                }
+                else if (dKey) //Walk Forwards Right
+                {
+                    animator.SetInteger("direction", 0);
+                }
+                else if(!aKey || !dKey) //Walk Forwards
+                {
+                    animator.SetInteger("direction", 7);
+                }
             }
-            
-            
+            else if (sKey)
+            {
+                if(aKey) //Walk Backwards Left
+                {
+                    animator.SetInteger("direction", 4);
+                }
+                else if (dKey) //Walk Backwards Right
+                {
+                    animator.SetInteger("direction", 2);
+                }
+                else if(!aKey || !dKey) //Walk Backwards
+                {
+                    animator.SetInteger("direction", 3);
+                }
+            }
+            else if (aKey)
+            {
+                if(wKey) //Walk Forwards Left
+                {
+                    animator.SetInteger("direction", 6);
+                }
+                else if (sKey) //Walk Backwards Left
+                {
+                    animator.SetInteger("direction", 4);
+                }
+                else if(!wKey || !sKey) //Walk Left
+                {
+                    animator.SetInteger("direction", 5);
+                }
+            }
+            else if (dKey)
+            {
+                if(wKey) //Walk Forwards Right
+                {
+                    animator.SetInteger("direction", 0);
+                }
+                else if (sKey) //Walk Backwards Right
+                {
+                    animator.SetInteger("direction", 2);
+                }
+                else if(!wKey || !sKey) //Walk Right
+                {
+                    animator.SetInteger("direction", 1);
+                }
+            }
+            else
+            {
+                animator.SetInteger("direction", -1);
+            }
         }
-        else if ((playerRotationy > 112.5 || playerRotationy < 157.5)) // Facing Forwards Right
+        else if ((angle > 157.5f && angle < 202.5f)) // Facing Right
         {
-            
+            if(wKey)
+            {
+                if(aKey) //Walk Forwards Left
+                {
+                    animator.SetInteger("direction", 5);
+                }
+                else if (dKey) //Walk Forwards Right
+                {
+                    animator.SetInteger("direction", 7);
+                }
+                else if(!aKey || !dKey) //Walk Forwards
+                {
+                    animator.SetInteger("direction", 6);
+                }
+            }
+            else if (sKey)
+            {
+                if(aKey) //Walk Backwards Left
+                {
+                    animator.SetInteger("direction", 3);
+                }
+                else if (dKey) //Walk Backwards Right
+                {
+                    animator.SetInteger("direction", 1);
+                }
+                else if(!aKey || !dKey) //Walk Backwards
+                {
+                    animator.SetInteger("direction", 2);
+                }
+            }
+            else if (aKey)
+            {
+                if(wKey) //Walk Forwards Left
+                {
+                    animator.SetInteger("direction", 5);
+                }
+                else if (sKey) //Walk Backwards Left
+                {
+                    animator.SetInteger("direction", 3);
+                }
+                else if(!wKey || !sKey) //Walk Left
+                {
+                    animator.SetInteger("direction", 4);
+                }
+            }
+            else if (dKey)
+            {
+                if(wKey) //Walk Forwards Right
+                {
+                    animator.SetInteger("direction", 7);
+                }
+                else if (sKey) //Walk Backwards Right
+                {
+                    animator.SetInteger("direction", 1);
+                }
+                else if(!wKey || !sKey) //Walk Right
+                {
+                    animator.SetInteger("direction", 0);
+                }
+            }
+            else
+            {
+                animator.SetInteger("direction", -1);
+            }
         }
-        else if ((playerRotationy > 157.5 || playerRotationy < 202.5)) // Facing Right
+        else if ((angle > 202.5f && angle < 247.5f)) // Facing Backwards Right
         {
-            
+            if(wKey)
+            {
+                if(aKey) //Walk Forwards Left
+                {
+                    animator.SetInteger("direction", 4);
+                }
+                else if (dKey) //Walk Forwards Right
+                {
+                    animator.SetInteger("direction", 6);
+                }
+                else if(!aKey || !dKey) //Walk Forwards
+                {
+                    animator.SetInteger("direction", 5);
+                }
+            }
+            else if (sKey)
+            {
+                if(aKey) //Walk Backwards Left
+                {
+                    animator.SetInteger("direction", 2);
+                }
+                else if (dKey) //Walk Backwards Right
+                {
+                    animator.SetInteger("direction", 0);
+                }
+                else if(!aKey || !dKey) //Walk Backwards
+                {
+                    animator.SetInteger("direction", 1);
+                }
+            }
+            else if (aKey)
+            {
+                if(wKey) //Walk Forwards Left
+                {
+                    animator.SetInteger("direction", 4);
+                }
+                else if (sKey) //Walk Backwards Left
+                {
+                    animator.SetInteger("direction", 2);
+                }
+                else if(!wKey || !sKey) //Walk Left
+                {
+                    animator.SetInteger("direction", 3);
+                }
+            }
+            else if (dKey)
+            {
+                if(wKey) //Walk Forwards Right
+                {
+                    animator.SetInteger("direction", 6);
+                }
+                else if (sKey) //Walk Backwards Right
+                {
+                    animator.SetInteger("direction", 0);
+                }
+                else if(!wKey || !sKey) //Walk Right
+                {
+                    animator.SetInteger("direction", 7);
+                }
+            }
+            else
+            {
+                animator.SetInteger("direction", -1);
+            }
         }
-        else if ((playerRotationy > 202.5 || playerRotationy < 247.5)) // Facing Backwards Right
+        else if ((angle > 247.5f && angle < 292.5f)) // Facing Backwards
         {
-            
+            if(wKey)
+            {
+                if(aKey) //Walk Forwards Left
+                {
+                    animator.SetInteger("direction", 3);
+                }
+                else if (dKey) //Walk Forwards Right
+                {
+                    animator.SetInteger("direction", 5);
+                }
+                else if(!aKey || !dKey) //Walk Forwards
+                {
+                    animator.SetInteger("direction", 4);
+                }
+            }
+            else if (sKey)
+            {
+                if(aKey) //Walk Backwards Left
+                {
+                    animator.SetInteger("direction", 1);
+                }
+                else if (dKey) //Walk Backwards Right
+                {
+                    animator.SetInteger("direction", 7);
+                }
+                else if(!aKey || !dKey) //Walk Backwards
+                {
+                    animator.SetInteger("direction", 0);
+                }
+            }
+            else if (aKey)
+            {
+                if(wKey) //Walk Forwards Left
+                {
+                    animator.SetInteger("direction", 3);
+                }
+                else if (sKey) //Walk Backwards Left
+                {
+                    animator.SetInteger("direction", 1);
+                }
+                else if(!wKey || !sKey) //Walk Left
+                {
+                    animator.SetInteger("direction", 2);
+                }
+            }
+            else if (dKey)
+            {
+                if(wKey) //Walk Forwards Right
+                {
+                    animator.SetInteger("direction", 5);
+                }
+                else if (sKey) //Walk Backwards Right
+                {
+                    animator.SetInteger("direction", 7);
+                }
+                else if(!wKey || !sKey) //Walk Right
+                {
+                    animator.SetInteger("direction", 6);
+                }
+            }
+            else
+            {
+                animator.SetInteger("direction", -1);
+            }
         }
-        else if ((playerRotationy > 247.5 || playerRotationy < 292.5)) // Facing Backwards
+        else if ((angle > 292.5f && angle < 337.5f)) // Facing Backwards Left
         {
-            
+            if(wKey)
+            {
+                if(aKey) //Walk Forwards Left
+                {
+                    animator.SetInteger("direction", 2);
+                }
+                else if (dKey) //Walk Forwards Right
+                {
+                    animator.SetInteger("direction", 4);
+                }
+                else if(!aKey || !dKey) //Walk Forwards
+                {
+                    animator.SetInteger("direction", 3);
+                }
+            }
+            else if (sKey)
+            {
+                if(aKey) //Walk Backwards Left
+                {
+                    animator.SetInteger("direction", 0);
+                }
+                else if (dKey) //Walk Backwards Right
+                {
+                    animator.SetInteger("direction", 6);
+                }
+                else if(!aKey || !dKey) //Walk Backwards
+                {
+                    animator.SetInteger("direction", 7);
+                }
+            }
+            else if (aKey)
+            {
+                if(wKey) //Walk Forwards Left
+                {
+                    animator.SetInteger("direction", 2);
+                }
+                else if (sKey) //Walk Backwards Left
+                {
+                    animator.SetInteger("direction", 0);
+                }
+                else if(!wKey || !sKey) //Walk Left
+                {
+                    animator.SetInteger("direction", 1);
+                }
+            }
+            else if (dKey)
+            {
+                if(wKey) //Walk Forwards Right
+                {
+                    animator.SetInteger("direction", 4);
+                }
+                else if (sKey) //Walk Backwards Right
+                {
+                    animator.SetInteger("direction", 6);
+                }
+                else if(!wKey || !sKey) //Walk Right
+                {
+                    animator.SetInteger("direction", 5);
+                }
+            }
+            else
+            {
+                animator.SetInteger("direction", -1);
+            }
         }
-        else if ((playerRotationy > 292.5 || playerRotationy < 337.5)) // Facing Backwards Left
+        else if ((angle > 337.5f && angle < 22.5f)) // Facing Left
         {
-            
+            if(wKey)
+            {
+                if(aKey) //Walk Forwards Left
+                {
+                    animator.SetInteger("direction", 1);
+                }
+                else if (dKey) //Walk Forwards Right
+                {
+                    animator.SetInteger("direction", 3);
+                }
+                else if(!aKey || !dKey) //Walk Forwards
+                {
+                    animator.SetInteger("direction", 2);
+                }
+            }
+            else if (sKey)
+            {
+                if(aKey) //Walk Backwards Left
+                {
+                    animator.SetInteger("direction", 7);
+                }
+                else if (dKey) //Walk Backwards Right
+                {
+                    animator.SetInteger("direction", 5);
+                }
+                else if(!aKey || !dKey) //Walk Backwards
+                {
+                    animator.SetInteger("direction", 6);
+                }
+            }
+            else if (aKey)
+            {
+                if(wKey) //Walk Forwards Left
+                {
+                    animator.SetInteger("direction", 1);
+                }
+                else if (sKey) //Walk Backwards Left
+                {
+                    animator.SetInteger("direction", 7);
+                }
+                else if(!wKey || !sKey) //Walk Left
+                {
+                    animator.SetInteger("direction", 0);
+                }
+            }
+            else if (dKey)
+            {
+                if(wKey) //Walk Forwards Right
+                {
+                    animator.SetInteger("direction", 3);
+                }
+                else if (sKey) //Walk Backwards Right
+                {
+                    animator.SetInteger("direction", 5);
+                }
+                else if(!wKey || !sKey) //Walk Right
+                {
+                    animator.SetInteger("direction", 4);
+                }
+            }
+            else
+            {
+                animator.SetInteger("direction", -1);
+            }
         }
-        else if ((playerRotationy > 337.5 || playerRotationy < 22.5)) // Facing Left
+        else if ((angle > 22.5f && angle < 67.5f)) //Facing Forwards Left
         {
-            
-        }
-        else if ((playerRotationy > 22.5 || playerRotationy < 67.5)) //Facing Forwards Left
-        {
-            
+            if(wKey)
+            {
+                if(aKey) //Walk Forwards Left
+                {
+                    animator.SetInteger("direction", 0);
+                }
+                else if (dKey) //Walk Forwards Right
+                {
+                    animator.SetInteger("direction", 2);
+                }
+                else if(!aKey || !dKey) //Walk Forwards
+                {
+                    animator.SetInteger("direction", 1);
+                }
+            }
+            else if (sKey)
+            {
+                if(aKey) //Walk Backwards Left
+                {
+                    animator.SetInteger("direction", 6);
+                }
+                else if (dKey) //Walk Backwards Right
+                {
+                    animator.SetInteger("direction", 4);
+                }
+                else if(!aKey || !dKey) //Walk Backwards
+                {
+                    animator.SetInteger("direction", 5);
+                }
+            }
+            else if (aKey)
+            {
+                if(wKey) //Walk Forwards Left
+                {
+                    animator.SetInteger("direction", 1);
+                }
+                else if (sKey) //Walk Backwards Left
+                {
+                    animator.SetInteger("direction", 6);
+                }
+                else if(!wKey || !sKey) //Walk Left
+                {
+                    animator.SetInteger("direction", 7);
+                }
+            }
+            else if (dKey)
+            {
+                if(wKey) //Walk Forwards Right
+                {
+                    animator.SetInteger("direction", 2);
+                }
+                else if (sKey) //Walk Backwards Right
+                {
+                    animator.SetInteger("direction", 4);
+                }
+                else if(!wKey || !sKey) //Walk Right
+                {
+                    animator.SetInteger("direction", 3);
+                }
+            }
+            else
+            {
+                animator.SetInteger("direction", -1);
+            } 
         }
     }
 
+    
 }
