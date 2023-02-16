@@ -29,136 +29,96 @@ public class Animation : MonoBehaviour
         bool sKey = verticalInput < 0;
         bool dKey = horizontalInput > 0;
 
-        bool waKey = verticalInput > 0 && horizontalInput < 0;
-        bool wdKey = verticalInput > 0 && horizontalInput > 0;
-        bool saKey = verticalInput < 0 && horizontalInput < 0;
-        bool sdKey = verticalInput < 0 && horizontalInput > 0;
+       
 
         //Animations
-
         float playerRotationy = transform.eulerAngles.y;
 
+        // Direction Integer Key \\
 
-        if ((playerRotationy > 67.5 || playerRotationy < 112.5) && gameManager.gameActive == true)
+        //-1: Idle
+        // 0: Front
+        // 1: Front-Right
+        // 2: Right
+        // 3: Back-Right
+        // 4: Back
+        // 5: Back-Left
+        // 6: Left
+        // 7: Front-Left
+
+        if ((playerRotationy > 67.5 || playerRotationy < 112.5)) //Facing Forwards
         {
 
             if(wKey)
             {
-                if (Input.GetKeyDown(KeyCode.A) && !Input.GetKeyDown(KeyCode.D))
+                if(aKey) //Walk Forwards Left
                 {
-                    animator.SetBool("fLeft", true);
-                    animator.SetBool("walking", false);
-                    animator.SetBool("fright", false);
+                    animator.SetInteger("direction", 7);
                 }
-                else if (Input.GetKeyDown(KeyCode.D) && !Input.GetKeyDown(KeyCode.A))
+                else if (dKey) //Walk Forwards Right
                 {
-                    animator.SetBool("fRight", true);
-                    animator.SetBool("walking", false);
-                    animator.SetBool("fLeft", false);
+                    animator.SetInteger("direction", 1);
                 }
-                else if (!Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
+                else if(!aKey || !dKey) //Walk Forwards
                 {
-                    animator.SetBool("walking", true);
-                    animator.SetBool("fLeft", false);
-                    animator.SetBool("fright", false);
+                    animator.SetInteger("direction", 0);
                 }
             }
             else if (sKey)
             {
-                if (saKey)
+                if(aKey) //Walk Backwards Left
                 {
-                    animator.SetBool("walkBack", false);
-                    animator.SetBool("walkleft", false);
-                    animator.SetBool("bLeft", true);
+                    animator.SetInteger("direction", 5);
                 }
-                else if (sdKey)
+                else if (dKey) //Walk Backwards Right
                 {
-                    animator.SetBool("walkBack", false);
-                    animator.SetBool("walkright", false);
-                    animator.SetBool("bRight", true);
+                    animator.SetInteger("direction", 3);
                 }
-                else if (saKey == false || sdKey == false)
+                else if(!aKey || !dKey) //Walk Backwards
                 {
-                    animator.SetBool("walkBack", true);
+                    animator.SetInteger("direction", 4);
                 }
             }
             else if (aKey)
             {
-                if (waKey)
-                {
-                    animator.SetBool("walkleft", false);
-                    animator.SetBool("walking", false);
-                    animator.SetBool("fLeft", true);
-                }
-                else if (saKey)
-                {
-                    animator.SetBool("walkleft", false);
-                    animator.SetBool("walkBack", false);
-                    animator.SetBool("fLeft", true);
-                }
-                else if (waKey == false || saKey == false)
-                {
-                    animator.SetBool("walkleft", true);
-                }
+                
             }
             else if (dKey)
             {
-                if (wdKey)
-                {
-                    animator.SetBool("fRight", true);
-                    animator.SetBool("walkright", false);
-                    animator.SetBool("walking", false);
-                }
-                else if (sdKey)
-                {
-                    animator.SetBool("fRight", true);
-                    animator.SetBool("walkright", false);
-                    animator.SetBool("walkBack", false);
-                }
-                else if (wdKey == false || sdKey == false)
-                {
-                    animator.SetBool("walkright", true);
-                }
+                
             }
             else
             {
-                animator.SetBool("walking", false);
-                animator.SetBool("walkright", false);
-                animator.SetBool("walkleft", false);
-                animator.SetBool("walkBack", false);
-                animator.SetBool("fLeft", false);
-                animator.SetBool("fRight", false);
-                animator.SetBool("bLeft", false);
-                animator.SetBool("bRight", false);
+                animator.SetInteger("direction", -1);
             }
             
             
         }
-        else if ((playerRotationy > 112.5 || playerRotationy < 157.5) && gameManager.gameActive == true)
+        else if ((playerRotationy > 112.5 || playerRotationy < 157.5)) // Facing Forwards Right
         {
             
         }
-        else if ((playerRotationy > 157.5 || playerRotationy < 202.5) && gameManager.gameActive == true)
+        else if ((playerRotationy > 157.5 || playerRotationy < 202.5)) // Facing Right
         {
             
         }
-        else if ((playerRotationy > 202.5 || playerRotationy < 247.5) && gameManager.gameActive == true)
+        else if ((playerRotationy > 202.5 || playerRotationy < 247.5)) // Facing Backwards Right
         {
             
         }
-        else if ((playerRotationy > 247.5 || playerRotationy < 292.5) && gameManager.gameActive == true)
+        else if ((playerRotationy > 247.5 || playerRotationy < 292.5)) // Facing Backwards
         {
             
         }
-        else if ((playerRotationy > 292.5 || playerRotationy < 337.5) && gameManager.gameActive == true)
+        else if ((playerRotationy > 292.5 || playerRotationy < 337.5)) // Facing Backwards Left
         {
             
         }
-        else if ((playerRotationy > 337.5 || playerRotationy < 22.5) && gameManager.gameActive == true)
+        else if ((playerRotationy > 337.5 || playerRotationy < 22.5)) // Facing Left
         {
             
         }
-        else if ((playerRotationy > 22.5 || playerRotationy < 67.5) && gameManager.gameActive == true)
+        else if ((playerRotationy > 22.5 || playerRotationy < 67.5)) //Facing Forwards Left
         {
             
         }
