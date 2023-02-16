@@ -81,11 +81,33 @@ public class Animation : MonoBehaviour
             }
             else if (aKey)
             {
-                
+                if(wKey) //Walk Forwards Left
+                {
+                    animator.SetInteger("direction", 7);
+                }
+                else if (sKey) //Walk Backwards Left
+                {
+                    animator.SetInteger("direction", 5);
+                }
+                else if(!wKey || !sKey) //Walk Left
+                {
+                    animator.SetInteger("direction", 6);
+                }
             }
             else if (dKey)
             {
-                
+                if(wKey) //Walk Forwards Right
+                {
+                    animator.SetInteger("direction", 1);
+                }
+                else if (sKey) //Walk Backwards Right
+                {
+                    animator.SetInteger("direction", 3);
+                }
+                else if(!wKey || !sKey) //Walk Right
+                {
+                    animator.SetInteger("direction", 2);
+                }
             }
             else
             {
