@@ -19,6 +19,14 @@ public class GameManager : MonoBehaviour
 
 
     public List<GameObject> targetPrefabs;
+    public List<AudioClip> GSaudio; // list of audio clips to choose from for Game Start
+    public List<AudioClip> DeathAudio; // list of audio clips to choose from for Death
+    public List<AudioClip> DetachmentAudio; // list of audio clips to choose from for Detachment
+    public List<AudioClip> ThrowAudio; // list of audio clips to choose from for Throw
+    public List<AudioClip> HitAudio; // list of audio clips to choose from for Hitting Enemy
+    public List<AudioClip> RandomAudio; // list of audio clips to choose from for Randomly saying
+
+    private AudioSource audioSource; // audio source component
 
     public GameObject titleScreen;
     public TextMeshProUGUI gameOverLostText;
@@ -47,7 +55,8 @@ public class GameManager : MonoBehaviour
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         gameActive = false;
-
+        audioSource = GetComponent<AudioSource>();
+        
 
     }
     public void StartGame(int difficulty)
@@ -62,7 +71,7 @@ public class GameManager : MonoBehaviour
         playerController.playerRb.constraints = RigidbodyConstraints.None;
         titleScreen.SetActive(false);
         toolAssist.SetActive(true);
-
+        PlayRandomGSAudio();
         startedTime = Time.time;
         // Input sounds
 
@@ -137,6 +146,34 @@ public class GameManager : MonoBehaviour
      QualitySettings.vSyncCount = 0;  // VSync must be disabled
      Application.targetFrameRate = 90;
      }
-
-
+    void PlayRandomGSAudio()
+    {
+        int randomIndex = Random.Range(0, GSaudio.Count); // choose a random index within the list
+        audioSource.clip = GSaudio[randomIndex]; // set the audio source's clip to the chosen audio clip
+        audioSource.Play(); // play the audio
+    }
+    void PlayRandomDeathAudio()
+    {
+        int randomIndex = Random.Range(0, DeathAudio.Count); // choose a random index within the list
+        audioSource.clip = DeathAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
+        audioSource.Play(); // play the audio
+    }
+    void PlayRandomHitAudio()
+    {
+        int randomIndex = Random.Range(0, HitAudio.Count); // choose a random index within the list
+        audioSource.clip = HitAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
+        audioSource.Play(); // play the audio
+    }
+    void PlayRandomThrowAudio()
+    {
+        int randomIndex = Random.Range(0, ThrowAudio.Count); // choose a random index within the list
+        audioSource.clip = ThrowAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
+        audioSource.Play(); // play the audio
+    }
+    void PlayRandomDetachmentAudio()
+    {
+        int randomIndex = Random.Range(0, DetachmentAudio.Count); // choose a random index within the list
+        audioSource.clip = DetachmentAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
+        audioSource.Play(); // play the audio
+    }
 }
