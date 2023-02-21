@@ -95,7 +95,10 @@ public class GameManager : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("dead"))
         {
+
+            PlayRandomDeathAudio();
             GameOverLost();
+            
         }
     }
 
@@ -109,10 +112,13 @@ public class GameManager : MonoBehaviour
     }
     public void GameOverLost()
     {
+
+
         gameOverLostText.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
         playerController.isOnDead = true;
         gameActive = false;
+        
     }
 
     public void RestartGame()
