@@ -11,10 +11,10 @@ public class PogHider : MonoBehaviour
     public float minSpawnDistance = 5f;
     public float minYOffset = 1f;
     public float maxYOffset = 2f;
-    public float minX = -5f;
-    public float maxX = 5f;
-    public float minZ = 10f;
-    public float maxZ = 20f;
+    public float minZ = -5f;
+    public float maxZ = 5f;
+    public float minX = 10f;
+    public float maxX = 20f;
     public float leftSpawnDistance = 5f;
     public float rightSpawnDistance = 5f;
 
@@ -75,22 +75,21 @@ public class PogHider : MonoBehaviour
         int tries = 0;
         Vector3 spawnPosition = Vector3.zero;
 
-        while (tries < 100)
+        while (tries < 1000)
         {
-            float randomX;
             float randomZ;
-            // Calculate X and Z position
+            // Calculate Z position
             if (Random.Range(0, 2) == 0) // Spawn on left
             {
-                randomX = playerTransform.position.x - leftSpawnDistance;
+                randomZ = playerTransform.position.z - leftSpawnDistance;
             }
             else // Spawn on right
             {
-                randomX = playerTransform.position.x + rightSpawnDistance;
+                randomZ = playerTransform.position.z + rightSpawnDistance;
             }
-            randomZ = playerTransform.position.z + Random.Range(minZ, maxZ);
+            float randomY = Random.Range(minYOffset, maxYOffset);
 
-            spawnPosition = new Vector3(randomX, Random.Range(minYOffset, maxYOffset), randomZ);
+            spawnPosition = new Vector3(Random.Range(minX, maxX), randomY, randomZ);
 
             if (Vector3.Distance(playerTransform.position, spawnPosition) < minSpawnDistance)
             {

@@ -341,7 +341,7 @@ GameObject:
   - component: {fileID: 4339683312761534970}
   m_Layer: 0
   m_Name: HogRider
-  m_TagString: Enemy
+  m_TagString: PogHider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
