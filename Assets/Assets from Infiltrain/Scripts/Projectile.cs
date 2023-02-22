@@ -16,6 +16,7 @@ public class Projectile : MonoBehaviour
     public float forcemultiplier;
     public GameObject player;
     public float despawnTime = 5f;
+    public AudioClip destroySound;
 
     private PlayerController playerController;
 

@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public List<AudioClip> ThrowAudio; // list of audio clips to choose from for Throw
     public List<AudioClip> HitAudio; // list of audio clips to choose from for Hitting Enemy
     public List<AudioClip> RandomAudio; // list of audio clips to choose from for Randomly saying
+    public List<AudioClip> SecondaryAudio; // list of audio clips to choose from for Secondary
 
     private AudioSource audioSource; // audio source component
 
@@ -72,7 +73,9 @@ public class GameManager : MonoBehaviour
         titleScreen.SetActive(false);
         toolAssist.SetActive(true);
         PlayRandomGSAudio();
+        
         startedTime = Time.time;
+        PlayRandomSecondaryAudio();
         // Input sounds
 
     }
@@ -180,6 +183,12 @@ public class GameManager : MonoBehaviour
     {
         int randomIndex = Random.Range(0, DetachmentAudio.Count); // choose a random index within the list
         audioSource.clip = DetachmentAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
+        audioSource.Play(); // play the audio
+    }
+    void PlayRandomSecondaryAudio()
+    {
+        int randomIndex = Random.Range(0, SecondaryAudio.Count); // choose a random index within the list
+        audioSource.clip = SecondaryAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
         audioSource.Play(); // play the audio
     }
 }
