@@ -14,12 +14,16 @@ public class Yeeter : MonoBehaviour
     private GameManager gameManager;
     private Quaternion initialRotation;
     private Animation animations;
+    public bool canSpawn = true;
+    public Animator animator;
+
 
     private void Start()
     {
         initialRotation = transform.rotation;
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        
+        animator = GetComponent<Animator>();
+
     }
 
     void Update()
@@ -46,21 +50,39 @@ public class Yeeter : MonoBehaviour
             {
                 if (Time.time - lastSpawnTime >= 1.5f)
                 {
-                    // Choose a random object to spawn from the array
-                    int randomIndex = Random.Range(0, objectsToSpawn.Length);
-                    GameObject selectedObject = objectsToSpawn[randomIndex];
-
-                    // Instantiate the object and add force in the forward direction
-                    Vector3 spawnPos = transform.position + transform.rotation * spawnOffset;
-                    GameObject spawnedObject = Instantiate(selectedObject, spawnPos, Quaternion.identity);
-                    Rigidbody rb = spawnedObject.GetComponent<Rigidbody>();
-                    rb.AddForce(transform.forward * force, ForceMode.Impulse);
-
+                    if (canSpawn)
+                    {
+                        animator.SetBool("throw", true);
+                        StartCoroutine(SpawnObjectWithDelay(.25f));
+                        canSpawn = false;
+                    }
                     // Update the last spawn time
                     lastSpawnTime = Time.time;
                 }
             }
 
+        }
+
+        IEnumerator SpawnObjectWithDelay(float delay)
+        {
+            // Wait for the specified delay before spawning the object
+            yield return new WaitForSeconds(delay);
+
+
+
+            // Choose a random object to spawn from the array
+            int randomIndex = Random.Range(0, objectsToSpawn.Length);
+            GameObject selectedObject = objectsToSpawn[randomIndex];
+
+            // Instantiate the object and add force in the forward direction
+            Vector3 spawnPos = transform.position + transform.rotation * spawnOffset;
+            GameObject spawnedObject = Instantiate(selectedObject, spawnPos, Quaternion.identity);
+            Rigidbody rb = spawnedObject.GetComponent<Rigidbody>();
+            rb.AddForce(transform.forward * force, ForceMode.Impulse);
+
+
+            animator.SetBool("throw", false);
+            canSpawn = true;
         }
 
     }
