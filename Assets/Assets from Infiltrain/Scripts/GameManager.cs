@@ -75,7 +75,8 @@ public class GameManager : MonoBehaviour
         PlayRandomGSAudio();
         
         startedTime = Time.time;
-        PlayRandomSecondaryAudio();
+        //StartCoroutine(Wait());
+        //PlayRandomSecondaryAudio();
         // Input sounds
 
     }
@@ -155,6 +156,14 @@ public class GameManager : MonoBehaviour
      QualitySettings.vSyncCount = 0;  // VSync must be disabled
      Application.targetFrameRate = 90;
      }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(2);
+        // Do something after waiting for 2 seconds
+    }
+
+
     void PlayRandomGSAudio()
     {
         int randomIndex = Random.Range(0, GSaudio.Count); // choose a random index within the list
