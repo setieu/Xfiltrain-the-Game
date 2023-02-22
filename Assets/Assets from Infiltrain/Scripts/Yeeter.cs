@@ -10,14 +10,16 @@ public class Yeeter : MonoBehaviour
     public bool lockYRotation = false;
     public bool lockZRotation = true;
     public Vector3 spawnOffset = new Vector3(0, 0, 1);
-    private float lastSpawnTime = 0f;
+    public float lastSpawnTime = 0f;
     private GameManager gameManager;
     private Quaternion initialRotation;
+    private Animation animations;
 
     private void Start()
     {
         initialRotation = transform.rotation;
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        
     }
 
     void Update()
