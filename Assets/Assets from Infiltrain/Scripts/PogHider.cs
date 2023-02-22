@@ -11,10 +11,12 @@ public class PogHider : MonoBehaviour
     public float minSpawnDistance = 5f;
     public float minYOffset = 1f;
     public float maxYOffset = 2f;
-    public float minZ = 10f;
-    public float maxZ = 20f;
-    public float minX = -10f;
-    public float maxX = 10f;
+    public float minZ = -5f;
+    public float maxZ = 5f;
+    public float minX = 10f;
+    public float maxX = 20f;
+    public float leftSpawnDistance = 5f;
+    public float rightSpawnDistance = 5f;
 
     private float lastWaveTime;
     private int objectsSpawnedInCurrentWave;
@@ -31,14 +33,17 @@ public class PogHider : MonoBehaviour
     {
         if (gameManager.gameActive)
         {
-            if (Time.time - lastWaveTime >= waveDelay)
+            // Check if there are any active poghiders
+            if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
             {
-                objectsSpawnedInCurrentWave = 0;
-                StartCoroutine(SpawnWave());
-                lastWaveTime = Time.time;
+                if (Time.time - lastWaveTime >= waveDelay)
+                {
+                    objectsSpawnedInCurrentWave = 0;
+                    StartCoroutine(SpawnWave());
+                    lastWaveTime = Time.time;
+                }
             }
         }
-
     }
 
     private IEnumerator SpawnWave()
@@ -72,8 +77,20 @@ public class PogHider : MonoBehaviour
 
         while (tries < 100)
         {
-            spawnPosition = playerTransform.position + new Vector3(Random.Range(minX, maxX), Random.Range(minYOffset, maxYOffset), Random.Range(minZ, maxZ));
+            float randomX;
+            float randomZ;
+            // Calculate X and Z position
+            if (Random.Range(0, 2) == 0) // Spawn on left
+            {
+                randomZ = playerTransform.position.z - leftSpawnDistance;
+            }
+            else // Spawn on right
+            {
+                randomZ = playerTransform.position.z + rightSpawnDistance;
+            }
+            randomX = Random.Range(minX, maxX) + playerTransform.position.x; // Add player's X position as offset
 
+            spawnPosition = new Vector3(randomX, Random.Range(minYOffset, maxYOffset), randomZ);
 
             if (Vector3.Distance(playerTransform.position, spawnPosition) < minSpawnDistance)
             {
@@ -95,3 +112,5 @@ public class PogHider : MonoBehaviour
         return spawnPosition;
     }
 }
+
+
