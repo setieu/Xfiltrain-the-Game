@@ -5,6 +5,7 @@ public class Animation : MonoBehaviour
     public Animator animator;
     private GameManager gameManager;
     private PlayerController playerController;
+    private Yeeter yeeter;
 
 
 
@@ -28,7 +29,7 @@ public class Animation : MonoBehaviour
         bool sKey = verticalInput < 0;
         bool dKey = horizontalInput > 0;
 
-       
+
 
         //Animations
         float angle = transform.rotation.eulerAngles.y;
@@ -47,11 +48,11 @@ public class Animation : MonoBehaviour
 
 
         //Facing Forwards
-        if ((angle >= 67.5f && angle <= 112.5f)) 
+        if ((angle >= 67.5f && angle <= 112.5f))
         {
-            if(wKey)
+            if (wKey)
             {
-                if(aKey) //Walk Forwards Left
+                if (aKey) //Walk Forwards Left
                 {
                     animator.SetInteger("direction", 7);
                 }
@@ -59,14 +60,14 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 1);
                 }
-                else if(!aKey || !dKey) //Walk Forwards
+                else if (!aKey || !dKey) //Walk Forwards
                 {
                     animator.SetInteger("direction", 0);
                 }
             }
             else if (sKey)
             {
-                if(aKey) //Walk Backwards Left
+                if (aKey) //Walk Backwards Left
                 {
                     animator.SetInteger("direction", 5);
                 }
@@ -74,14 +75,14 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 3);
                 }
-                else if(!aKey || !dKey) //Walk Backwards
+                else if (!aKey || !dKey) //Walk Backwards
                 {
                     animator.SetInteger("direction", 4);
                 }
             }
             else if (aKey)
             {
-                if(wKey) //Walk Forwards Left
+                if (wKey) //Walk Forwards Left
                 {
                     animator.SetInteger("direction", 7);
                 }
@@ -89,14 +90,14 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 5);
                 }
-                else if(!wKey || !sKey) //Walk Left
+                else if (!wKey || !sKey) //Walk Left
                 {
                     animator.SetInteger("direction", 6);
                 }
             }
             else if (dKey)
             {
-                if(wKey) //Walk Forwards Right
+                if (wKey) //Walk Forwards Right
                 {
                     animator.SetInteger("direction", 1);
                 }
@@ -104,7 +105,7 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 3);
                 }
-                else if(!wKey || !sKey) //Walk Right
+                else if (!wKey || !sKey) //Walk Right
                 {
                     animator.SetInteger("direction", 2);
                 }
@@ -112,16 +113,16 @@ public class Animation : MonoBehaviour
             else
             {
                 animator.SetInteger("direction", -1);
-            }   
+            }
         }
 
 
         // Facing Forwards Right
-        else if ((angle >= 112.5f && angle < 157.5f)) 
+        else if ((angle >= 112.5f && angle < 157.5f))
         {
-            if(wKey)
+            if (wKey)
             {
-                if(aKey) //Walk Forwards Left
+                if (aKey) //Walk Forwards Left
                 {
                     animator.SetInteger("direction", 6);
                 }
@@ -129,14 +130,14 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 0);
                 }
-                else if(!aKey || !dKey) //Walk Forwards
+                else if (!aKey || !dKey) //Walk Forwards
                 {
                     animator.SetInteger("direction", 7);
                 }
             }
             else if (sKey)
             {
-                if(aKey) //Walk Backwards Left
+                if (aKey) //Walk Backwards Left
                 {
                     animator.SetInteger("direction", 4);
                 }
@@ -144,14 +145,14 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 2);
                 }
-                else if(!aKey || !dKey) //Walk Backwards
+                else if (!aKey || !dKey) //Walk Backwards
                 {
                     animator.SetInteger("direction", 3);
                 }
             }
             else if (aKey)
             {
-                if(wKey) //Walk Forwards Left
+                if (wKey) //Walk Forwards Left
                 {
                     animator.SetInteger("direction", 6);
                 }
@@ -159,14 +160,14 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 4);
                 }
-                else if(!wKey || !sKey) //Walk Left
+                else if (!wKey || !sKey) //Walk Left
                 {
                     animator.SetInteger("direction", 5);
                 }
             }
             else if (dKey)
             {
-                if(wKey) //Walk Forwards Right
+                if (wKey) //Walk Forwards Right
                 {
                     animator.SetInteger("direction", 0);
                 }
@@ -174,7 +175,7 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 2);
                 }
-                else if(!wKey || !sKey) //Walk Right
+                else if (!wKey || !sKey) //Walk Right
                 {
                     animator.SetInteger("direction", 1);
                 }
@@ -186,9 +187,9 @@ public class Animation : MonoBehaviour
         }
         else if ((angle > 157.5f && angle < 202.5f)) // Facing Right
         {
-            if(wKey)
+            if (wKey)
             {
-                if(aKey) //Walk Forwards Left
+                if (aKey) //Walk Forwards Left
                 {
                     animator.SetInteger("direction", 5);
                 }
@@ -196,14 +197,14 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 7);
                 }
-                else if(!aKey || !dKey) //Walk Forwards
+                else if (!aKey || !dKey) //Walk Forwards
                 {
                     animator.SetInteger("direction", 6);
                 }
             }
             else if (sKey)
             {
-                if(aKey) //Walk Backwards Left
+                if (aKey) //Walk Backwards Left
                 {
                     animator.SetInteger("direction", 3);
                 }
@@ -211,14 +212,14 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 1);
                 }
-                else if(!aKey || !dKey) //Walk Backwards
+                else if (!aKey || !dKey) //Walk Backwards
                 {
                     animator.SetInteger("direction", 2);
                 }
             }
             else if (aKey)
             {
-                if(wKey) //Walk Forwards Left
+                if (wKey) //Walk Forwards Left
                 {
                     animator.SetInteger("direction", 5);
                 }
@@ -226,14 +227,14 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 3);
                 }
-                else if(!wKey || !sKey) //Walk Left
+                else if (!wKey || !sKey) //Walk Left
                 {
                     animator.SetInteger("direction", 4);
                 }
             }
             else if (dKey)
             {
-                if(wKey) //Walk Forwards Right
+                if (wKey) //Walk Forwards Right
                 {
                     animator.SetInteger("direction", 7);
                 }
@@ -241,7 +242,7 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 1);
                 }
-                else if(!wKey || !sKey) //Walk Right
+                else if (!wKey || !sKey) //Walk Right
                 {
                     animator.SetInteger("direction", 0);
                 }
@@ -253,9 +254,9 @@ public class Animation : MonoBehaviour
         }
         else if ((angle > 202.5f && angle < 247.5f)) // Facing Backwards Right
         {
-            if(wKey)
+            if (wKey)
             {
-                if(aKey) //Walk Forwards Left
+                if (aKey) //Walk Forwards Left
                 {
                     animator.SetInteger("direction", 4);
                 }
@@ -263,14 +264,14 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 6);
                 }
-                else if(!aKey || !dKey) //Walk Forwards
+                else if (!aKey || !dKey) //Walk Forwards
                 {
                     animator.SetInteger("direction", 5);
                 }
             }
             else if (sKey)
             {
-                if(aKey) //Walk Backwards Left
+                if (aKey) //Walk Backwards Left
                 {
                     animator.SetInteger("direction", 2);
                 }
@@ -278,14 +279,14 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 0);
                 }
-                else if(!aKey || !dKey) //Walk Backwards
+                else if (!aKey || !dKey) //Walk Backwards
                 {
                     animator.SetInteger("direction", 1);
                 }
             }
             else if (aKey)
             {
-                if(wKey) //Walk Forwards Left
+                if (wKey) //Walk Forwards Left
                 {
                     animator.SetInteger("direction", 4);
                 }
@@ -293,14 +294,14 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 2);
                 }
-                else if(!wKey || !sKey) //Walk Left
+                else if (!wKey || !sKey) //Walk Left
                 {
                     animator.SetInteger("direction", 3);
                 }
             }
             else if (dKey)
             {
-                if(wKey) //Walk Forwards Right
+                if (wKey) //Walk Forwards Right
                 {
                     animator.SetInteger("direction", 6);
                 }
@@ -308,7 +309,7 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 0);
                 }
-                else if(!wKey || !sKey) //Walk Right
+                else if (!wKey || !sKey) //Walk Right
                 {
                     animator.SetInteger("direction", 7);
                 }
@@ -320,9 +321,9 @@ public class Animation : MonoBehaviour
         }
         else if ((angle > 247.5f && angle < 292.5f)) // Facing Backwards
         {
-            if(wKey)
+            if (wKey)
             {
-                if(aKey) //Walk Forwards Left
+                if (aKey) //Walk Forwards Left
                 {
                     animator.SetInteger("direction", 3);
                 }
@@ -330,14 +331,14 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 5);
                 }
-                else if(!aKey || !dKey) //Walk Forwards
+                else if (!aKey || !dKey) //Walk Forwards
                 {
                     animator.SetInteger("direction", 4);
                 }
             }
             else if (sKey)
             {
-                if(aKey) //Walk Backwards Left
+                if (aKey) //Walk Backwards Left
                 {
                     animator.SetInteger("direction", 1);
                 }
@@ -345,14 +346,14 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 7);
                 }
-                else if(!aKey || !dKey) //Walk Backwards
+                else if (!aKey || !dKey) //Walk Backwards
                 {
                     animator.SetInteger("direction", 0);
                 }
             }
             else if (aKey)
             {
-                if(wKey) //Walk Forwards Left
+                if (wKey) //Walk Forwards Left
                 {
                     animator.SetInteger("direction", 3);
                 }
@@ -360,14 +361,14 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 1);
                 }
-                else if(!wKey || !sKey) //Walk Left
+                else if (!wKey || !sKey) //Walk Left
                 {
                     animator.SetInteger("direction", 2);
                 }
             }
             else if (dKey)
             {
-                if(wKey) //Walk Forwards Right
+                if (wKey) //Walk Forwards Right
                 {
                     animator.SetInteger("direction", 5);
                 }
@@ -375,7 +376,7 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 7);
                 }
-                else if(!wKey || !sKey) //Walk Right
+                else if (!wKey || !sKey) //Walk Right
                 {
                     animator.SetInteger("direction", 6);
                 }
@@ -387,9 +388,9 @@ public class Animation : MonoBehaviour
         }
         else if ((angle > 292.5f && angle < 337.5f)) // Facing Backwards Left
         {
-            if(wKey)
+            if (wKey)
             {
-                if(aKey) //Walk Forwards Left
+                if (aKey) //Walk Forwards Left
                 {
                     animator.SetInteger("direction", 2);
                 }
@@ -397,14 +398,14 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 4);
                 }
-                else if(!aKey || !dKey) //Walk Forwards
+                else if (!aKey || !dKey) //Walk Forwards
                 {
                     animator.SetInteger("direction", 3);
                 }
             }
             else if (sKey)
             {
-                if(aKey) //Walk Backwards Left
+                if (aKey) //Walk Backwards Left
                 {
                     animator.SetInteger("direction", 0);
                 }
@@ -412,14 +413,14 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 6);
                 }
-                else if(!aKey || !dKey) //Walk Backwards
+                else if (!aKey || !dKey) //Walk Backwards
                 {
                     animator.SetInteger("direction", 7);
                 }
             }
             else if (aKey)
             {
-                if(wKey) //Walk Forwards Left
+                if (wKey) //Walk Forwards Left
                 {
                     animator.SetInteger("direction", 2);
                 }
@@ -427,14 +428,14 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 0);
                 }
-                else if(!wKey || !sKey) //Walk Left
+                else if (!wKey || !sKey) //Walk Left
                 {
                     animator.SetInteger("direction", 1);
                 }
             }
             else if (dKey)
             {
-                if(wKey) //Walk Forwards Right
+                if (wKey) //Walk Forwards Right
                 {
                     animator.SetInteger("direction", 4);
                 }
@@ -442,7 +443,7 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 6);
                 }
-                else if(!wKey || !sKey) //Walk Right
+                else if (!wKey || !sKey) //Walk Right
                 {
                     animator.SetInteger("direction", 5);
                 }
@@ -454,9 +455,9 @@ public class Animation : MonoBehaviour
         }
         else if ((angle > 337.5f && angle < 22.5f)) // Facing Left
         {
-            if(wKey)
+            if (wKey)
             {
-                if(aKey) //Walk Forwards Left
+                if (aKey) //Walk Forwards Left
                 {
                     animator.SetInteger("direction", 1);
                 }
@@ -464,14 +465,14 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 3);
                 }
-                else if(!aKey || !dKey) //Walk Forwards
+                else if (!aKey || !dKey) //Walk Forwards
                 {
                     animator.SetInteger("direction", 2);
                 }
             }
             else if (sKey)
             {
-                if(aKey) //Walk Backwards Left
+                if (aKey) //Walk Backwards Left
                 {
                     animator.SetInteger("direction", 7);
                 }
@@ -479,14 +480,14 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 5);
                 }
-                else if(!aKey || !dKey) //Walk Backwards
+                else if (!aKey || !dKey) //Walk Backwards
                 {
                     animator.SetInteger("direction", 6);
                 }
             }
             else if (aKey)
             {
-                if(wKey) //Walk Forwards Left
+                if (wKey) //Walk Forwards Left
                 {
                     animator.SetInteger("direction", 1);
                 }
@@ -494,14 +495,14 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 7);
                 }
-                else if(!wKey || !sKey) //Walk Left
+                else if (!wKey || !sKey) //Walk Left
                 {
                     animator.SetInteger("direction", 0);
                 }
             }
             else if (dKey)
             {
-                if(wKey) //Walk Forwards Right
+                if (wKey) //Walk Forwards Right
                 {
                     animator.SetInteger("direction", 3);
                 }
@@ -509,7 +510,7 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 5);
                 }
-                else if(!wKey || !sKey) //Walk Right
+                else if (!wKey || !sKey) //Walk Right
                 {
                     animator.SetInteger("direction", 4);
                 }
@@ -521,9 +522,9 @@ public class Animation : MonoBehaviour
         }
         else if ((angle > 22.5f && angle < 67.5f)) //Facing Forwards Left
         {
-            if(wKey)
+            if (wKey)
             {
-                if(aKey) //Walk Forwards Left
+                if (aKey) //Walk Forwards Left
                 {
                     animator.SetInteger("direction", 0);
                 }
@@ -531,14 +532,14 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 2);
                 }
-                else if(!aKey || !dKey) //Walk Forwards
+                else if (!aKey || !dKey) //Walk Forwards
                 {
                     animator.SetInteger("direction", 1);
                 }
             }
             else if (sKey)
             {
-                if(aKey) //Walk Backwards Left
+                if (aKey) //Walk Backwards Left
                 {
                     animator.SetInteger("direction", 6);
                 }
@@ -546,14 +547,14 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 4);
                 }
-                else if(!aKey || !dKey) //Walk Backwards
+                else if (!aKey || !dKey) //Walk Backwards
                 {
                     animator.SetInteger("direction", 5);
                 }
             }
             else if (aKey)
             {
-                if(wKey) //Walk Forwards Left
+                if (wKey) //Walk Forwards Left
                 {
                     animator.SetInteger("direction", 1);
                 }
@@ -561,14 +562,14 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 6);
                 }
-                else if(!wKey || !sKey) //Walk Left
+                else if (!wKey || !sKey) //Walk Left
                 {
                     animator.SetInteger("direction", 7);
                 }
             }
             else if (dKey)
             {
-                if(wKey) //Walk Forwards Right
+                if (wKey) //Walk Forwards Right
                 {
                     animator.SetInteger("direction", 2);
                 }
@@ -576,7 +577,7 @@ public class Animation : MonoBehaviour
                 {
                     animator.SetInteger("direction", 4);
                 }
-                else if(!wKey || !sKey) //Walk Right
+                else if (!wKey || !sKey) //Walk Right
                 {
                     animator.SetInteger("direction", 3);
                 }
@@ -584,9 +585,17 @@ public class Animation : MonoBehaviour
             else
             {
                 animator.SetInteger("direction", -1);
-            } 
+            }
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            animator.SetBool("throw", true);
+        }
+        else
+        {
+            animator.SetBool("throw", false);
         }
     }
-
     
 }
