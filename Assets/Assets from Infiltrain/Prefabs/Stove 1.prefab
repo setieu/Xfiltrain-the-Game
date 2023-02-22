@@ -132,7 +132,7 @@ MonoBehaviour:
   forcemultiplier: 250
   player: {fileID: 0}
   despawnTime: 5
-  destroySound: {fileID: 0}
+  destroySound: {fileID: 8300000, guid: d31a3bb3e200640f0b58bb648961a1c5, type: 3}
 --- !u!82 &-6625342064190094277
 AudioSource:
   m_ObjectHideFlags: 0
