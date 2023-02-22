@@ -587,15 +587,6 @@ public class Animation : MonoBehaviour
                 animator.SetInteger("direction", -1);
             }
         }
-
-        if (Input.GetMouseButton(0))
-        {
-            animator.SetBool("throw", true);
-        }
-        else
-        {
-            animator.SetBool("throw", false);
-        }
     }
     
 }
