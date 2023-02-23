@@ -11,6 +11,7 @@ public class Yeeter : MonoBehaviour
     public bool lockZRotation = true;
     public Vector3 spawnOffset = new Vector3(0, 0, 1);
     public float lastSpawnTime = 0f;
+    public float throwCD = 1.5f;
     private GameManager gameManager;
     private Quaternion initialRotation;
     private Animation animations;
@@ -48,7 +49,7 @@ public class Yeeter : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                if (Time.time - lastSpawnTime >= 1.5f)
+                if (Time.time - lastSpawnTime >= throwCD)
                 {
                     if (canSpawn)
                     {
