@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5965196421292265072}
   - component: {fileID: 5965196421292265038}
   - component: {fileID: -7713851495572078050}
+  - component: {fileID: 1565013972431327008}
   m_Layer: 0
   m_Name: Dryer 1
   m_TagString: Projectile
@@ -230,3 +231,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &1565013972431327008
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6776170708718835044}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.04036883, y: 0.042590022, z: 0.03689791}
+  m_Center: {x: 0.0004664803, y: 0.014866001, z: -0.008470263}
