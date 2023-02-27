@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI credits;
     public TextMeshProUGUI timer;
     public GameObject toolAssist;
+    //so no bocchi death sound
+    private bool diefirst = true;
    // public TextMeshProUGUI xcord;
    // public TextMeshProUGUI ycord;
    // public TextMeshProUGUI zcord;
@@ -100,7 +102,7 @@ public class GameManager : MonoBehaviour
         if (collision.gameObject.CompareTag("dead"))
         {
 
-            PlayRandomDeathAudio();
+            
             GameOverLost();
             
         }
@@ -116,8 +118,12 @@ public class GameManager : MonoBehaviour
     }
     public void GameOverLost()
     {
-
-
+        if(diefirst)
+        {
+            PlayRandomDeathAudio();
+            diefirst = false;
+        }
+        
         gameOverLostText.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
         playerController.isOnDead = true;
