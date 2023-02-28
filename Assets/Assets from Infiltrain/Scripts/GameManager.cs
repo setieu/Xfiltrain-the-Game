@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
 
         {
             timePassed = Time.time - startedTime;
-            timer.text = "Time: " + (int)timePassed;
+            timer.text = "Score: " + (int)timePassed +"0";
 
             //xcord.text = "X:" + xCord;
             //ycord.text = "Y:" + yCord;
