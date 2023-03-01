@@ -88,7 +88,7 @@ public class PogHider : MonoBehaviour
             {
                 randomZ = playerTransform.position.z + rightSpawnDistance;
             }
-            randomX = Random.Range(minX, maxX) + playerTransform.position.x; // Add player's X position as offset
+            randomX = Random.Range(minX, maxX); // Add player's X position as offset
 
             spawnPosition = new Vector3(randomX, Random.Range(minYOffset, maxYOffset), randomZ);
 
