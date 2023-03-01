@@ -12,6 +12,8 @@ public class Bossman : MonoBehaviour
     private float maxTorque = 500;
     public float forcemultiplier;
     public bool bossD = false;
+    public float health = 100;
+
     private Rigidbody enemyRb;
     public List<AudioClip> DeadAudio; // list of audio clips to choose from for hogrider dying
     private AudioSource audioSource; // audio source component
@@ -23,6 +25,7 @@ public class Bossman : MonoBehaviour
         enemyRb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         bossD = false;
+        numCollisions = 0;
     }
 
     // Update is called once per frame
@@ -36,8 +39,8 @@ public class Bossman : MonoBehaviour
         if (collision.gameObject.CompareTag("Projectile"))
         {
             numCollisions++;
-            Debug.Log("Hit");
-            if (numCollisions > 1)
+            Debug.Log("Hit" + (int)numCollisions);
+            if (numCollisions > health)
             {
                 Rigidbody rb = GetComponent<Rigidbody>();               
                 rb.AddForce(Vector3.up * 1000f, ForceMode.Impulse);
