@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public List<AudioClip> GSaudio; // list of audio clips to choose from for Game Start
     public List<AudioClip> DeathAudio; // list of audio clips to choose from for Death
     public List<AudioClip> DetachmentAudio; // list of audio clips to choose from for Detachment
-    public List<AudioClip> ThrowAudio; // list of audio clips to choose from for Throw
+    
     public List<AudioClip> HitAudio; // list of audio clips to choose from for Hitting Enemy
     public List<AudioClip> RandomAudio; // list of audio clips to choose from for Randomly saying
     public List<AudioClip> SecondaryAudio; // list of audio clips to choose from for Secondary
@@ -188,12 +188,7 @@ public class GameManager : MonoBehaviour
         audioSource.clip = HitAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
         audioSource.Play(); // play the audio
     }
-    void PlayRandomThrowAudio()
-    {
-        int randomIndex = Random.Range(0, ThrowAudio.Count); // choose a random index within the list
-        audioSource.clip = ThrowAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
-        audioSource.Play(); // play the audio
-    }
+    
     void PlayRandomDetachmentAudio()
     {
         int randomIndex = Random.Range(0, DetachmentAudio.Count); // choose a random index within the list
