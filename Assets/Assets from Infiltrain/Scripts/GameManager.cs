@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     private int time = 0;
     private float timePassed;
     private float startedTime;
+    public bool startedd = false;
     private PlayerController playerController;
 
 
@@ -75,6 +76,7 @@ public class GameManager : MonoBehaviour
         titleScreen.SetActive(false);
         toolAssist.SetActive(true);
         PlayRandomGSAudio();
+        startedd = true;
         
         startedTime = Time.time;
         //StartCoroutine(Wait());

@@ -26,39 +26,47 @@ public class Bossman : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         bossD = false;
         numCollisions = 0;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        if (numCollisions > health)
+        {
+            Rigidbody rb = GetComponent<Rigidbody>();
+            if (bossD == false)
+                {
+                    rb.AddForce(Vector3.up * 2500f, ForceMode.Impulse);
+                }
+            
+            gameObject.tag = "Enemy";
+            bossD = true;
+        }
     }
-
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Projectile"))
-        {
-            numCollisions++;
-            Debug.Log("Hit" + (int)numCollisions);
-            if (numCollisions > health)
+            if (collision.gameObject.CompareTag("Projectile"))
             {
-                Rigidbody rb = GetComponent<Rigidbody>();               
-                rb.AddForce(Vector3.up * 1000f, ForceMode.Impulse);
-                gameObject.tag = "Enemy";
-                bossD = true;
-                if (collision.gameObject.CompareTag("dead") && (bossD))
-                {
-                    enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
-                    enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
-                    enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
-                    enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
-                    PlayRandomDeadAudio();
-                    Debug.Log("Boss Killed");
-                }
+                numCollisions++;
+                Debug.Log("Hit" + (int)numCollisions);
+                
+                    if (collision.gameObject.CompareTag("dead") && (bossD))
+                    {
+                        enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
+                        enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
+                        enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
+                        enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
+                        PlayRandomDeadAudio();
+                        Debug.Log("Boss Killed");
+                    }
+                
             }
-        }
  
     }
+   
+
+
 
     Vector3 RandomLeftForce()
     {
@@ -80,3 +88,4 @@ public class Bossman : MonoBehaviour
         audioSource.Play(); // play the audio
     }
 }
+
