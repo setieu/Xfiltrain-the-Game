@@ -5,14 +5,16 @@ using UnityEngine;
 public class Bossman : MonoBehaviour
 {
     public int numCollisions = 0;
-    private float minUpSpeed = 100;
-    private float maxUpSpeed = 160;
-    private float minLeftSpeed = 320;
-    private float maxLeftSpeed = 380;
-    private float maxTorque = 500;
+    private float minUpSpeed = 2;
+    private float maxUpSpeed = 3;
+    private float minLeftSpeed = 2;
+    private float maxLeftSpeed = 3;
+    private float maxTorque = 1;
     public float forcemultiplier;
     public bool bossD = false;
     public float health = 3;
+    public bool kum = false;
+
 
     private Rigidbody enemyRb;
     public List<AudioClip> DeadAudio; // list of audio clips to choose from for hogrider dying
@@ -43,6 +45,18 @@ public class Bossman : MonoBehaviour
             gameObject.tag = "Enemy";
             bossD = true;
         }
+
+        if (kum)
+        {
+             enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
+             enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
+             enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
+             enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
+             PlayRandomDeadAudio();
+             Debug.Log("Boss Killed");
+        }
+
+
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -51,18 +65,13 @@ public class Bossman : MonoBehaviour
                 numCollisions++;
                 Debug.Log("Hit" + (int)numCollisions);
                 
-                    if (collision.gameObject.CompareTag("dead") && (bossD))
-                    {
-                        enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
-                        enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
-                        enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
-                        enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
-                        PlayRandomDeadAudio();
-                        Debug.Log("Boss Killed");
-                    }
+                    
                 
             }
- 
+            if (collision.gameObject.CompareTag("dead") && (bossD))
+            {
+                kum = true;
+            }
     }
    
 

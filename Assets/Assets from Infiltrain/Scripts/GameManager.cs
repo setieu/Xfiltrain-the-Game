@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
     }
     public void GameOverLost()
     {
-        if(diefirst)
+        if(diefirst == true)
         {
             PlayRandomDeathAudio();
             diefirst = false;
