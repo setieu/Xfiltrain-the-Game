@@ -12,7 +12,7 @@ public class Bossman : MonoBehaviour
     private float maxTorque = 500;
     public float forcemultiplier;
     public bool bossD = false;
-    public float health = 100;
+    public float health = 3;
 
     private Rigidbody enemyRb;
     public List<AudioClip> DeadAudio; // list of audio clips to choose from for hogrider dying
@@ -31,7 +31,7 @@ public class Bossman : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
     void OnCollisionEnter(Collision collision)
@@ -46,17 +46,18 @@ public class Bossman : MonoBehaviour
                 rb.AddForce(Vector3.up * 1000f, ForceMode.Impulse);
                 gameObject.tag = "Enemy";
                 bossD = true;
+                if (collision.gameObject.CompareTag("dead") && (bossD))
+                {
+                    enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
+                    enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
+                    enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
+                    enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
+                    PlayRandomDeadAudio();
+                    Debug.Log("Boss Killed");
+                }
             }
         }
-        if (collision.gameObject.CompareTag("dead") && (bossD))
-        {
-            enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
-            enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
-            enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
-            enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
-            PlayRandomDeadAudio();
-            Debug.Log("Boss Killed");
-        }
+ 
     }
 
     Vector3 RandomLeftForce()
