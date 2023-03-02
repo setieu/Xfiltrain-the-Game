@@ -11,7 +11,7 @@ public class PauseScreen : MonoBehaviour
     private void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        gameManager.titleScreen.SetActive(false);
+        gameManager.titleScreen.SetActive(true);
         isPaused = true;
     }
     void Update()
