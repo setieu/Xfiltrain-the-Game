@@ -13,7 +13,8 @@ public class Bossman : MonoBehaviour
     public float forcemultiplier;
     public bool bossD = false;
     public float health = 3;
-    public bool kum = false;
+    public bool klum = false;
+    public int joe = 0;
 
 
     private Rigidbody enemyRb;
@@ -46,13 +47,18 @@ public class Bossman : MonoBehaviour
             bossD = true;
         }
 
-        if (kum)
+        if (klum)
         {
              enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
              enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
              enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
              enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
-             PlayRandomDeadAudio();
+             joe++ ;
+             if (joe == 1)
+                {
+                    PlayRandomDeadAudio();
+                }
+             
              Debug.Log("Boss Killed");
         }
 
@@ -70,7 +76,7 @@ public class Bossman : MonoBehaviour
             }
             if (collision.gameObject.CompareTag("dead") && (bossD))
             {
-                kum = true;
+                klum = true;
             }
     }
    
