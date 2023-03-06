@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         gameActive = false;
         audioSource = GetComponent<AudioSource>();
-        
+        Debug.Log("Scene Loaded");
 
     }
     public void StartGame(int difficulty)
@@ -77,7 +77,8 @@ public class GameManager : MonoBehaviour
         toolAssist.SetActive(true);
         PlayRandomGSAudio();
         startedd = true;
-        
+        Debug.Log("Game started");
+
         startedTime = Time.time;
         //StartCoroutine(Wait());
         //PlayRandomSecondaryAudio();
@@ -106,7 +107,7 @@ public class GameManager : MonoBehaviour
 
             
             GameOverLost();
-            
+            Debug.Log("Game over");
         }
     }
 
@@ -139,6 +140,7 @@ public class GameManager : MonoBehaviour
         Physics.gravity /= 3;
         startedd = false;
         Time.timeScale = 1;
+        Debug.Log("Game Restarted");
     }
 
    // IEnumerator SpawnTarget()
