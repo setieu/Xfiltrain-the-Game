@@ -137,6 +137,8 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Physics.gravity /= 3;
+        startedd = false;
+        Time.timeScale = 1;
     }
 
    // IEnumerator SpawnTarget()
