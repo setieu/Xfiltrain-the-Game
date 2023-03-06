@@ -70,6 +70,8 @@ public class Enemy : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Projectile"))
         {
+            Rigidbody rb = GetComponent<Rigidbody>();
+            rb.AddForce(Vector3.up * 2500f, ForceMode.Impulse);
             numCollisions++;
             Debug.Log("Hit" + (int)numCollisions);
             hogD = true;
