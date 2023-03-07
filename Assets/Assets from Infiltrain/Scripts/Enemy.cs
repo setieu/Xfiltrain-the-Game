@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     public int numCollisions = 0;
     public bool hogD = false;
     public int yeeyee = 0;
+    public int Dhog;
 
     private AudioSource audioSource; // audio source component
     private PlayerController playerController;
@@ -71,7 +72,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Projectile"))
         {
             Rigidbody rb = GetComponent<Rigidbody>();
-            rb.AddForce(Vector3.up * 2500f, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * 1000f, ForceMode.Impulse);
             numCollisions++;
             Debug.Log("Hit" + (int)numCollisions);
             hogD = true;
@@ -79,6 +80,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("dead") && (hogD))
         {
             yeeyee++;
+            Dhog++;
         }
         
 

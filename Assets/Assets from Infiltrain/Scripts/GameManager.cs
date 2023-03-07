@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private float startedTime;
     public bool startedd = false;
     private PlayerController playerController;
+    private Enemy enemy;
 
 
     public List<GameObject> targetPrefabs;
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
     public Button restartButton;
 
     public bool gameActive;
+    public int Scoa;
 
 
 
@@ -58,6 +60,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        enemy = GameObject.Find("PogHider").GetComponent<Enemy>();
         gameActive = false;
         audioSource = GetComponent<AudioSource>();
         Debug.Log("Scene Loaded");
@@ -93,7 +96,17 @@ public class GameManager : MonoBehaviour
 
         {
             timePassed = Time.time - startedTime;
-            timer.text = "Score: " + (int)timePassed +"0";
+            timer.text = "Score: " + (int)Scoa +"0";
+
+
+
+
+           // Scoa = (int)timePassed + (int)enemy.Dhog) *= 10; FIX THIS THING
+
+
+
+
+
 
             //xcord.text = "X:" + xCord;
             //ycord.text = "Y:" + yCord;
