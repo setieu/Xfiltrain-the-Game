@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PogHider : MonoBehaviour
@@ -8,25 +7,17 @@ public class PogHider : MonoBehaviour
     public float spawnDelay = 2f;
     public float waveDelay = 2f;
     public int waveSize = 1;
-    public float minSpawnDistance = 5f;
-    public float minYOffset = 1f;
-    public float maxYOffset = 2f;
-    public float minZ = -5f;
-    public float maxZ = 5f;
-    public float minX = 10f;
-    public float maxX = 20f;
-    public float leftSpawnDistance = 5f;
-    public float rightSpawnDistance = 5f;
+    public int maxPogs = 10;
 
     private float lastWaveTime;
     private int objectsSpawnedInCurrentWave;
-    private Transform playerTransform;
     private GameManager gameManager;
+    private SpawnManager spawnManager;
 
     private void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        playerTransform = GetComponent<Transform>();
+        spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
     }
 
     private void Update()
@@ -54,9 +45,9 @@ public class PogHider : MonoBehaviour
 
         if (gameManager.gameActive)
         {
-            while (objectsSpawnedInCurrentWave < waveSize)
+            while (objectsSpawnedInCurrentWave < waveSize && GameObject.FindGameObjectsWithTag("Enemy").Length < maxPogs)
             {
-                Vector3 spawnPosition = GetValidSpawnPosition();
+                Vector3 spawnPosition = spawnManager.GetRandomSpawnPoint();
 
                 if (spawnPosition != Vector3.zero)
                 {
@@ -65,51 +56,9 @@ public class PogHider : MonoBehaviour
                 }
 
                 yield return new WaitForSeconds(spawnDelay);
+
             }
         }
-
-    }
-
-    private Vector3 GetValidSpawnPosition()
-    {
-        int tries = 0;
-        Vector3 spawnPosition = Vector3.zero;
-
-        while (tries < 100)
-        {
-            float randomX;
-            float randomZ;
-            // Calculate X and Z position
-            if (Random.Range(0, 2) == 0) // Spawn on left
-            {
-                randomZ = playerTransform.position.z - leftSpawnDistance;
-            }
-            else // Spawn on right
-            {
-                randomZ = playerTransform.position.z + rightSpawnDistance;
-            }
-            randomX = Random.Range(minX, maxX) + playerTransform.position.x; // Add player's X position as offset
-
-            spawnPosition = new Vector3(randomX, Random.Range(minYOffset, maxYOffset), randomZ);
-
-            if (Vector3.Distance(playerTransform.position, spawnPosition) < minSpawnDistance)
-            {
-                tries++;
-                continue;
-            }
-
-            Collider[] colliders = Physics.OverlapSphere(spawnPosition, 3.5f);
-
-            if (colliders.Length > 1)
-            {
-                tries++;
-                continue;
-            }
-
-            break;
-        }
-
-        return spawnPosition;
     }
 }
 
