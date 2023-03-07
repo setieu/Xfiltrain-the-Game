@@ -50,8 +50,8 @@ public class GameManager : MonoBehaviour
     public Button restartButton;
 
     public bool gameActive;
-
-
+    public int Scoree =  0;
+    public int hogdeaths = 0;
 
 
     // Start is called before the first frame update
@@ -92,12 +92,11 @@ public class GameManager : MonoBehaviour
         if (gameActive==true)
 
         {
+           
             timePassed = Time.time - startedTime;
-            timer.text = "Score: " + (int)timePassed +"0";
+            Scoree = (int)timePassed + hogdeaths*10;
+            timer.text = "Score: " + (int)Scoree +"0";
 
-            //xcord.text = "X:" + xCord;
-            //ycord.text = "Y:" + yCord;
-            //zcord.text = "Z:" + zCord;
         }
     }
     private void OnCollisionEnter(Collision collision)

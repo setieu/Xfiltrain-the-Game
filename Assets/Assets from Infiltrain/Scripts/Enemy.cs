@@ -66,7 +66,9 @@ public class Enemy : MonoBehaviour
             if (yeeyee == 1)
             {
                 PlayRandomDeadAudio();
+                gameManager.hogdeaths++;
             }
+            
         }
         if (collision.gameObject.CompareTag("Projectile"))
         {
