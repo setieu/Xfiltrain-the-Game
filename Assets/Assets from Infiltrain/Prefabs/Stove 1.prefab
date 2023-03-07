@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 7967052701745877974}
   m_Layer: 0
   m_Name: Stove 1
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
   ddownforce: 3
   forcemultiplier: 250
   player: {fileID: 0}
-  despawnTime: 5
+  despawnTime: 15
   destroySound: {fileID: 8300000, guid: d31a3bb3e200640f0b58bb648961a1c5, type: 3}
 --- !u!82 &-6625342064190094277
 AudioSource:

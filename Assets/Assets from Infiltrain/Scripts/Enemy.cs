@@ -14,6 +14,9 @@ public class Enemy : MonoBehaviour
     private float leftBound = -300;
     public float forcemultiplier;
     public List<AudioClip> DeadAudio; // list of audio clips to choose from for hogrider dying
+    public int numCollisions = 0;
+    public bool hogD = false;
+    public int yeeyee = 0;
 
     private AudioSource audioSource; // audio source component
     private PlayerController playerController;
@@ -54,27 +57,45 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("dead"))
+        if (collision.gameObject.CompareTag("dead") && hogD)
         {
             enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
             enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
             enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
             enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
-            PlayRandomDeadAudio();
+            if (yeeyee == 1)
+            {
+                PlayRandomDeadAudio();
+            }
         }
-    }
+        if (collision.gameObject.CompareTag("Projectile"))
+        {
+            Rigidbody rb = GetComponent<Rigidbody>();
+            rb.AddForce(Vector3.up * 2500f, ForceMode.Impulse);
+            numCollisions++;
+            Debug.Log("Hit" + (int)numCollisions);
+            hogD = true;
+        }
+        if (collision.gameObject.CompareTag("dead") && (hogD))
+        {
+            yeeyee++;
+        }
+        
 
-    //Vector3 SpawnPosition()
-    //{
+        //Vector3 SpawnPosition()
+        //{
 
-    //     Vector3 spawnPosition = new Vector3(player.transform.position.x + 50, 8, Random.Range(1.2f, 6.2f));
-    //    return spawnPosition;
+        //     Vector3 spawnPosition = new Vector3(player.transform.position.x + 50, 8, Random.Range(1.2f, 6.2f));
+        //    return spawnPosition;
 
-    // }
-    void PlayRandomDeadAudio()
-    {
-        int randomIndex = Random.Range(0, DeadAudio.Count); // choose a random index within the list
-        audioSource.clip = DeadAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
-        audioSource.Play(); // play the audio
+        // }
+        void PlayRandomDeadAudio()
+        {
+            int randomIndex = Random.Range(0, DeadAudio.Count); // choose a random index within the list
+            audioSource.clip = DeadAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
+            audioSource.Play(); // play the audio
+        }
+
+
     }
 }
