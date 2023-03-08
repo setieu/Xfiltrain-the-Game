@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     private float startedTime;
     public bool startedd = false;
     private PlayerController playerController;
-    private Enemy enemy;
 
 
     public List<GameObject> targetPrefabs;
@@ -51,16 +50,14 @@ public class GameManager : MonoBehaviour
     public Button restartButton;
 
     public bool gameActive;
-    public int Scoa;
-
-
+    public int Scoree =  0;
+    public int hogdeaths = 0;
 
 
     // Start is called before the first frame update
     void Start()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        enemy = GameObject.Find("PogHider").GetComponent<Enemy>();
         gameActive = false;
         audioSource = GetComponent<AudioSource>();
         Debug.Log("Scene Loaded");
@@ -95,22 +92,11 @@ public class GameManager : MonoBehaviour
         if (gameActive==true)
 
         {
+           
             timePassed = Time.time - startedTime;
-            timer.text = "Score: " + (int)Scoa +"0";
+            Scoree = (int)timePassed + hogdeaths*10;
+            timer.text = "Score: " + (int)Scoree +"0";
 
-
-
-
-           // Scoa = (int)timePassed + (int)enemy.Dhog) *= 10; FIX THIS THING
-
-
-
-
-
-
-            //xcord.text = "X:" + xCord;
-            //ycord.text = "Y:" + yCord;
-            //zcord.text = "Z:" + zCord;
         }
     }
     private void OnCollisionEnter(Collision collision)
