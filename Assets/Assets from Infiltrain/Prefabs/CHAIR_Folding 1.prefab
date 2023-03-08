@@ -15,6 +15,9 @@ GameObject:
   - component: {fileID: 2412766953644893995}
   - component: {fileID: 2412766953644893993}
   - component: {fileID: 2412766953644893990}
+  - component: {fileID: -8057383018176140425}
+  - component: {fileID: 8894365664228983731}
+  - component: {fileID: 684909268772502392}
   m_Layer: 0
   m_Name: CHAIR_Folding 1
   m_TagString: Projectile
@@ -114,8 +117,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.23948121, y: 0.38680887, z: 0.45735383}
-  m_Center: {x: -0.25197926, y: 0.6901737, z: 0.00000005960464}
+  m_Size: {x: 0.23264503, y: 0.38680887, z: 0.45735383}
+  m_Center: {x: -0.25539732, y: 0.6901737, z: 0.000000059604645}
 --- !u!65 &2412766953644893993
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -127,8 +130,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.45216107, y: 0.5008566, z: 0.45735383}
-  m_Center: {x: -0.0047393963, y: 0.25066492, z: 0.000000059604645}
+  m_Size: {x: 0.46715808, y: 0.5008566, z: 0.45735383}
+  m_Center: {x: 0.002759099, y: 0.25066492, z: 0.000000059604645}
 --- !u!114 &2412766953644893990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,5 +145,130 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ddownforce: 3
-  forcemultiplier: 12.5
+  forcemultiplier: 125
   player: {fileID: 0}
+  despawnTime: 15
+  destroySound: {fileID: 8300000, guid: 4533224c1c2364476b175556e30292f0, type: 3}
+--- !u!82 &-8057383018176140425
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2413444714302137631}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.75
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!65 &8894365664228983731
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2413444714302137631}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.47564268, y: 0.18040466, z: 0.45735383}
+  m_Center: {x: -0.07122111, y: 0.49755335, z: 0.000000059604645}
+--- !u!136 &684909268772502392
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2413444714302137631}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.29653051
+  m_Height: 1.015513
+  m_Direction: 1
+  m_Center: {x: -0.07518935, y: 0.43251038, z: 0.000000059604645}

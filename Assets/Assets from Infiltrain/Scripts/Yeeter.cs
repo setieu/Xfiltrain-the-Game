@@ -10,14 +10,24 @@ public class Yeeter : MonoBehaviour
     public bool lockYRotation = false;
     public bool lockZRotation = true;
     public Vector3 spawnOffset = new Vector3(0, 0, 1);
-    private float lastSpawnTime = 0f;
+    public float lastSpawnTime = 0f;
+    public float throwCD = 1.5f;
     private GameManager gameManager;
     private Quaternion initialRotation;
+    private Animation animations;
+    public bool canSpawn = true;
+    public Animator animator;
+    public List<AudioClip> ThrowAudio; // list of audio clips to choose from for Throw
+    private AudioSource audioSource; // audio source component
+
 
     private void Start()
     {
         initialRotation = transform.rotation;
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     void Update()
@@ -42,18 +52,15 @@ public class Yeeter : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                if (Time.time - lastSpawnTime >= 1.5f)
+                if (Time.time - lastSpawnTime >= throwCD)
                 {
-                    // Choose a random object to spawn from the array
-                    int randomIndex = Random.Range(0, objectsToSpawn.Length);
-                    GameObject selectedObject = objectsToSpawn[randomIndex];
-
-                    // Instantiate the object and add force in the forward direction
-                    Vector3 spawnPos = transform.position + transform.rotation * spawnOffset;
-                    GameObject spawnedObject = Instantiate(selectedObject, spawnPos, Quaternion.identity);
-                    Rigidbody rb = spawnedObject.GetComponent<Rigidbody>();
-                    rb.AddForce(transform.forward * force, ForceMode.Impulse);
-
+                    if (canSpawn)
+                    {
+                        animator.SetBool("throw", true);
+                        StartCoroutine(SpawnObjectWithDelay(.25f));
+                        canSpawn = false;
+                        PlayRandomThrowAudio();
+                    }
                     // Update the last spawn time
                     lastSpawnTime = Time.time;
                 }
@@ -61,5 +68,33 @@ public class Yeeter : MonoBehaviour
 
         }
 
+        IEnumerator SpawnObjectWithDelay(float delay)
+        {
+            // Wait for the specified delay before spawning the object
+            yield return new WaitForSeconds(delay);
+
+
+
+            // Choose a random object to spawn from the array
+            int randomIndex = Random.Range(0, objectsToSpawn.Length);
+            GameObject selectedObject = objectsToSpawn[randomIndex];
+
+            // Instantiate the object and add force in the forward direction
+            Vector3 spawnPos = transform.position + transform.rotation * spawnOffset;
+            GameObject spawnedObject = Instantiate(selectedObject, spawnPos, Quaternion.identity);
+            Rigidbody rb = spawnedObject.GetComponent<Rigidbody>();
+            rb.AddForce(transform.forward * force, ForceMode.Impulse);
+
+
+            animator.SetBool("throw", false);
+            canSpawn = true;
+        }
+
+    }
+    void PlayRandomThrowAudio()
+    {
+        int randomIndex = Random.Range(0, ThrowAudio.Count); // choose a random index within the list
+        audioSource.clip = ThrowAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
+        audioSource.Play(); // play the audio
     }
 }

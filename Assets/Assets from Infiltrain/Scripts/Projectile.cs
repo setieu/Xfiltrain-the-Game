@@ -16,12 +16,16 @@ public class Projectile : MonoBehaviour
     public float forcemultiplier;
     public GameObject player;
     public float despawnTime = 5f;
+    public AudioClip destroySound;
+    private AudioSource audioSource; // audio source component
+    private bool soundonce = true;
 
     private PlayerController playerController;
 
     // Start is called before the first frame update
     void Start()
     {
+        AudioSource audioSource = gameObject.GetComponent<AudioSource>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         player = GameObject.Find("Player");
@@ -49,6 +53,7 @@ public class Projectile : MonoBehaviour
         if (transform.position.x < leftBound && gameObject.CompareTag("Projectile"))
         {
             Destroy(gameObject);
+
         }
 
 
@@ -90,6 +95,12 @@ public class Projectile : MonoBehaviour
         {
             projectileRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
             projectileRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
+            if(soundonce)
+            {
+                GetComponent<AudioSource>().PlayOneShot(destroySound);
+                soundonce = false;
+            }
+      
         }
 
       //  if(collision.gameObject.CompareTag("Ground") && collision.gameObject.CompareTag("Player"))
@@ -98,4 +109,8 @@ public class Projectile : MonoBehaviour
        // }
 
     }
+    
+
+
+
 }

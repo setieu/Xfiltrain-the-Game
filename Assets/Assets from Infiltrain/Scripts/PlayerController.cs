@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject player;
     //private float win = 505;
-    private float speed = 0.08f;
+    private float speed = 0.125f;
     public float jumpForce = 16;
     private float minLeftSpeed = 20;
     private float maxLeftSpeed = 22;
@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     
+
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
 
@@ -157,19 +157,26 @@ public class PlayerController : MonoBehaviour
         //isOnGround = false;
         //}
         // Player movement
-        if(gameManager.gameActive)
+        if (gameManager.gameActive)
         {
-            playerRb.transform.Translate(Vector3.right * speed * verticalInput * forceMultiplier * Time.deltaTime, Space.World);
-            playerRb.transform.Translate(Vector3.forward * speed * horizontalInput * forceMultiplier * -1.5f * Time.deltaTime, Space.World);
-        }    
+            // Get the player movement direction
+            Vector3 movementDirection = new Vector3(verticalInput, 0.0f, -1.5f * horizontalInput);
+
+            // Normalize the movement direction vector
+            movementDirection = movementDirection.normalized;
+
+            // Translate the player's position based on the movement direction
+            playerRb.transform.Translate(movementDirection * speed * forceMultiplier * Time.deltaTime, Space.World);
+        }
+
 
 
         // Make the player Jump
-       // if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
-       // {
-       //     playerRb.transform.Translate(Vector3.up * jumpForce * forceMultiplier * Time.deltaTime);
-       //     isOnGround = false;
-       // }
+        // if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+        // {
+        //     playerRb.transform.Translate(Vector3.up * jumpForce * forceMultiplier * Time.deltaTime);
+        //     isOnGround = false;
+        // }
 
         //flings player if on dead
         if (isOnDead)
@@ -247,4 +254,5 @@ public class PlayerController : MonoBehaviour
 
 
 }
+
 
