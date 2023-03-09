@@ -56,6 +56,7 @@ public class PogHider : MonoBehaviour
                 }
 
                 yield return new WaitForSeconds(spawnDelay);
+
             }
         }
     }
