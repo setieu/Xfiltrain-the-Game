@@ -29,26 +29,7 @@ public class PoghiderAnim : MonoBehaviour
         }
         else
         {
-            // calculate the direction towards the target point
-            Vector3 direction = targetPoint - transform.position;
 
-            // calculate the distance towards the target point
-            float distance = direction.magnitude;
-
-            // check if the object has reached the target point
-            if (distance < 0.01f)
-            {
-                return; // exit the update method if we've reached the target point
-            }
-
-            // normalize the direction towards the target point
-            direction /= distance;
-
-            // calculate the amount to move towards the target point
-            float amountToMove = Mathf.Min(speed * Time.deltaTime, distance);
-
-            // move towards the target point
-            transform.position += direction * amountToMove;
         }
     }
 }
