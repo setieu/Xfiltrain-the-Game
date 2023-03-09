@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     private float maxLeftSpeed = 38;
     private float maxTorque = 50;
     private float leftBound = -300;
+    private float upBound = 30;
     public float forcemultiplier;
     public List<AudioClip> DeadAudio; // list of audio clips to choose from for hogrider dying
     public int numCollisions = 0;
@@ -41,6 +42,11 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (transform.position.y > upBound && gameObject.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+        }
+
 
     }
     Vector3 RandomLeftForce()
