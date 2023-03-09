@@ -78,6 +78,7 @@ public class Enemy : MonoBehaviour
             numCollisions++;
             Debug.Log("Hit" + (int)numCollisions);
             hogD = true;
+            gameObject.tag = "Untagged";
         }
         if (collision.gameObject.CompareTag("dead") && (hogD))
         {
