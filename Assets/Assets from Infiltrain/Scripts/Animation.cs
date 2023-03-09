@@ -455,7 +455,7 @@ public class Animation : MonoBehaviour
                     animator.SetInteger("direction", -1);
                 }
             }
-            else if ((angle >= 337.5f && angle < 0) && (angle < 22.5f && angle > 0)) // Facing Left
+            else if ((angle >= 337.5f || angle < 22.5f)) // Facing Left
             {
                 if (wKey)
                 {
