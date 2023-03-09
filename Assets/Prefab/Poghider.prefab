@@ -47,10 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 17.5
   height: 1
-  xspeed: 0.08
-  zspeed: 1
-  targetX: -30
-  targetPoint: {x: 0, y: 0, z: 0}
+  xspeed: 0.1
+  zspeed: 0.1
+  znum: 0
 --- !u!1001 &5056445335807805776
 PrefabInstance:
   m_ObjectHideFlags: 0

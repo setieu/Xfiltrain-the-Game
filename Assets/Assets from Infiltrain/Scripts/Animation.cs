@@ -50,7 +50,7 @@ public class Animation : MonoBehaviour
         if (gameManager.gameActive)
         {
             //Facing Forwards
-            if ((angle >= 67.5f && angle <= 112.5f))
+            if ((angle >= 67.5f && angle < 112.5f))
             {
                 if (wKey)
                 {
@@ -187,7 +187,7 @@ public class Animation : MonoBehaviour
                     animator.SetInteger("direction", -1);
                 }
             }
-            else if ((angle > 157.5f && angle < 202.5f)) // Facing Right
+            else if ((angle >= 157.5f && angle < 202.5f)) // Facing Right
             {
                 if (wKey)
                 {
@@ -254,7 +254,7 @@ public class Animation : MonoBehaviour
                     animator.SetInteger("direction", -1);
                 }
             }
-            else if ((angle > 202.5f && angle < 247.5f)) // Facing Backwards Right
+            else if ((angle >= 202.5f && angle < 247.5f)) // Facing Backwards Right
             {
                 if (wKey)
                 {
@@ -321,7 +321,7 @@ public class Animation : MonoBehaviour
                     animator.SetInteger("direction", -1);
                 }
             }
-            else if ((angle > 247.5f && angle < 292.5f)) // Facing Backwards
+            else if ((angle >= 247.5f && angle < 292.5f)) // Facing Backwards
             {
                 if (wKey)
                 {
@@ -388,7 +388,7 @@ public class Animation : MonoBehaviour
                     animator.SetInteger("direction", -1);
                 }
             }
-            else if ((angle > 292.5f && angle < 337.5f)) // Facing Backwards Left
+            else if ((angle >= 292.5f && angle < 337.5f)) // Facing Backwards Left
             {
                 if (wKey)
                 {
@@ -455,7 +455,7 @@ public class Animation : MonoBehaviour
                     animator.SetInteger("direction", -1);
                 }
             }
-            else if ((angle > 337.5f && angle < 22.5f)) // Facing Left
+            else if ((angle >= 337.5f && angle < 0) && (angle < 22.5f && angle > 0)) // Facing Left
             {
                 if (wKey)
                 {
@@ -522,7 +522,7 @@ public class Animation : MonoBehaviour
                     animator.SetInteger("direction", -1);
                 }
             }
-            else if ((angle > 22.5f && angle < 67.5f)) //Facing Forwards Left
+            else if ((angle >= 22.5f && angle < 67.5f)) //Facing Forwards Left
             {
                 if (wKey)
                 {
