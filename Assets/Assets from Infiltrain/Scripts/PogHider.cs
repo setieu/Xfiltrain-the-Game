@@ -53,6 +53,7 @@ public class PogHider : MonoBehaviour
                 {
                     GameObject spawnedObject = Instantiate(objectToSpawn, spawnPosition, Quaternion.identity);
                     objectsSpawnedInCurrentWave++;
+                    Debug.Log("Spawning wave " + (int)waveSize);
                 }
 
                 yield return new WaitForSeconds(spawnDelay);
