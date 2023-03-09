@@ -342,7 +342,7 @@ GameObject:
   - component: {fileID: 3038689680454207030}
   m_Layer: 0
   m_Name: ProjectileTrain
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -466,6 +466,8 @@ MonoBehaviour:
   ddownforce: 3
   forcemultiplier: 120000
   player: {fileID: 0}
+  despawnTime: 5
+  destroySound: {fileID: 8300000, guid: d5312544baefd4a849935e5f81b09a66, type: 3}
 --- !u!65 &3038689680454207030
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -50,7 +50,7 @@ public class Yeeter : MonoBehaviour
 
             transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation);
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
             {
                 if (Time.time - lastSpawnTime >= throwCD)
                 {
