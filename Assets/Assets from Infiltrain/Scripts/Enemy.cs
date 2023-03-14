@@ -18,7 +18,9 @@ public class Enemy : MonoBehaviour
     public bool hogD = false;
     public int yeeyee = 0;
     public int Dhog;
+    public bool alive = true;
 
+    private Animator animator;
     private AudioSource audioSource; // audio source component
     private PlayerController playerController;
     public GameObject player;
@@ -31,6 +33,9 @@ public class Enemy : MonoBehaviour
         player = GameObject.Find("Player");
         audioSource = GetComponent<AudioSource>();
         //transform.position = SpawnPosition();
+        animator = GetComponent<Animator>();
+        animator.SetBool("gallop", true);
+        alive = true;
     }
 
     // Update is called once per frame
@@ -79,6 +84,9 @@ public class Enemy : MonoBehaviour
             Debug.Log("Hit" + (int)numCollisions);
             hogD = true;
             gameObject.tag = "Untagged";
+
+            animator.SetBool("gallop", false);
+            alive = false;
         }
         if (collision.gameObject.CompareTag("dead") && (hogD))
         {
