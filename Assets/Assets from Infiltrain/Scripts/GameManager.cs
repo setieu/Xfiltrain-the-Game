@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     private int time = 0;
     private float timePassed;
     private float startedTime;
+    public bool startedd = false;
     private PlayerController playerController;
 
 
@@ -22,7 +23,7 @@ public class GameManager : MonoBehaviour
     public List<AudioClip> GSaudio; // list of audio clips to choose from for Game Start
     public List<AudioClip> DeathAudio; // list of audio clips to choose from for Death
     public List<AudioClip> DetachmentAudio; // list of audio clips to choose from for Detachment
-    public List<AudioClip> ThrowAudio; // list of audio clips to choose from for Throw
+    
     public List<AudioClip> HitAudio; // list of audio clips to choose from for Hitting Enemy
     public List<AudioClip> RandomAudio; // list of audio clips to choose from for Randomly saying
     public List<AudioClip> SecondaryAudio; // list of audio clips to choose from for Secondary
@@ -35,6 +36,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI credits;
     public TextMeshProUGUI timer;
     public GameObject toolAssist;
+    //so no bocchi death sound
+    private bool diefirst = true;
    // public TextMeshProUGUI xcord;
    // public TextMeshProUGUI ycord;
    // public TextMeshProUGUI zcord;
@@ -47,8 +50,8 @@ public class GameManager : MonoBehaviour
     public Button restartButton;
 
     public bool gameActive;
-
-
+    public int Scoree =  0;
+    public int hogdeaths = 0;
 
 
     // Start is called before the first frame update
@@ -57,7 +60,7 @@ public class GameManager : MonoBehaviour
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         gameActive = false;
         audioSource = GetComponent<AudioSource>();
-        
+        Debug.Log("Scene Loaded");
 
     }
     public void StartGame(int difficulty)
@@ -73,7 +76,9 @@ public class GameManager : MonoBehaviour
         titleScreen.SetActive(false);
         toolAssist.SetActive(true);
         PlayRandomGSAudio();
-        
+        startedd = true;
+        Debug.Log("Game started");
+
         startedTime = Time.time;
         //StartCoroutine(Wait());
         //PlayRandomSecondaryAudio();
@@ -87,12 +92,11 @@ public class GameManager : MonoBehaviour
         if (gameActive==true)
 
         {
+           
             timePassed = Time.time - startedTime;
-            timer.text = "Time: " + (int)timePassed;
+            Scoree = (int)timePassed + hogdeaths*10;
+            timer.text = "Score: " + (int)Scoree +"0";
 
-            //xcord.text = "X:" + xCord;
-            //ycord.text = "Y:" + yCord;
-            //zcord.text = "Z:" + zCord;
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -100,9 +104,9 @@ public class GameManager : MonoBehaviour
         if (collision.gameObject.CompareTag("dead"))
         {
 
-            PlayRandomDeathAudio();
-            GameOverLost();
             
+            GameOverLost();
+            Debug.Log("Game over");
         }
     }
 
@@ -116,8 +120,12 @@ public class GameManager : MonoBehaviour
     }
     public void GameOverLost()
     {
-
-
+        if(diefirst == true)
+        {
+            PlayRandomDeathAudio();
+            diefirst = false;
+        }
+        
         gameOverLostText.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
         playerController.isOnDead = true;
@@ -129,6 +137,9 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Physics.gravity /= 3;
+        startedd = false;
+        Time.timeScale = 1;
+        Debug.Log("Game Restarted");
     }
 
    // IEnumerator SpawnTarget()
@@ -182,12 +193,7 @@ public class GameManager : MonoBehaviour
         audioSource.clip = HitAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
         audioSource.Play(); // play the audio
     }
-    void PlayRandomThrowAudio()
-    {
-        int randomIndex = Random.Range(0, ThrowAudio.Count); // choose a random index within the list
-        audioSource.clip = ThrowAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
-        audioSource.Play(); // play the audio
-    }
+    
     void PlayRandomDetachmentAudio()
     {
         int randomIndex = Random.Range(0, DetachmentAudio.Count); // choose a random index within the list

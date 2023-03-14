@@ -11,9 +11,15 @@ public class Enemy : MonoBehaviour
     private float minLeftSpeed = 32;
     private float maxLeftSpeed = 38;
     private float maxTorque = 50;
-    private float leftBound = -100;
+    private float leftBound = -300;
     public float forcemultiplier;
+    public List<AudioClip> DeadAudio; // list of audio clips to choose from for hogrider dying
+    public int numCollisions = 0;
+    public bool hogD = false;
+    public int yeeyee = 0;
+    public int Dhog;
 
+    private AudioSource audioSource; // audio source component
     private PlayerController playerController;
     public GameObject player;
     // Start is called before the first frame update
@@ -23,7 +29,7 @@ public class Enemy : MonoBehaviour
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         player = GameObject.Find("Player");
-
+        audioSource = GetComponent<AudioSource>();
         //transform.position = SpawnPosition();
     }
 
@@ -52,20 +58,49 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("dead"))
+        if (collision.gameObject.CompareTag("dead") && hogD)
         {
             enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
             enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
             enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
             enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
+            if (yeeyee == 1)
+            {
+                PlayRandomDeadAudio();
+                gameManager.hogdeaths++;
+            }
+            
         }
+        if (collision.gameObject.CompareTag("Projectile"))
+        {
+            Rigidbody rb = GetComponent<Rigidbody>();
+            rb.AddForce(Vector3.up * 1000f, ForceMode.Impulse);
+            numCollisions++;
+            Debug.Log("Hit" + (int)numCollisions);
+            hogD = true;
+            gameObject.tag = "Untagged";
+        }
+        if (collision.gameObject.CompareTag("dead") && (hogD))
+        {
+            yeeyee++;
+            Dhog++;
+        }
+        
+
+        //Vector3 SpawnPosition()
+        //{
+
+        //     Vector3 spawnPosition = new Vector3(player.transform.position.x + 50, 8, Random.Range(1.2f, 6.2f));
+        //    return spawnPosition;
+
+        // }
+        void PlayRandomDeadAudio()
+        {
+            int randomIndex = Random.Range(0, DeadAudio.Count); // choose a random index within the list
+            audioSource.clip = DeadAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
+            audioSource.Play(); // play the audio
+        }
+
+
     }
-
-    //Vector3 SpawnPosition()
-    //{
-
-   //     Vector3 spawnPosition = new Vector3(player.transform.position.x + 50, 8, Random.Range(1.2f, 6.2f));
-    //    return spawnPosition;
-
-   // }
 }

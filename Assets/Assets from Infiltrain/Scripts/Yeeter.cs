@@ -11,11 +11,14 @@ public class Yeeter : MonoBehaviour
     public bool lockZRotation = true;
     public Vector3 spawnOffset = new Vector3(0, 0, 1);
     public float lastSpawnTime = 0f;
+    public float throwCD = 1.5f;
     private GameManager gameManager;
     private Quaternion initialRotation;
     private Animation animations;
     public bool canSpawn = true;
     public Animator animator;
+    public List<AudioClip> ThrowAudio; // list of audio clips to choose from for Throw
+    private AudioSource audioSource; // audio source component
 
 
     private void Start()
@@ -23,6 +26,7 @@ public class Yeeter : MonoBehaviour
         initialRotation = transform.rotation;
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -46,15 +50,16 @@ public class Yeeter : MonoBehaviour
 
             transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation);
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
             {
-                if (Time.time - lastSpawnTime >= 1.5f)
+                if (Time.time - lastSpawnTime >= throwCD)
                 {
                     if (canSpawn)
                     {
                         animator.SetBool("throw", true);
                         StartCoroutine(SpawnObjectWithDelay(.25f));
                         canSpawn = false;
+                        PlayRandomThrowAudio();
                     }
                     // Update the last spawn time
                     lastSpawnTime = Time.time;
@@ -85,5 +90,11 @@ public class Yeeter : MonoBehaviour
             canSpawn = true;
         }
 
+    }
+    void PlayRandomThrowAudio()
+    {
+        int randomIndex = Random.Range(0, ThrowAudio.Count); // choose a random index within the list
+        audioSource.clip = ThrowAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
+        audioSource.Play(); // play the audio
     }
 }
