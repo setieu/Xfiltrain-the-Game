@@ -18,19 +18,30 @@ public class Enemy : MonoBehaviour
     public bool hogD = false;
     public int yeeyee = 0;
     public int Dhog;
+    public bool alive = true;
 
+    private Animator animator;
+    public List<ParticleSystem> particleSystems;
+    public ParticleSystem particle;
     private AudioSource audioSource; // audio source component
     private PlayerController playerController;
     public GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
+
         enemyRb = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         player = GameObject.Find("Player");
         audioSource = GetComponent<AudioSource>();
         //transform.position = SpawnPosition();
+        animator = GetComponent<Animator>();
+        animator.SetBool("gallop", true);
+        alive = true;
+  
+        particle.Stop();
     }
 
     // Update is called once per frame
@@ -79,6 +90,12 @@ public class Enemy : MonoBehaviour
             Debug.Log("Hit" + (int)numCollisions);
             hogD = true;
             gameObject.tag = "Untagged";
+
+            animator.SetBool("gallop", false);
+            PlayRandomParticle();
+
+            alive = false;
+            
         }
         if (collision.gameObject.CompareTag("dead") && (hogD))
         {
@@ -100,7 +117,13 @@ public class Enemy : MonoBehaviour
             audioSource.clip = DeadAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
             audioSource.Play(); // play the audio
         }
-
+        void PlayRandomParticle()
+        {
+            int randomIndex = Random.Range(0, particleSystems.Count);
+            particle = particleSystems[randomIndex];
+            particle.Play();
+        }
 
     }
+
 }

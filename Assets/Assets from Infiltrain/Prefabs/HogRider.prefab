@@ -401,6 +401,7 @@ MonoBehaviour:
   numCollisions: 0
   hogD: 0
   yeeyee: 0
+  Dhog: 0
   player: {fileID: 0}
 --- !u!65 &4339683312761534970
 BoxCollider:
@@ -545,6 +546,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   height: 1
+  xspeed: 0.5
+  zspeed: 1
+  znum: 0
+  targetPoint: {x: 0, y: 0, z: 0}
 --- !u!1 &4568559828249809602
 GameObject:
   m_ObjectHideFlags: 0
