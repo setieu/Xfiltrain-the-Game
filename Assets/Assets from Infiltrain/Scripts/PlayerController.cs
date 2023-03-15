@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody playerRb;
     private GameManager gameManager;
     private AudioSource playerAudio;
+    private FollowPlayer followPlayer;
     public Camera cam;
 
 
