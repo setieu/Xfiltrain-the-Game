@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
         playerAudio = GetComponent<AudioSource>();
         playerRb = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        followPlayer = GameObject.Find("Main Camera").GetComponent<FollowPlayer>();
 
         Physics.gravity *= gravityModifier;
 
