@@ -7,7 +7,7 @@ public class PoghiderAnim : MonoBehaviour
     public float speed = 1f; // adjust this to change the speed of the animation
     public float height = 1f; // adjust this to change the height of the animation
     public float xspeed = 0.2f;
-    public float zspeed = 1f;
+    public float zspeed = 0.5f;
     public float znum;
     public Enemy enemy;
     
@@ -26,31 +26,43 @@ public class PoghiderAnim : MonoBehaviour
     {
         
         float newY = startingPosition.y + height * Mathf.Sin(Time.time * speed);
-        
-     
-        if (transform.position.x < 80 && enemy.alive)
+
+        // calculate the direction to the target point
+        Vector3 direction = (new Vector3(0f, newY, 0f) - transform.position).normalized;
+
+        // move the object towards the target point along the z-axis
+        znum += direction.z * zspeed * Time.deltaTime;
+
+        if (transform.position.z < -20 || transform.position.z > 30)
         {
-            transform.position = new Vector3(transform.position.x + xspeed, newY, transform.position.z);
+            transform.position = new Vector3(transform.position.x, newY, transform.position.z + znum);
         }
         else
         {
-            if ((transform.position.z > 9 || transform.position.z < 6) && enemy.alive)
+            if (transform.position.x > 60 && enemy.alive && (transform.position.z > 9 || transform.position.z < 6))
             {
-                // calculate the direction to the target point
-                Vector3 direction = (new Vector3(0f, newY, 0f) - transform.position).normalized;
+                if(transform.position.x < 80)
+                {
+                    transform.position = new Vector3(transform.position.x + xspeed, newY, transform.position.z + znum);
+                }
+                else
+                {
+                    transform.position = new Vector3(transform.position.x, newY, transform.position.z + znum);
+                }
+                
 
-                // move the object towards the target point along the z-axis
-                znum += direction.z * zspeed * Time.deltaTime;
 
-                transform.position = new Vector3(80, newY, transform.position.z + znum);
+            }
+            else if (transform.position.x < 60 && enemy.alive && (transform.position.z > 9 || transform.position.z < 6))
+            {
+                transform.position = new Vector3(transform.position.x + xspeed, newY, transform.position.z);
             }
             else
             {
-                Vector3 direction = (new Vector3(0f, newY, 0f) - transform.position).normalized;
                 transform.position = new Vector3(transform.position.x, newY, transform.position.z);
             }
         }
-
+      
     }
 
 
