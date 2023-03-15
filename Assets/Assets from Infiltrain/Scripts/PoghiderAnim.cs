@@ -10,15 +10,16 @@ public class PoghiderAnim : MonoBehaviour
     public float zspeed = 1f;
     public float znum;
     public Enemy enemy;
-    
+    private GameManager gameManager;
     private Vector3 startingPosition;
 
     // Start is called before the first frame update
     void Start()
     {
         startingPosition = transform.position;
-        
-        
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+
+
     }
 
     // Update is called once per frame
