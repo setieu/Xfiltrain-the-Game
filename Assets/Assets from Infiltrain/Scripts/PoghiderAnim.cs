@@ -34,7 +34,7 @@ public class PoghiderAnim : MonoBehaviour
         }
         else
         {
-            if ((transform.position.z > 15 || transform.position.z < 5) && enemy.alive)
+            if ((transform.position.z > 9 || transform.position.z < 6) && enemy.alive)
             {
                 // calculate the direction to the target point
                 Vector3 direction = (new Vector3(0f, newY, 0f) - transform.position).normalized;
@@ -46,7 +46,8 @@ public class PoghiderAnim : MonoBehaviour
             }
             else
             {
-                
+                Vector3 direction = (new Vector3(0f, newY, 0f) - transform.position).normalized;
+                transform.position = new Vector3(transform.position.x, newY, transform.position.z);
             }
         }
 
