@@ -13,15 +13,21 @@ public class PogHider : MonoBehaviour
     private int objectsSpawnedInCurrentWave;
     private GameManager gameManager;
     private SpawnManager spawnManager;
+    //GameObject modeS = GameObject.Find("Modes");
+    private Difficulty difficultY;
 
     private void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+        //  Difficulty difficultyScript = modeS.GetComponent<Difficulty>();
+        difficultY = GameObject.Find("Modes").GetComponent<Difficulty>();
     }
 
     private void Update()
     {
+
+
         if (gameManager.gameActive)
         {
             // Check if there are any active poghiders
@@ -40,9 +46,19 @@ public class PogHider : MonoBehaviour
     private IEnumerator SpawnWave()
     {
         // Increment wave size at the start of each wave
-        waveSize++;
+        if(gameManager.gameDiff == 1)
+        {
+             waveSize++;
+        }
+        else if(gameManager.gameDiff == 2)
+        {
+            waveSize += 2;
+        }
+      
+      
+        Debug.Log(waveSize);
         objectsSpawnedInCurrentWave = 0;
-
+        
         if (gameManager.gameActive)
         {
             while (objectsSpawnedInCurrentWave < waveSize && GameObject.FindGameObjectsWithTag("Enemy").Length < maxPogs)
