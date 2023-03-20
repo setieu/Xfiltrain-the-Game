@@ -41,9 +41,9 @@ public class PoghiderAnim : MonoBehaviour
         {
             if (transform.position.x > 60 && enemy.alive && (transform.position.z > 9 || transform.position.z < 6))
             {
-                if(transform.position.x < 80)
+                if (transform.position.x < 80)
                 {
-                    transform.position = new Vector3(transform.position.x + xspeed, newY, transform.position.z + znum);
+                    transform.position = new Vector3(transform.position.x + xspeed / 1.5f, newY, transform.position.z + znum / 2);
                 }
                 else
                 {
