@@ -33,7 +33,7 @@ public class PoghiderAnim : MonoBehaviour
         // move the object towards the target point along the z-axis
         znum += direction.z * zspeed * Time.deltaTime;
 
-        if (transform.position.z < -20 || transform.position.z > 30)
+        if (transform.position.z < -15 || transform.position.z > 25)
         {
             transform.position = new Vector3(transform.position.x, newY, transform.position.z + znum);
         }
@@ -43,7 +43,7 @@ public class PoghiderAnim : MonoBehaviour
             {
                 if (transform.position.x < 80)
                 {
-                    transform.position = new Vector3(transform.position.x + xspeed / 1.5f, newY, transform.position.z + znum / 2);
+                    transform.position = new Vector3(transform.position.x + xspeed / 2.5f, newY, transform.position.z + znum / 2.5f);
                 }
                 else
                 {
