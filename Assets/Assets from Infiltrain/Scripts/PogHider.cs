@@ -25,7 +25,7 @@ public class PogHider : MonoBehaviour
         if (gameManager.gameActive)
         {
             // Check if there are any active poghiders
-            if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+            //if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
             {
                 if (Time.time - lastWaveTime >= waveDelay)
                 {
