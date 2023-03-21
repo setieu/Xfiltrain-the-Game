@@ -33,45 +33,48 @@ public class PoghiderAnim : MonoBehaviour
 
         // move the object towards the target point along the z-axis
         znum += direction.z * zspeed * Time.deltaTime;
-
-        if (transform.position.z < -20 || transform.position.z > 30)
+        if (gameManager.gameActive)
         {
-            transform.position = new Vector3(transform.position.x, newY, transform.position.z + znum);
-        }
-        else
-        {
-            if (transform.position.x > 60 && enemy.alive && (transform.position.z > 8 || transform.position.z < 5))
+            if (transform.position.z < -20 || transform.position.z > 30)
             {
-                if (transform.position.x < 80)
-                {
-                    transform.position = new Vector3(transform.position.x + xspeed / 2.5f, newY, transform.position.z + znum / 2.5f);
-                }
-                else
-                {
-                    transform.position = new Vector3(transform.position.x, newY, transform.position.z + znum);
-                }
-            }
-            else if (transform.position.x < 60 && enemy.alive && (transform.position.z > 8 || transform.position.z < 5))
-            {
-                transform.position = new Vector3(transform.position.x + xspeed, newY, transform.position.z);
+                transform.position = new Vector3(transform.position.x, newY, transform.position.z + znum);
             }
             else
             {
-                if (transform.position.z > 7 || transform.position.z < 4)
+                if (transform.position.x > 60 && enemy.alive && (transform.position.z > 9 || transform.position.z < -0.5f))
                 {
-                    transform.position = new Vector3(transform.position.x, newY, transform.position.z + znum);
+                    if (transform.position.x < 80)
+                    {
+                        transform.position = new Vector3(transform.position.x + xspeed / 2.5f, newY, transform.position.z + znum / 2.5f);
+                    }
+                    else
+                    {
+                        transform.position = new Vector3(transform.position.x, newY, transform.position.z + znum);
+                    }
                 }
-                else // if (transform.position.z !> 7 || transform.position.z !< 4)
+                else if (transform.position.x < 60 && enemy.alive && (transform.position.z > 9 || transform.position.z < -0.5f))
                 {
-                    transform.position = new Vector3(transform.position.x, newY, transform.position.z - znum);
+                    transform.position = new Vector3(transform.position.x + xspeed, newY, transform.position.z);
                 }
-                //else
-                //{
+                else
+                {
+                    if (transform.position.z > 9 || transform.position.z < -0.5f)
+                    {
+                        transform.position = new Vector3(transform.position.x, newY, transform.position.z + znum);
+                    }
+                    else
+                    {
+                        transform.position = new Vector3(transform.position.x, newY, transform.position.z - znum);
+                    }
+                    //else
+                    //{
                     //Destroy(gameObject);
-                //}
-                    
+                    //}
+
+                }
             }
         }
+        
       
     }
 
