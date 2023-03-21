@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private float timePassed;
     private float startedTime;
     public bool startedd = false;
+    public bool gameStarted = false;
     private PlayerController playerController;
 
 
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
     public bool gameActive;
     public int Scoree =  0;
     public int hogdeaths = 0;
+    public int gameDiff;
 
 
     // Start is called before the first frame update
@@ -63,28 +65,90 @@ public class GameManager : MonoBehaviour
         Debug.Log("Scene Loaded");
 
     }
+
     public void StartGame(int difficulty)
     {
-        arrayRange = difficulty;
-        playerController.isAlive = true;
-        gameActive = true;
+        // Set up game based on difficulty level
+        switch (difficulty)
+        {
+            case 0:
+                // Set up for peaceful mode
+                arrayRange = difficulty;
+                playerController.isAlive = true;
+                gameActive = true;
 
-        stamina = 50;
-        throwRate = throwRate /= difficulty;
-        //StartCoroutine(SpawnTarget());
-        playerController.playerRb.constraints = RigidbodyConstraints.None;
-        titleScreen.SetActive(false);
-        toolAssist.SetActive(true);
-        PlayRandomGSAudio();
-        startedd = true;
-        Debug.Log("Game started");
+                stamina = 50;
+                throwRate = throwRate /= difficulty;
+                //StartCoroutine(SpawnTarget());
+                playerController.playerRb.constraints = RigidbodyConstraints.None;
+                titleScreen.SetActive(false);
+                toolAssist.SetActive(true);
+                PlayRandomGSAudio();
+                startedd = true;
+                Debug.Log("Game started");
 
-        startedTime = Time.time;
-        //StartCoroutine(Wait());
-        //PlayRandomSecondaryAudio();
-        // Input sounds
+                startedTime = Time.time;
+                //StartCoroutine(Wait());
+                //PlayRandomSecondaryAudio();
+                // Input sounds
+                gameDiff = 0;
+                Debug.Log("Peaceful");
+                break;
+            case 1:
+                // Set up for easy mode
+                arrayRange = difficulty;
+                playerController.isAlive = true;
+                gameActive = true;
 
+                stamina = 50;
+                throwRate = throwRate /= difficulty;
+                //StartCoroutine(SpawnTarget());
+                playerController.playerRb.constraints = RigidbodyConstraints.None;
+                titleScreen.SetActive(false);
+                toolAssist.SetActive(true);
+                PlayRandomGSAudio();
+                startedd = true;
+                Debug.Log("Game started");
+
+                startedTime = Time.time;
+                //StartCoroutine(Wait());
+                //PlayRandomSecondaryAudio();
+                // Input sounds
+                gameDiff = 1;
+                Debug.Log("Easy");
+                break;
+            case 2:
+                // Set up for hard mode
+                arrayRange = difficulty;
+                playerController.isAlive = true;
+                gameActive = true;
+
+                stamina = 50;
+                throwRate = throwRate /= difficulty;
+                //StartCoroutine(SpawnTarget());
+                playerController.playerRb.constraints = RigidbodyConstraints.None;
+                titleScreen.SetActive(false);
+                toolAssist.SetActive(true);
+                PlayRandomGSAudio();
+                startedd = true;
+                Debug.Log("Game started");
+
+                startedTime = Time.time;
+                //StartCoroutine(Wait());
+                //PlayRandomSecondaryAudio();
+                // Input sounds
+                gameDiff = 2;
+                Debug.Log("Hard");
+                break;
+            default:
+                Debug.LogError("Invalid difficulty level: " + difficulty);
+                break;
+        }
+
+        // Start the game
+        gameStarted = true;
     }
+
 
     // Update is called once per frame
     void Update()
