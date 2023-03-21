@@ -13,6 +13,7 @@ public class MoveBackOnCollision : MonoBehaviour
     private HealthBar healthText;
     private AudioSource audioSource; // audio source component
     public List<AudioClip> DetachmentAudio; // list of audio clips to choose from for Detachment
+    public List<AudioClip> Smacking; // list of audio clips to choose from for Detachment
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +48,7 @@ public class MoveBackOnCollision : MonoBehaviour
                 }
             
             detachD++;
+            PlayRandomSmackingAudio();
             healthBar.HP--;
         }
     }
@@ -64,6 +66,12 @@ public class MoveBackOnCollision : MonoBehaviour
     {
         int randomIndex = Random.Range(0, DetachmentAudio.Count); // choose a random index within the list
         audioSource.clip = DetachmentAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
+        audioSource.Play(); // play the audio
+    }
+    void PlayRandomSmackingAudio()
+    {
+        int randomIndex = Random.Range(0, Smacking.Count); // choose a random index within the list
+        audioSource.clip = Smacking[randomIndex]; // set the audio source's clip to the chosen audio clip
         audioSource.Play(); // play the audio
     }
 }
