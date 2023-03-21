@@ -34,13 +34,13 @@ public class PoghiderAnim : MonoBehaviour
         // move the object towards the target point along the z-axis
         znum += direction.z * zspeed * Time.deltaTime;
 
-        if (transform.position.z < -15 || transform.position.z > 25)
+        if (transform.position.z < -20 || transform.position.z > 30)
         {
             transform.position = new Vector3(transform.position.x, newY, transform.position.z + znum);
         }
         else
         {
-            if (transform.position.x > 60 && enemy.alive && (transform.position.z > 9 || transform.position.z < 6))
+            if (transform.position.x > 60 && enemy.alive && (transform.position.z > 8 || transform.position.z < 5))
             {
                 if (transform.position.x < 80)
                 {
@@ -50,17 +50,26 @@ public class PoghiderAnim : MonoBehaviour
                 {
                     transform.position = new Vector3(transform.position.x, newY, transform.position.z + znum);
                 }
-                
-
-
             }
-            else if (transform.position.x < 60 && enemy.alive && (transform.position.z > 9 || transform.position.z < 6))
+            else if (transform.position.x < 60 && enemy.alive && (transform.position.z > 8 || transform.position.z < 5))
             {
                 transform.position = new Vector3(transform.position.x + xspeed, newY, transform.position.z);
             }
             else
             {
-                transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+                if (transform.position.z > 7 || transform.position.z < 4)
+                {
+                    transform.position = new Vector3(transform.position.x, newY, transform.position.z + znum);
+                }
+                else // if (transform.position.z !> 7 || transform.position.z !< 4)
+                {
+                    transform.position = new Vector3(transform.position.x, newY, transform.position.z - znum);
+                }
+                //else
+                //{
+                    //Destroy(gameObject);
+                //}
+                    
             }
         }
       

@@ -145,6 +145,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5715707702926078464}
     - target: {fileID: -8595655357615331691, guid: 05706e801febf4d0cb3dc326c47319c6, type: 3}
+      propertyPath: poghider
+      value: 
+      objectReference: {fileID: 5056445335558395399}
+    - target: {fileID: -8595655357615331691, guid: 05706e801febf4d0cb3dc326c47319c6, type: 3}
       propertyPath: particleSystems.Array.size
       value: 3
       objectReference: {fileID: 0}
