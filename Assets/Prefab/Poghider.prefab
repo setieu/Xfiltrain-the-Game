@@ -47,8 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 17.5
   height: 1
-  xspeed: 0.2
-  zspeed: 0.1
+  xspeed: 0.15
+  zspeed: 0.05
   znum: 0
   enemy: {fileID: 5663842506482577349}
 --- !u!1001 &4047926141341480354
