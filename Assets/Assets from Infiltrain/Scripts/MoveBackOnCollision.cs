@@ -7,19 +7,26 @@ public class MoveBackOnCollision : MonoBehaviour
     private float leftBound = -100;
     public float speed = 100f;
     public int detachD = 0;
+    public int HPP = 100;
 
+    private HealthBar healthBar;
+    private HealthBar healthText;
     private AudioSource audioSource; // audio source component
     public List<AudioClip> DetachmentAudio; // list of audio clips to choose from for Detachment
 
     // Start is called before the first frame update
     void Start()
     {
+        healthBar = GameObject.Find("Bar").GetComponent<HealthBar>();
+        //healthText = GameObject.Find("HPText").GetComponent<HealthBar>();
         audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //HPP = healthBar.HP;
+        //healthText = ;
         if (detachD == 1)
         {
             PlayRandomDetachmentAudio();
@@ -34,8 +41,13 @@ public class MoveBackOnCollision : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            StartCoroutine(MoveBack());
+            if (healthBar.HP <= 0)
+                {
+                    StartCoroutine(MoveBack());
+                }
+            
             detachD++;
+            healthBar.HP--;
         }
     }
 
