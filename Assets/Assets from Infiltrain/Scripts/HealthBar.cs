@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class HealthBar : MonoBehaviour
 {
     private Image healthBar;
-    public float MaxHP = 500f;
-
-    public float HP = 100f;
+    public float MaxHP = 10f;
+    public TextMeshProUGUI health;
+    public float HP = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -21,5 +22,6 @@ public class HealthBar : MonoBehaviour
     void Update()
     {
         healthBar.fillAmount = HP / MaxHP;
+        health.text = "Train Health: " + HP + "/10";
     }
 }
