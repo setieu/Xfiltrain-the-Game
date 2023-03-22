@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject titleScreen;
     public GameObject healtHbar;
+    private HealthBar baR;
+    public GameObject Bar;
     public TextMeshProUGUI gameOverLostText;
     public TextMeshProUGUI gameOverWonText;
     public TextMeshProUGUI credits;
@@ -71,6 +73,7 @@ public class GameManager : MonoBehaviour
             Debug.LogError("Failed to get Yeeter component from Player game object.");
         }
         pogHider = GameObject.Find("PogHide Spawner").GetComponent<PogHider>();
+        baR = GameObject.Find("Bar").GetComponent<HealthBar>();
         gameActive = false;
         audioSource = GetComponent<AudioSource>();
         Debug.Log("Scene Loaded");
@@ -262,6 +265,10 @@ public class GameManager : MonoBehaviour
 
         }
         if(gameActive == false)
+        {
+            healtHbar.SetActive(false);
+        }
+        if(baR.HP < 0)
         {
             healtHbar.SetActive(false);
         }
