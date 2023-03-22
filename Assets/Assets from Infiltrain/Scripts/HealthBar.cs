@@ -22,6 +22,6 @@ public class HealthBar : MonoBehaviour
     void Update()
     {
         healthBar.fillAmount = HP / MaxHP;
-        health.text = "Train Health: " + HP + "/10";
+        health.text = "Train Health: " + HP + "/" +MaxHP;
     }
 }
