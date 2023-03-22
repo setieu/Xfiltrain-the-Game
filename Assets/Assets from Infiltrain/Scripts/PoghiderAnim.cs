@@ -41,7 +41,7 @@ public class PoghiderAnim : MonoBehaviour
             }
             else
             {
-                if (transform.position.x > 60 && enemy.alive && (transform.position.z > 9 || transform.position.z < -0.5f))
+                if (transform.position.x > 60 && enemy.alive && (transform.position.z > 8 || transform.position.z < -0.5f))
                 {
                     if (transform.position.x < 80)
                     {
@@ -52,13 +52,13 @@ public class PoghiderAnim : MonoBehaviour
                         transform.position = new Vector3(transform.position.x, newY, transform.position.z + znum);
                     }
                 }
-                else if (transform.position.x < 60 && enemy.alive && (transform.position.z > 9 || transform.position.z < -0.5f))
+                else if (transform.position.x < 60 && enemy.alive && (transform.position.z > 8 || transform.position.z < -0.5f))
                 {
                     transform.position = new Vector3(transform.position.x + xspeed, newY, transform.position.z);
                 }
                 else
                 {
-                    if (transform.position.z > 9 || transform.position.z < -0.5f)
+                    if (transform.position.z > 8 || transform.position.z < -0.5f)
                     {
                         transform.position = new Vector3(transform.position.x, newY, transform.position.z + znum);
                     }
