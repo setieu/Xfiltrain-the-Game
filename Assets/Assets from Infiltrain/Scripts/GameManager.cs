@@ -270,7 +270,7 @@ public class GameManager : MonoBehaviour
         {
             healtHbar.SetActive(false);
         }
-        if(baR.HP < 0)
+        if(baR.HP < 1)
         {
             healtHbar.SetActive(false);
         }
