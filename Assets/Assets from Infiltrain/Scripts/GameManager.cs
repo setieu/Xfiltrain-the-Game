@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     public bool startedd = false;
     public bool gameStarted = false;
     private PlayerController playerController;
+    private PogHider pogHider;
+    private Yeeter yeeTer;
+    public float cooldown;
 
 
     public List<GameObject> targetPrefabs;
@@ -32,6 +35,9 @@ public class GameManager : MonoBehaviour
     private AudioSource audioSource; // audio source component
 
     public GameObject titleScreen;
+    public GameObject healtHbar;
+    private HealthBar baR;
+    public GameObject Bar;
     public TextMeshProUGUI gameOverLostText;
     public TextMeshProUGUI gameOverWonText;
     public TextMeshProUGUI credits;
@@ -60,6 +66,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        // Assign the Yeeter component to yeeTer
+        yeeTer = GameObject.Find("Player").GetComponent<Yeeter>() as Yeeter;
+        if (yeeTer == null)
+        {
+            Debug.LogError("Failed to get Yeeter component from Player game object.");
+        }
+        pogHider = GameObject.Find("PogHide Spawner").GetComponent<PogHider>();
+        baR = GameObject.Find("Bar").GetComponent<HealthBar>();
         gameActive = false;
         audioSource = GetComponent<AudioSource>();
         Debug.Log("Scene Loaded");
@@ -91,6 +105,13 @@ public class GameManager : MonoBehaviour
                 //StartCoroutine(Wait());
                 //PlayRandomSecondaryAudio();
                 // Input sounds
+                //Yeeter.throwCD
+                if (yeeTer != null)
+                {
+                    // Set the throwcooldown variable to 1 seconds
+                    yeeTer.canSpawn = true;
+                    yeeTer.throwCD = 1f;
+                }
                 gameDiff = 0;
                 Debug.Log("Peaceful");
                 break;
@@ -114,6 +135,14 @@ public class GameManager : MonoBehaviour
                 //StartCoroutine(Wait());
                 //PlayRandomSecondaryAudio();
                 // Input sounds
+                pogHider.waveDelay = 5f;
+                if (yeeTer != null)
+                {
+                    // Set the throwcooldown variable to 1.5 seconds
+                    yeeTer.canSpawn = true;
+                    yeeTer.throwCD = 1.5f;
+                }
+                pogHider.maxPogs = 15;
                 gameDiff = 1;
                 Debug.Log("Easy");
                 break;
@@ -137,8 +166,74 @@ public class GameManager : MonoBehaviour
                 //StartCoroutine(Wait());
                 //PlayRandomSecondaryAudio();
                 // Input sounds
+                if (yeeTer != null)
+                {
+                    // Set the throwcooldown variable to 1.3 seconds
+                    yeeTer.canSpawn = true;
+                    yeeTer.throwCD = 1.3f;
+                }
+                pogHider.waveDelay = 2f;
+                pogHider.maxPogs = 30;
                 gameDiff = 2;
                 Debug.Log("Hard");
+                break;
+            case 3:
+                // Set up for normal mode
+                arrayRange = difficulty;
+                playerController.isAlive = true;
+                gameActive = true;
+
+                stamina = 50;
+                throwRate = throwRate /= difficulty;
+                //StartCoroutine(SpawnTarget());
+                playerController.playerRb.constraints = RigidbodyConstraints.None;
+                titleScreen.SetActive(false);
+                toolAssist.SetActive(true);
+                PlayRandomGSAudio();
+                startedd = true;
+                Debug.Log("Game started");
+
+                startedTime = Time.time;
+                if (yeeTer != null)
+                {
+                    // Set the throwcooldown variable to 1.5 seconds
+                    yeeTer.canSpawn = true;
+                    yeeTer.throwCD = 1.5f;
+                }
+                pogHider.waveDelay = 4f;
+                pogHider.maxPogs = 20;
+                gameDiff = 1;
+                break;
+            case 4:
+                //set up for anarchy mode
+                arrayRange = difficulty;
+                playerController.isAlive = true;
+                gameActive = true;
+
+                stamina = 50;
+                throwRate = throwRate /= difficulty;
+                //StartCoroutine(SpawnTarget());
+                playerController.playerRb.constraints = RigidbodyConstraints.None;
+                titleScreen.SetActive(false);
+                toolAssist.SetActive(true);
+                PlayRandomGSAudio();
+                startedd = true;
+                Debug.Log("Game started");
+
+                startedTime = Time.time;
+                if (yeeTer != null)
+                {
+                    // Set the throwcooldown variable to 0.1 seconds
+                    yeeTer.canSpawn = true;
+                    yeeTer.throwCD = 0.1f;
+                }
+
+                pogHider.waveDelay = 0.3f;
+                pogHider.maxPogs = 75;
+                gameDiff = 2;
+                break;
+            case 5:
+                //set up for ??? mode
                 break;
             default:
                 Debug.LogError("Invalid difficulty level: " + difficulty);
@@ -153,14 +248,29 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (yeeTer != null)
+        {
+            // Access the throwcooldown variable from yeeTer
+            cooldown = yeeTer.throwCD;
+            // Do something with the cooldown value
+            Debug.Log("Cooldown is: " + cooldown);
+        }
         if (gameActive==true)
 
         {
-           
+            healtHbar.SetActive(true);
             timePassed = Time.time - startedTime;
             Scoree = (int)timePassed + hogdeaths*10;
             timer.text = "Score: " + (int)Scoree +"0";
 
+        }
+        if(gameActive == false)
+        {
+            healtHbar.SetActive(false);
+        }
+        if(baR.HP < 0)
+        {
+            healtHbar.SetActive(false);
         }
     }
     private void OnCollisionEnter(Collision collision)
