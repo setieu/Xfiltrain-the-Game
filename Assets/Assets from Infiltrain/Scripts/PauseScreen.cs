@@ -12,13 +12,13 @@ public class PauseScreen : MonoBehaviour
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         gameManager.titleScreen.SetActive(true);
-        isPaused = true;
+        isPaused = false;
     }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!isPaused)
+            if (!isPaused)//notpaused then will pause
             {
                 Time.timeScale = 0;
                 isPaused = true;

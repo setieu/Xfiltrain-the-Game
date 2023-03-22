@@ -45,14 +45,16 @@ public class GameManager : MonoBehaviour
     public GameObject toolAssist;
     //so no bocchi death sound
     private bool diefirst = true;
-   // public TextMeshProUGUI xcord;
-   // public TextMeshProUGUI ycord;
-   // public TextMeshProUGUI zcord;
-   // public GameObject player;
+    // public TextMeshProUGUI xcord;
+    // public TextMeshProUGUI ycord;
+    // public TextMeshProUGUI zcord;
+    // public GameObject player;
     //public float xCord = player.transform.position.x + 32;
     //public float yCord = player.transform.position.y - 4.56f;
     //public float zCord = player.transform.position.z - 3.6f;
 
+    public float testX;
+    public float testY;
 
     public Button restartButton;
 
@@ -100,7 +102,7 @@ public class GameManager : MonoBehaviour
                 PlayRandomGSAudio();
                 startedd = true;
                 Debug.Log("Game started");
-
+                healtHbar.transform.position = new Vector3(1255, 710, 0);
                 startedTime = Time.time;
                 //StartCoroutine(Wait());
                 //PlayRandomSecondaryAudio();
@@ -130,7 +132,7 @@ public class GameManager : MonoBehaviour
                 PlayRandomGSAudio();
                 startedd = true;
                 Debug.Log("Game started");
-
+                healtHbar.transform.position = new Vector3(1255, 710, 0);
                 startedTime = Time.time;
                 //StartCoroutine(Wait());
                 //PlayRandomSecondaryAudio();
@@ -161,7 +163,7 @@ public class GameManager : MonoBehaviour
                 PlayRandomGSAudio();
                 startedd = true;
                 Debug.Log("Game started");
-
+                healtHbar.transform.position = new Vector3(1255, 710, 0);
                 startedTime = Time.time;
                 //StartCoroutine(Wait());
                 //PlayRandomSecondaryAudio();
@@ -192,7 +194,7 @@ public class GameManager : MonoBehaviour
                 PlayRandomGSAudio();
                 startedd = true;
                 Debug.Log("Game started");
-
+                healtHbar.transform.position = new Vector3(1255, 710, 0);
                 startedTime = Time.time;
                 if (yeeTer != null)
                 {
@@ -219,7 +221,7 @@ public class GameManager : MonoBehaviour
                 PlayRandomGSAudio();
                 startedd = true;
                 Debug.Log("Game started");
-
+                healtHbar.transform.position = new Vector3(1255, 710, 0);
                 startedTime = Time.time;
                 if (yeeTer != null)
                 {
@@ -248,12 +250,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (yeeTer != null)
         {
             // Access the throwcooldown variable from yeeTer
             cooldown = yeeTer.throwCD;
-            // Do something with the cooldown value
-            Debug.Log("Cooldown is: " + cooldown);
+
         }
         if (gameActive==true)
 
@@ -268,7 +270,7 @@ public class GameManager : MonoBehaviour
         {
             healtHbar.SetActive(false);
         }
-        if(baR.HP < 0)
+        if(baR.HP < 1)
         {
             healtHbar.SetActive(false);
         }
