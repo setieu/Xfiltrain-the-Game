@@ -8,7 +8,6 @@ public class MoveBackOnCollision : MonoBehaviour
     public float speed = 100f;
     public int detachD = 0;
     public int HPP = 100;
-
     private HealthBar healthBar;
     private HealthBar healthText;
     private AudioSource audioSource; // audio source component
@@ -46,12 +45,15 @@ public class MoveBackOnCollision : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-
-            
+             // Get a reference to the Enemy script on the other game object
+            Enemy enemy = other.gameObject.GetComponent<Enemy>();
+            enemy.contact = true;
             detachD++;
             PlayRandomSmackingAudio();
             healthBar.HP--;
+            
         }
+
     }
 
     IEnumerator MoveBack()
@@ -75,5 +77,7 @@ public class MoveBackOnCollision : MonoBehaviour
         audioSource.clip = Smacking[randomIndex]; // set the audio source's clip to the chosen audio clip
         audioSource.Play(); // play the audio
     }
+    
 }
+
 
