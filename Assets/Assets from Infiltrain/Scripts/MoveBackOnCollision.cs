@@ -10,6 +10,7 @@ public class MoveBackOnCollision : MonoBehaviour
     public int HPP = 100;
     private HealthBar healthBar;
     private HealthBar healthText;
+    private PlayerController playerController;
     private AudioSource audioSource; // audio source component
     public List<AudioClip> DetachmentAudio; // list of audio clips to choose from for Detachment
     public List<AudioClip> Smacking; // list of audio clips to choose from for Detachment
@@ -18,6 +19,7 @@ public class MoveBackOnCollision : MonoBehaviour
     void Start()
     {
         healthBar = GameObject.Find("Bar").GetComponent<HealthBar>();
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         //healthText = GameObject.Find("HPText").GetComponent<HealthBar>();
         audioSource = GetComponent<AudioSource>();
     }
@@ -61,7 +63,8 @@ public class MoveBackOnCollision : MonoBehaviour
         while (true)
         {
             transform.Translate(Vector3.back * Time.deltaTime * speed);
-            yield return new WaitForSeconds(0.01f); // add a delay between each movement
+            yield return new WaitForSeconds(0.02f); // add a delay between each movement
+            playerController.isOnDead = true;
         }
     }
 

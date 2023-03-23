@@ -22,7 +22,8 @@ public class FollowPlayer : MonoBehaviour
         audioSource.clip = audioClip;
         audioSource.loop = true;
         audioSource.Play();
-    
+        transform.position = player.transform.position + offsetX;
+
 
     }
      void Update()
@@ -38,13 +39,14 @@ public class FollowPlayer : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-
+        
         // Camera Offset
         //if (playerController.isAlive == true)
         {
             if (playerController.isOnDead == false)
             {
                 transform.position = player.transform.position + offsetX;
+                transform.position = transform.position;
             }
 
             // Rotate the camera clockwise about the y-axis while 'z' key is pressed
