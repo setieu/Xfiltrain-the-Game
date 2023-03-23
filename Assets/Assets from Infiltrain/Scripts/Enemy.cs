@@ -26,6 +26,10 @@ public class Enemy : MonoBehaviour
     private AudioSource audioSource; // audio source component
     private PlayerController playerController;
     public GameObject player;
+    private float znum;
+    public float xspeed = 0.2f;
+    public float zspeed = 0.5f;
+    public bool contact;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +46,7 @@ public class Enemy : MonoBehaviour
         alive = true;
   
         particle.Stop();
+        contact = false;
     }
 
     // Update is called once per frame
@@ -52,6 +57,48 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if(contact == true)
+        {
+            StartCoroutine(Reattack());
+        }
+      
+
+        Vector3 direction = (new Vector3(0f, 0f, 0f) - transform.position).normalized;
+
+        znum += direction.z * zspeed * Time.deltaTime;
+        if (gameManager.gameActive && contact == false)
+        {
+            if (transform.position.z < -20 || transform.position.z > 30)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + znum);
+            }
+            else
+            {
+                if (transform.position.x > 60 && alive && (transform.position.z > 8.25 || transform.position.z < -1f))
+                {
+                    if (transform.position.x < 80)
+                    {
+                        transform.position = new Vector3(transform.position.x + xspeed / 2.5f, transform.position.y, transform.position.z + znum / 2.5f);
+                    }
+                    else
+                    {
+                        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + znum);
+                    }
+                }
+                else if (transform.position.x < 60 && alive && (transform.position.z > 8.25 || transform.position.z < -1f))
+                {
+                    transform.position = new Vector3(transform.position.x + xspeed, transform.position.y, transform.position.z);
+                }
+                else
+                {
+                    if (transform.position.z > 8.25 || transform.position.z < -1f)
+                    {
+                        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + znum);
+                    }
+                }
+            }
+        }
+
 
     }
     Vector3 RandomLeftForce()
@@ -126,4 +173,10 @@ public class Enemy : MonoBehaviour
 
     }
 
+    IEnumerator Reattack()
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - znum/ 2.5f);
+        yield return new WaitForSeconds(4);
+        contact = false;
+    }
 }

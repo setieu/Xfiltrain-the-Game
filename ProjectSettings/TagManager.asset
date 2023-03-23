@@ -10,6 +10,7 @@ TagManager:
   - dead
   - Game Manager
   - Projectile
+  - Train
   layers:
   - Default
   - TransparentFX
