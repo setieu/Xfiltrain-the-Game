@@ -46,11 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 17.5
-  height: 0.5
-  xspeed: 0.15
-  zspeed: 0.05
+  height: 0.75
   znum: 0
   enemy: {fileID: 5663842506482577349}
+  hogrider: {fileID: 8740029798176514981}
 --- !u!1001 &4047926141341480354
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -139,6 +138,14 @@ PrefabInstance:
     - target: {fileID: -8595655357615331691, guid: 05706e801febf4d0cb3dc326c47319c6, type: 3}
       propertyPath: player
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -8595655357615331691, guid: 05706e801febf4d0cb3dc326c47319c6, type: 3}
+      propertyPath: xspeed
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: -8595655357615331691, guid: 05706e801febf4d0cb3dc326c47319c6, type: 3}
+      propertyPath: zspeed
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: -8595655357615331691, guid: 05706e801febf4d0cb3dc326c47319c6, type: 3}
       propertyPath: particle
@@ -232,12 +239,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -8595655357615331691, guid: 05706e801febf4d0cb3dc326c47319c6, type: 3}
   m_PrefabInstance: {fileID: 5056445335807805776}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 8740029798176514981}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddf2767687af6494696bc04a442c33cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8740029798176514981 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4568559828043213557, guid: 05706e801febf4d0cb3dc326c47319c6, type: 3}
+  m_PrefabInstance: {fileID: 5056445335807805776}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8740029798176515002 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4568559828043213546, guid: 05706e801febf4d0cb3dc326c47319c6, type: 3}
