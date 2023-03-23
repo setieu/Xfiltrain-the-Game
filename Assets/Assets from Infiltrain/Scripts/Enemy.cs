@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if(contact == true)
+        if(alive && contact == true)
         {
             StartCoroutine(Reattack());
         }
@@ -66,7 +66,7 @@ public class Enemy : MonoBehaviour
         Vector3 direction = (new Vector3(0f, 0f, 0f) - transform.position).normalized;
 
         znum += direction.z * zspeed * Time.deltaTime;
-        if (gameManager.gameActive && contact == false)
+        if (gameManager.gameActive && contact == false && alive)
         {
             if (transform.position.z < -20 || transform.position.z > 30)
             {
@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                if (transform.position.x > 60 && alive && (transform.position.z > 8.25 || transform.position.z < -1f))
+                if (transform.position.x > 60 && (transform.position.z > 8.25 || transform.position.z < -1f))
                 {
                     if (transform.position.x < 80)
                     {
@@ -85,7 +85,7 @@ public class Enemy : MonoBehaviour
                         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + znum/2.5f);
                     }
                 }
-                else if (transform.position.x < 60 && alive && (transform.position.z > 8.25 || transform.position.z < -1f))
+                else if (transform.position.x < 60 && (transform.position.z > 8.25 || transform.position.z < -1f))
                 {
                     transform.position = new Vector3(transform.position.x + xspeed, transform.position.y, transform.position.z);
                 }
@@ -132,6 +132,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Projectile"))
         {
             Rigidbody rb = GetComponent<Rigidbody>();
+            rb.constraints = RigidbodyConstraints.None;
             rb.AddForce(Vector3.up * 1000f, ForceMode.Impulse);
             numCollisions++;
             Debug.Log("Hit" + (int)numCollisions);
