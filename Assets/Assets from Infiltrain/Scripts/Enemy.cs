@@ -82,7 +82,7 @@ public class Enemy : MonoBehaviour
                     }
                     else
                     {
-                        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + znum);
+                        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + znum/2.5f);
                     }
                 }
                 else if (transform.position.x < 60 && alive && (transform.position.z > 8.25 || transform.position.z < -1f))
@@ -93,7 +93,7 @@ public class Enemy : MonoBehaviour
                 {
                     if (transform.position.z > 8.25 || transform.position.z < -1f)
                     {
-                        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + znum);
+                        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + znum/ 2.5f);
                     }
                 }
             }
