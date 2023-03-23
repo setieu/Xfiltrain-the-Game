@@ -133,6 +133,7 @@ public class Enemy : MonoBehaviour
         {
             Rigidbody rb = GetComponent<Rigidbody>();
             rb.AddForce(Vector3.up * 1000f, ForceMode.Impulse);
+            rb.AddForce(Vector3.back * 1000f, ForceMode.Impulse);
             numCollisions++;
             Debug.Log("Hit" + (int)numCollisions);
             hogD = true;
