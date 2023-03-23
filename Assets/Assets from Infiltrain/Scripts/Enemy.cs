@@ -138,7 +138,6 @@ public class Enemy : MonoBehaviour
             Debug.Log("Hit" + (int)numCollisions);
             hogD = true;
             gameObject.tag = "Untagged";
-
             animator.SetBool("gallop", false);
             PlayRandomParticle();
 
