@@ -32,7 +32,7 @@ public class FollowPlayer : MonoBehaviour
             audioSource.Pause();
             audioSource.clip = secondAudioClip;
             audioSource.Play();
-            Debug.Log("secondaudio");
+            //Debug.Log("secondaudio");
         }
     }
     // Update is called once per frame
