@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     private PogHider pogHider;
     private Yeeter yeeTer;
     public float cooldown;
-
+    public int modeeE;
 
     public List<GameObject> targetPrefabs;
     public List<AudioClip> GSaudio; // list of audio clips to choose from for Game Start
@@ -115,6 +115,7 @@ public class GameManager : MonoBehaviour
                     yeeTer.throwCD = 1f;
                 }
                 gameDiff = 0;
+                modeeE = 0;
                 Debug.Log("Peaceful");
                 break;
             case 1:
@@ -146,6 +147,7 @@ public class GameManager : MonoBehaviour
                 }
                 pogHider.maxPogs = 15;
                 gameDiff = 1;
+                modeeE = 1;
                 Debug.Log("Easy");
                 break;
             case 2:
@@ -177,6 +179,7 @@ public class GameManager : MonoBehaviour
                 pogHider.waveDelay = 2f;
                 pogHider.maxPogs = 30;
                 gameDiff = 2;
+                modeeE = 2;
                 Debug.Log("Hard");
                 break;
             case 3:
@@ -205,6 +208,7 @@ public class GameManager : MonoBehaviour
                 pogHider.waveDelay = 4f;
                 pogHider.maxPogs = 20;
                 gameDiff = 1;
+                modeeE = 3;
                 break;
             case 4:
                 //set up for anarchy mode
@@ -233,6 +237,7 @@ public class GameManager : MonoBehaviour
                 pogHider.waveDelay = 0.3f;
                 pogHider.maxPogs = 75;
                 gameDiff = 2;
+                modeeE = 4;
                 break;
             case 5:
                 //set up for ??? mode
@@ -270,7 +275,7 @@ public class GameManager : MonoBehaviour
         {
             healtHbar.SetActive(false);
         }
-        if(baR.HP < 0)
+        if(baR.HP < 1)
         {
             healtHbar.SetActive(false);
         }

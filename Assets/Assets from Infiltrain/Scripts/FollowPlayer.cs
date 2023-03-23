@@ -10,13 +10,31 @@ public class FollowPlayer : MonoBehaviour
     public float rotationSpeed = 2500;
     public int isFlipped = 1; // Flag to check if object is already flipped
     private GameManager gameManager;
+    public AudioSource audioSource;
+    public AudioClip audioClip;
+    public AudioClip secondAudioClip;
     // Start is called before the first frame update
     void Start()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-    }
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = audioClip;
+        audioSource.loop = true;
+        audioSource.Play();
+    
 
+    }
+     void Update()
+    {
+        if(gameManager.modeeE == 4)
+        {
+            audioSource.Pause();
+            audioSource.clip = secondAudioClip;
+            audioSource.Play();
+            Debug.Log("secondaudio");
+        }
+    }
     // Update is called once per frame
     void LateUpdate()
     {
