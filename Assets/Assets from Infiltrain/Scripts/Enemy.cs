@@ -132,6 +132,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Projectile"))
         {
             Rigidbody rb = GetComponent<Rigidbody>();
+            rb.constraints = RigidbodyConstraints.None;
             rb.AddForce(Vector3.up * 1000f, ForceMode.Impulse);
             rb.AddForce(Vector3.back * 1000f, ForceMode.Impulse);
             numCollisions++;
