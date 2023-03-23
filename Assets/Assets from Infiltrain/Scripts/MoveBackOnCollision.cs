@@ -45,13 +45,13 @@ public class MoveBackOnCollision : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-             // Get a reference to the Enemy script on the other game object
-            Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            enemy.contact = true;
+            
             detachD++;
             PlayRandomSmackingAudio();
             healthBar.HP--;
-            
+            // Get a reference to the Enemy script on the other game object
+            Enemy enemy = other.gameObject.GetComponent<Enemy>();
+            enemy.contact = true;
         }
 
     }
