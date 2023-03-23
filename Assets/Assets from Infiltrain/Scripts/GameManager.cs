@@ -42,7 +42,10 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI gameOverWonText;
     public TextMeshProUGUI credits;
     public TextMeshProUGUI timer;
+    public TextMeshProUGUI modeText;
     public GameObject toolAssist;
+    public GameObject modeTexttGameobject;
+    public GameObject timergameobject;
     //so no bocchi death sound
     private bool diefirst = true;
     // public TextMeshProUGUI xcord;
@@ -92,6 +95,10 @@ public class GameManager : MonoBehaviour
                 arrayRange = difficulty;
                 playerController.isAlive = true;
                 gameActive = true;
+                
+                modeTexttGameobject.SetActive(true);
+                timergameobject.SetActive(true);
+                modeText.text = "Sandbox";
 
                 stamina = 50;
                 throwRate = throwRate /= difficulty;
@@ -123,6 +130,9 @@ public class GameManager : MonoBehaviour
                 arrayRange = difficulty;
                 playerController.isAlive = true;
                 gameActive = true;
+                modeTexttGameobject.SetActive(true);
+                timergameobject.SetActive(true);
+                modeText.text = "Easy";
 
                 stamina = 50;
                 throwRate = throwRate /= difficulty;
@@ -155,6 +165,9 @@ public class GameManager : MonoBehaviour
                 arrayRange = difficulty;
                 playerController.isAlive = true;
                 gameActive = true;
+                modeTexttGameobject.SetActive(true);
+                timergameobject.SetActive(true);
+                modeText.text = "Hard";
 
                 stamina = 50;
                 throwRate = throwRate /= difficulty;
@@ -187,6 +200,9 @@ public class GameManager : MonoBehaviour
                 arrayRange = difficulty;
                 playerController.isAlive = true;
                 gameActive = true;
+                modeTexttGameobject.SetActive(true);
+                timergameobject.SetActive(true);
+                modeText.text = "Normal";
 
                 stamina = 50;
                 throwRate = throwRate /= difficulty;
@@ -215,6 +231,9 @@ public class GameManager : MonoBehaviour
                 arrayRange = difficulty;
                 playerController.isAlive = true;
                 gameActive = true;
+                modeTexttGameobject.SetActive(true);
+                timergameobject.SetActive(true);
+                modeText.text = "Anarchy";
 
                 stamina = 50;
                 throwRate = throwRate /= difficulty;
