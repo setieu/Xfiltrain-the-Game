@@ -402,6 +402,9 @@ MonoBehaviour:
   hogD: 0
   yeeyee: 0
   Dhog: 0
+  alive: 1
+  particleSystems: []
+  particle: {fileID: 0}
   player: {fileID: 0}
 --- !u!65 &4339683312761534970
 BoxCollider:
@@ -428,7 +431,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.33
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -549,7 +552,7 @@ MonoBehaviour:
   xspeed: 0.5
   zspeed: 1
   znum: 0
-  targetPoint: {x: 0, y: 0, z: 0}
+  enemy: {fileID: 0}
 --- !u!1 &4568559828249809602
 GameObject:
   m_ObjectHideFlags: 0

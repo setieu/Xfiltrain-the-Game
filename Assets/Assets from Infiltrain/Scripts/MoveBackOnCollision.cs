@@ -28,6 +28,10 @@ public class MoveBackOnCollision : MonoBehaviour
     {
         //HPP = healthBar.HP;
         //healthText = ;
+        if (healthBar.HP <= 0)
+        {
+            StartCoroutine(MoveBack());
+        }
         if (detachD == 1)
         {
             PlayRandomDetachmentAudio();
@@ -42,10 +46,7 @@ public class MoveBackOnCollision : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            if (healthBar.HP <= 0)
-                {
-                    StartCoroutine(MoveBack());
-                }
+
             
             detachD++;
             PlayRandomSmackingAudio();
