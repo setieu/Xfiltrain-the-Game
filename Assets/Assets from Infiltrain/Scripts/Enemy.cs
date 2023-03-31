@@ -66,9 +66,13 @@ public class Enemy : MonoBehaviour
         znum += direction.z * zspeed * Time.deltaTime;
         if (gameManager.gameActive && alive && !isCoroutineRunning)
         {
-            if (transform.position.z < -20 || transform.position.z > 30)
+            if ((transform.position.z < -20 || transform.position.z > 30) && transform.position.x < 0)
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + znum);
+            }
+            else if ((transform.position.z < 10f && transform.position.z > -1f) && transform.position.x < 0)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - znum);
             }
             else
             {
