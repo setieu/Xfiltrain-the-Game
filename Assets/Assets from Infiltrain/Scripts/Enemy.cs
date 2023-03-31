@@ -26,15 +26,16 @@ public class Enemy : MonoBehaviour
     private AudioSource audioSource; // audio source component
     private PlayerController playerController;
     public GameObject player;
-    private float znum;
+    public float znum;
     public float xspeed = 0.2f;
     public float zspeed = 0.5f;
+    public bool isCoroutineRunning = false;
   
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
         enemyRb = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
@@ -57,24 +58,13 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
         }
-<<<<<<< Updated upstream
-        if(alive && contact == true)
-        {
-            StartCoroutine(Reattack());
-        }
-=======
-        
->>>>>>> Stashed changes
-      
-
         Vector3 direction = (new Vector3(0f, 0f, 0f) - transform.position).normalized;
-
+        if(isCoroutineRunning)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - znum/2.5f);
+        }
         znum += direction.z * zspeed * Time.deltaTime;
-<<<<<<< Updated upstream
-        if (gameManager.gameActive && contact == false && alive)
-=======
-        if (gameManager.gameActive)
->>>>>>> Stashed changes
+        if (gameManager.gameActive && alive && !isCoroutineRunning)
         {
             if (transform.position.z < -20 || transform.position.z > 30)
             {
@@ -82,7 +72,7 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                if (transform.position.x > 60 && (transform.position.z > 8.25 || transform.position.z < -1f))
+                if (transform.position.x > 60  && (transform.position.z > 8.25 || transform.position.z < -1f))
                 {
                     if (transform.position.x < 80)
                     {
@@ -99,15 +89,14 @@ public class Enemy : MonoBehaviour
                 }
                 else
                 {
-                    if (transform.position.z > 8.25 || transform.position.z < -1f)
+                    if (!isCoroutineRunning && transform.position.x < 60 && (transform.position.z >= 8.5 || transform.position.z <= -0.5f)) 
                     {
                         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + znum/ 2.5f);
                     }
                 }
             }
+       
         }
-
-
     }
     Vector3 RandomLeftForce()
     {
@@ -149,9 +138,14 @@ public class Enemy : MonoBehaviour
             animator.SetBool("gallop", false);
             PlayRandomParticle();
             alive = false;
-            Invoke("Destroy", 1f);
+            
         }
-
+        
+        
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<PlayerController>().isOnDead = true;
+        }
         
         if (collision.gameObject.CompareTag("dead") && (hogD))
         {
@@ -160,6 +154,9 @@ public class Enemy : MonoBehaviour
         }
         
 
+
+
+    
         //Vector3 SpawnPosition()
         //{
 
@@ -181,8 +178,13 @@ public class Enemy : MonoBehaviour
         }
 
     }
-
     
+    IEnumerator Reattack() 
+    {
+        isCoroutineRunning = true;
+        yield return new WaitForSeconds(1f);
+        isCoroutineRunning = false;
+    }
     private void Destroy()
     {
         Destroy(gameObject);

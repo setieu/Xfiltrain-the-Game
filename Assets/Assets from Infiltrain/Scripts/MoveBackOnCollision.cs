@@ -13,6 +13,7 @@ public class MoveBackOnCollision : MonoBehaviour
     private AudioSource audioSource; // audio source component
     public List<AudioClip> DetachmentAudio; // list of audio clips to choose from for Detachment
     public List<AudioClip> Smacking; // list of audio clips to choose from for Detachment
+    
 
     // Start is called before the first frame update
     void Start()
@@ -45,23 +46,16 @@ public class MoveBackOnCollision : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-<<<<<<< Updated upstream
-            
-=======
-             // Get a reference to the Enemy script on the other game object
-            Enemy enemy = other.gameObject.GetComponent<Enemy>();
-     
->>>>>>> Stashed changes
             detachD++;
             PlayRandomSmackingAudio();
             healthBar.HP--;
             // Get a reference to the Enemy script on the other game object
-            Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            enemy.contact = true;
+            Enemy enemyS = other.gameObject.GetComponent<Enemy>();
+            enemyS.StartCoroutine("Reattack");
+            enemyS.isCoroutineRunning = true;
         }
-
     }
-
+    
     IEnumerator MoveBack()
     {
         while (true)
