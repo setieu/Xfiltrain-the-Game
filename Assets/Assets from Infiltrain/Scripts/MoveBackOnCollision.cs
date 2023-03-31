@@ -45,7 +45,13 @@ public class MoveBackOnCollision : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
+<<<<<<< Updated upstream
             
+=======
+             // Get a reference to the Enemy script on the other game object
+            Enemy enemy = other.gameObject.GetComponent<Enemy>();
+     
+>>>>>>> Stashed changes
             detachD++;
             PlayRandomSmackingAudio();
             healthBar.HP--;

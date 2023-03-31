@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
     private float znum;
     public float xspeed = 0.2f;
     public float zspeed = 0.5f;
-    public bool contact;
+  
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
         alive = true;
   
         particle.Stop();
-        contact = false;
+
     }
 
     // Update is called once per frame
@@ -57,16 +57,24 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
         }
+<<<<<<< Updated upstream
         if(alive && contact == true)
         {
             StartCoroutine(Reattack());
         }
+=======
+        
+>>>>>>> Stashed changes
       
 
         Vector3 direction = (new Vector3(0f, 0f, 0f) - transform.position).normalized;
 
         znum += direction.z * zspeed * Time.deltaTime;
+<<<<<<< Updated upstream
         if (gameManager.gameActive && contact == false && alive)
+=======
+        if (gameManager.gameActive)
+>>>>>>> Stashed changes
         {
             if (transform.position.z < -20 || transform.position.z > 30)
             {
@@ -140,10 +148,11 @@ public class Enemy : MonoBehaviour
             gameObject.tag = "Untagged";
             animator.SetBool("gallop", false);
             PlayRandomParticle();
-
             alive = false;
-            
+            Invoke("Destroy", 1f);
         }
+
+        
         if (collision.gameObject.CompareTag("dead") && (hogD))
         {
             yeeyee++;
@@ -173,10 +182,9 @@ public class Enemy : MonoBehaviour
 
     }
 
-    IEnumerator Reattack()
+    
+    private void Destroy()
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - znum/ 2.5f);
-        yield return new WaitForSeconds(4);
-        contact = false;
+        Destroy(gameObject);
     }
 }
