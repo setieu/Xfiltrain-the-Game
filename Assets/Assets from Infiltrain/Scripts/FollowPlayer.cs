@@ -42,10 +42,18 @@ public class FollowPlayer : MonoBehaviour
         // Camera Offset
         //if (playerController.isAlive == true)
         {
-            if (playerController.isOnDead == false)
+            if(gameManager.gameActive)
             {
-                transform.position = player.transform.position + offsetX;
+                if (playerController.isOnDead == false)
+                {
+                    transform.position = player.transform.position + offsetX;
+                }
             }
+            else
+            {
+                transform.position = transform.position;
+            }
+
 
             // Rotate the camera clockwise about the y-axis while 'z' key is pressed
             if (gameManager.gameActive == true)

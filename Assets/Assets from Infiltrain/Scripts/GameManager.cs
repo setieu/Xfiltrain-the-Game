@@ -22,12 +22,13 @@ public class GameManager : MonoBehaviour
     private Yeeter yeeTer;
     public float cooldown;
     public int modeeE;
+    public bool gameLost = false;
 
     public List<GameObject> targetPrefabs;
     public List<AudioClip> GSaudio; // list of audio clips to choose from for Game Start
     public List<AudioClip> DeathAudio; // list of audio clips to choose from for Death
     public List<AudioClip> DetachmentAudio; // list of audio clips to choose from for Detachment
-    
+    public List<AudioClip> DeathTwoAudio; // list of audio clips to choose from for Death2
     public List<AudioClip> HitAudio; // list of audio clips to choose from for Hitting Enemy
     public List<AudioClip> RandomAudio; // list of audio clips to choose from for Randomly saying
     public List<AudioClip> SecondaryAudio; // list of audio clips to choose from for Secondary
@@ -323,14 +324,15 @@ public class GameManager : MonoBehaviour
         if(diefirst == true)
         {
             PlayRandomDeathAudio();
+            PlayRandomDeathTwoAudio();
             diefirst = false;
         }
-        
+       
         gameOverLostText.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
         playerController.isOnDead = true;
         gameActive = false;
-        
+        gameLost = true;
     }
 
     public void RestartGame()
@@ -404,6 +406,12 @@ public class GameManager : MonoBehaviour
     {
         int randomIndex = Random.Range(0, SecondaryAudio.Count); // choose a random index within the list
         audioSource.clip = SecondaryAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
+        audioSource.Play(); // play the audio
+    }
+    void PlayRandomDeathTwoAudio()
+    {
+        int randomIndex = Random.Range(0, DeathTwoAudio.Count); // choose a random index within the list
+        audioSource.clip = DeathTwoAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
         audioSource.Play(); // play the audio
     }
 }

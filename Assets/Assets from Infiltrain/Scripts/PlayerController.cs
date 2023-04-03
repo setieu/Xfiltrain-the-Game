@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     private AudioSource playerAudio;
     private FollowPlayer followPlayer;
     public Camera cam;
-
+    private bool deadonce = true;
 
 
     //Chatgpt code
@@ -220,6 +220,11 @@ public class PlayerController : MonoBehaviour
         float RandomTorque()
         {
             return Random.Range(-maxTorque, maxTorque) * forceMultiplier;
+        }
+
+        if(gameManager.gameLost == true)
+        {
+            playerRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
         }
 
     }

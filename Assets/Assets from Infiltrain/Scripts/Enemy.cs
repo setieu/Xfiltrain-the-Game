@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
         Vector3 direction = (new Vector3(0f, 0f, 0f) - transform.position).normalized;
-        if(isCoroutineRunning)
+        if(isCoroutineRunning && gameManager.gameActive)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - znum/2.5f);
         }
