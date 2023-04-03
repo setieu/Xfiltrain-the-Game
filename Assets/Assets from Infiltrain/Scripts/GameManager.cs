@@ -261,6 +261,35 @@ public class GameManager : MonoBehaviour
                 break;
             case 5:
                 //set up for ??? mode
+                arrayRange = difficulty;
+                playerController.isAlive = true;
+                gameActive = true;
+                modeTexttGameobject.SetActive(true);
+                timergameobject.SetActive(true);
+                modeText.text = "???";
+
+                stamina = 50;
+                throwRate = throwRate /= difficulty;
+                //StartCoroutine(SpawnTarget());
+                playerController.playerRb.constraints = RigidbodyConstraints.None;
+                titleScreen.SetActive(false);
+                toolAssist.SetActive(true);
+                PlayRandomGSAudio();
+                startedd = true;
+                Debug.Log("Game started");
+                healtHbar.transform.position = new Vector3(1255, 710, 0);
+                startedTime = Time.time;
+                if (yeeTer != null)
+                {
+                    // Set the throwcooldown variable to 0.1 seconds
+                    yeeTer.canSpawn = true;
+                    yeeTer.throwCD = 0.1f;
+                }
+
+                pogHider.waveDelay = 1f;
+                pogHider.maxPogs = 10;
+                gameDiff = 1;
+                modeeE = 5;
                 break;
             default:
                 Debug.LogError("Invalid difficulty level: " + difficulty);
