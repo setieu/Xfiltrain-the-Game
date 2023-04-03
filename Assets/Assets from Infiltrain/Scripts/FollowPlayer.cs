@@ -13,6 +13,7 @@ public class FollowPlayer : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip audioClip;
     public AudioClip secondAudioClip;
+    public AudioClip thirdAudioClip;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +23,7 @@ public class FollowPlayer : MonoBehaviour
         audioSource.clip = audioClip;
         audioSource.loop = true;
         audioSource.Play();
-        transform.position = player.transform.position + offsetX;
-
+    
 
     }
      void Update()
@@ -35,19 +35,33 @@ public class FollowPlayer : MonoBehaviour
             audioSource.Play();
             //Debug.Log("secondaudio");
         }
+        if(gameManager.modeeE == 5)
+        {
+            audioSource.Pause();
+            audioSource.clip = thirdAudioClip;
+            audioSource.Play();
+        }
+
     }
     // Update is called once per frame
     void LateUpdate()
     {
-        
+
         // Camera Offset
         //if (playerController.isAlive == true)
         {
-            if (playerController.isOnDead == false)
+            if(gameManager.gameActive)
             {
-                transform.position = player.transform.position + offsetX;
+                if (playerController.isOnDead == false)
+                {
+                    transform.position = player.transform.position + offsetX;
+                }
+            }
+            else
+            {
                 transform.position = transform.position;
             }
+
 
             // Rotate the camera clockwise about the y-axis while 'z' key is pressed
             if (gameManager.gameActive == true)

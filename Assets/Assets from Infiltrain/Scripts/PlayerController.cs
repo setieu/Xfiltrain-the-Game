@@ -36,9 +36,8 @@ public class PlayerController : MonoBehaviour
     private AudioSource playerAudio;
     private FollowPlayer followPlayer;
     public Camera cam;
+    private bool deadonce = true;
 
-    private HealthBar healthBar;
-    public float speeD = 100f;
 
     //Chatgpt code
     private Quaternion initialRotation;
@@ -60,7 +59,6 @@ public class PlayerController : MonoBehaviour
         playerRb = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         followPlayer = GameObject.Find("Main Camera").GetComponent<FollowPlayer>();
-        healthBar = GameObject.Find("Bar").GetComponent<HealthBar>();
 
         Physics.gravity *= gravityModifier;
 
@@ -113,10 +111,7 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Euler(xRotation, yRotation, zRotation);
 
 
-        if (healthBar.HP <= 0)
-        {
-            StartCoroutine(MoveBack());
-        }
+
 
 
 
@@ -227,16 +222,14 @@ public class PlayerController : MonoBehaviour
             return Random.Range(-maxTorque, maxTorque) * forceMultiplier;
         }
 
+        if(gameManager.gameLost == true)
+        {
+            playerRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
+        }
+
     }
 
-    IEnumerator MoveBack()
-    {
-        while (true)
-        {
-            transform.Translate(Vector3.back * Time.deltaTime * speeD);
-            yield return new WaitForSeconds(0.01f); // add a delay between each movement
-        }
-    }
+
     //check if player is on the ground
     private void OnCollisionEnter(Collision collision)
     {
