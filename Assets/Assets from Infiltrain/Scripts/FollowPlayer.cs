@@ -13,6 +13,7 @@ public class FollowPlayer : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip audioClip;
     public AudioClip secondAudioClip;
+    public AudioClip thirdAudioClip;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +35,13 @@ public class FollowPlayer : MonoBehaviour
             audioSource.Play();
             //Debug.Log("secondaudio");
         }
+        if(gameManager.modeeE == 5)
+        {
+            audioSource.Pause();
+            audioSource.clip = thirdAudioClip;
+            audioSource.Play();
+        }
+
     }
     // Update is called once per frame
     void LateUpdate()
