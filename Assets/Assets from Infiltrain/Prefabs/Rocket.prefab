@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4686004619146172823}
   - component: {fileID: 8550035285914883634}
   - component: {fileID: 5855564085706613496}
+  - component: {fileID: 458437282}
   m_Layer: 0
   m_Name: Rocket
   m_TagString: Untagged
@@ -85,3 +86,15 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &458437282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5351359321487459117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 233b08324d394462f84278f6604728f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
