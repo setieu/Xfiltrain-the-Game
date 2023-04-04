@@ -352,8 +352,9 @@ public class GameManager : MonoBehaviour
     {
         if(diefirst == true)
         {
-            PlayRandomDeathAudio();
+            
             PlayRandomDeathTwoAudio();
+            PlayRandomDeathAudio();
             diefirst = false;
         }
        

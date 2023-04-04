@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip lossSound3;
     //public AudioClip winSound; 
     public AudioClip trainSound;
-
+    private AudioSource audioSource; // audio source component
 
     public GameObject player;
     //private float win = 505;
@@ -37,7 +37,8 @@ public class PlayerController : MonoBehaviour
     private FollowPlayer followPlayer;
     public Camera cam;
     private bool deadonce = true;
-
+    public List<AudioClip> DeathTwoAudio; // list of audio clips to choose from for Death2
+    public bool sounded = true;
 
     //Chatgpt code
     private Quaternion initialRotation;
@@ -59,9 +60,9 @@ public class PlayerController : MonoBehaviour
         playerRb = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         followPlayer = GameObject.Find("Main Camera").GetComponent<FollowPlayer>();
-
+        audioSource = GetComponent<AudioSource>();
         Physics.gravity *= gravityModifier;
-
+        sounded = true;
         isAlive = false;
         isOnGround = true;
 
@@ -200,6 +201,11 @@ public class PlayerController : MonoBehaviour
             gameManager.GameOverLost();
             playerAudio.PlayOneShot(lossSound1, 10.0f);
 
+            if (sounded)
+            {
+                PlayRandomDeathTwoAudio();
+                sounded = false;
+            }
         }
         //Destroy player when out of bounds
         if (transform.position.x < leftBound && gameObject.CompareTag("Player"))
@@ -269,7 +275,12 @@ public class PlayerController : MonoBehaviour
         protection = false;
     }
 
-
+    void PlayRandomDeathTwoAudio()
+    {
+        int randomIndex = Random.Range(0, DeathTwoAudio.Count); // choose a random index within the list
+        audioSource.clip = DeathTwoAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
+        audioSource.Play(); // play the audio
+    }
 
 }
 
