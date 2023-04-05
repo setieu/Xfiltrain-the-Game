@@ -4949,6 +4949,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f30755e7a268d4ff1959ddd635c5a48e, type: 3}
   - {fileID: 8300000, guid: f30755e7a268d4ff1959ddd635c5a48e, type: 3}
   launchS: 0
+  BoomAudio: []
 --- !u!82 &-6440486390156217192
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4961,7 +4962,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
