@@ -10,6 +10,7 @@ public class RocketProjectile : MonoBehaviour
     public ParticleSystem particle;
     private float rotationSpeed = 360f; // adjust this to change the speed of rotation
     public GameObject player;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,7 @@ public class RocketProjectile : MonoBehaviour
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         particle.Play();
+        
     }
 
     // Update is called once per frame
@@ -37,17 +39,22 @@ public class RocketProjectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+     
+
         if (collision.gameObject == player)
         {
+
             playerController.particle.Play();
-            playerController.isOnDead = true;
+            player.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + speed * 250);
             Destroy(gameObject);
-        }else if (collision.gameObject.CompareTag("Projectile"))
+        }
+        else if (collision.gameObject.CompareTag("Projectile"))
         {
             Destroy(gameObject);
         }
         
     }
+
     
 }
 
