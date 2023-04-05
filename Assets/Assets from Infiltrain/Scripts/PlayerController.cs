@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     //public AudioClip winSound; 
     public AudioClip trainSound;
     private AudioSource audioSource; // audio source component
+    public AudioClip explosion;
 
     public GameObject player;
     //private float win = 505;
