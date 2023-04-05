@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 174133031611321976}
   - component: {fileID: 174133031611321983}
   - component: {fileID: 174133031611321977}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Stove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,5 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0383ec62a134f3ab3353bab2fd5ed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ddownforce: 3
   forcemultiplier: 250
   player: {fileID: 0}
+  despawnTime: 5
+  destroySound: {fileID: 0}

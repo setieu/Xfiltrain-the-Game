@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     private AudioSource audioSource; // audio source component
 
     public bool bosspawnedonce = true;
+    public GameObject playerR;
     public GameObject hoglicopter;
     public GameObject titleScreen;
     public GameObject healtHbar;
@@ -288,8 +289,8 @@ public class GameManager : MonoBehaviour
                     yeeTer.throwCD = 0.1f;
                 }
 
-                pogHider.waveDelay = 1f;
-                pogHider.maxPogs = 10;
+                pogHider.waveDelay = 3f;
+                pogHider.maxPogs = 5;
                 gameDiff = 1;
                 modeeE = 5;
                 break;
@@ -308,7 +309,7 @@ public class GameManager : MonoBehaviour
     {
         if(bosspawnedonce && modeeE == 5 && timePassed >= 3.4f)
         {
-            Instantiate(hoglicopter, new Vector3(55f, 7.6f, -24f), Quaternion.identity);
+            Instantiate(hoglicopter, new Vector3(55f, 7.6f, -18f), Quaternion.identity);
             bosspawnedonce = false;
         }
         if (yeeTer != null)
