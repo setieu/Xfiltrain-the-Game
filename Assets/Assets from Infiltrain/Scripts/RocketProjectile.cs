@@ -24,11 +24,11 @@ public class RocketProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + speed);
+        transform.Rotate(Vector3.right * rotationSpeed * Time.deltaTime); // rotates the object around the x-axis
+
         if (gameManager.gameActive)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + speed);
-            transform.Rotate(Vector3.right * rotationSpeed * Time.deltaTime); // rotates the object around the x-axis
-
             if(transform.position.z > 50)
             {
                 Destroy(gameObject);
