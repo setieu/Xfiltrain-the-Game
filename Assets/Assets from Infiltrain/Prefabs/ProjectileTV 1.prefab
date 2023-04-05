@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6471356469263264912}
   - component: {fileID: 6471356469263264942}
   - component: {fileID: 223125947607076208}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ProjectileTV 1
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -150,8 +150,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0383ec62a134f3ab3353bab2fd5ed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ddownforce: 3
   forcemultiplier: 25
   player: {fileID: 0}
+  despawnTime: 5
+  destroySound: {fileID: 0}
 --- !u!65 &223125947607076208
 BoxCollider:
   m_ObjectHideFlags: 0

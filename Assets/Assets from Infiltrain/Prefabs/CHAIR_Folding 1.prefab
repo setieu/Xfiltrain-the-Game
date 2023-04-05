@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: -8057383018176140425}
   - component: {fileID: 8894365664228983731}
   - component: {fileID: 684909268772502392}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CHAIR_Folding 1
   m_TagString: Projectile
   m_Icon: {fileID: 0}

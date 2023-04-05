@@ -11,15 +11,16 @@ TagManager:
   - Game Manager
   - Projectile
   - Train
+  - boss
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - projectiles
   - Water
   - UI
-  - 
-  - 
+  - boss
+  - enemy
   - 
   - 
   - 
