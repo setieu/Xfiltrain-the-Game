@@ -3447,15 +3447,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5761955669806235300}
-  - component: {fileID: 5761955669806235301}
+  - component: {fileID: 7682246166613018030}
   - component: {fileID: 5761955669806235302}
   - component: {fileID: 5761955669806235303}
+  - component: {fileID: 28944649523487540}
   - component: {fileID: 5761955669806235296}
   - component: {fileID: 5761955669806235297}
   - component: {fileID: 5761955669806235298}
   - component: {fileID: 2180213520787477279}
-  - component: {fileID: -2625982386077854840}
-  - component: {fileID: 28944649523487540}
   m_Layer: 6
   m_Name: Ridehogger 1 1
   m_TagString: Enemy
@@ -3490,7 +3489,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &5761955669806235301
+--- !u!54 &7682246166613018030
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3498,7 +3497,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5761955669806235299}
   serializedVersion: 2
-  m_Mass: 1205
+  m_Mass: 10000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -3551,6 +3550,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5303804, y: 1.8563408, z: 2.961746}
   m_Center: {x: 0.02332871, y: -0.5474026, z: -0.085843086}
+--- !u!114 &28944649523487540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5761955669806235299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5209cc6cc5eca4120b5f7a5ca6e5053a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numCollisions: 0
+  forcemultiplier: 0
+  bossD: 0
+  health: 3
+  klum: 0
+  joe: 0
+  rocket: {fileID: 8719047834879420937, guid: f34966e1d8b4bdc448921b02a1561d8e, type: 3}
+  DeadAudio: []
 --- !u!82 &5761955669806235296
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3657,7 +3676,7 @@ Animator:
   m_GameObject: {fileID: 5761955669806235299}
   m_Enabled: 0
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: aa23b6d75a40342ebae4653a1d88f98c, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3697,41 +3716,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1808447, y: 0.26700088, z: 2.890227}
   m_Center: {x: 0.020623207, y: 0.27715594, z: -0.04234295}
---- !u!114 &-2625982386077854840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5761955669806235299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2ab5c0196a4f4d1f9649261c52bfbc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 25
-  max: 80
-  min: 31
---- !u!114 &28944649523487540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5761955669806235299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5209cc6cc5eca4120b5f7a5ca6e5053a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  numCollisions: 0
-  forcemultiplier: 0
-  bossD: 0
-  health: 3
-  klum: 0
-  joe: 0
-  rocket: {fileID: 8719047834879420937, guid: f34966e1d8b4bdc448921b02a1561d8e, type: 3}
-  DeadAudio: []
 --- !u!1 &5761955669931824343
 GameObject:
   m_ObjectHideFlags: 0

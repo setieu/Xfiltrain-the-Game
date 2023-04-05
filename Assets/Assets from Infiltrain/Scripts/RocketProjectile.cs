@@ -11,10 +11,12 @@ public class RocketProjectile : MonoBehaviour
     private float rotationSpeed = 360f; // adjust this to change the speed of rotation
     public GameObject player;
     public AudioClip explosion;
-    private AudioSource audioSource;
+    public AudioSource audioSource;
+    public AudioSource audioSource1;
     public List<AudioClip> LaunchAudio; // list of audio clips to choose from for launch
     public bool launchS = false;
     public List<AudioClip> BoomAudio; // list of audio clips to choose from for launch
+    public bool boomed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +25,7 @@ public class RocketProjectile : MonoBehaviour
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         particle.Play();
         audioSource = GetComponent<AudioSource>();
+        audioSource1 = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -50,19 +53,25 @@ public class RocketProjectile : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
      
-
-        if (collision.gameObject == player)
+        if(playerController.isOnDead == false)
         {
+            if (collision.gameObject == player)
+            {
 
-            playerController.particle.Play();
-            player.transform.position = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z + speed * 250);
-            PlayRandomBoomAudio();
-            Destroy(gameObject);
+                playerController.particle.Play();
+                player.transform.position = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z + speed * 250);
+                PlayRandomBoomAudio();
+                Destroy(gameObject);
+                playerController.isOnDead = true;
+                boomed = true;
+
+            }
+            else if (collision.gameObject.CompareTag("Projectile"))
+            {
+                Destroy(gameObject);
+            }
         }
-        else if (collision.gameObject.CompareTag("Projectile"))
-        {
-            Destroy(gameObject);
-        }
+        
         
     }
 
@@ -75,8 +84,8 @@ public class RocketProjectile : MonoBehaviour
     void PlayRandomBoomAudio()
     {
         int randomIndex = Random.Range(0, BoomAudio.Count); // choose a random index within the list
-        audioSource.clip = BoomAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
-        audioSource.Play(); // play the audio
+        audioSource1.clip = BoomAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
+        audioSource1.Play(); // play the audio
     }
 
 }

@@ -119,11 +119,11 @@ public class Bossman : MonoBehaviour
             // Calculate the position in front of the boss
             Vector3 spawnPosition = transform.position + transform.forward * 8f;
 
-            // Calculate the rotation to face left
-            Quaternion spawnRotation = Quaternion.Euler(-15.5f, -81f, -13.4f);
+            rocket.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+            
             // Instantiate the object at the spawn position
-            Instantiate(rocket, spawnPosition, Quaternion.identity);
-
+            Instantiate(rocket, spawnPosition, rocket.transform.rotation);
+            
             // Wait for the next spawn interval
             yield return new WaitForSeconds(spawnInterval);
         }
