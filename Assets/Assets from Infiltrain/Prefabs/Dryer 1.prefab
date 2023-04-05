@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5965196421292265038}
   - component: {fileID: -7713851495572078050}
   - component: {fileID: 1565013972431327008}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Dryer 1
   m_TagString: Projectile
   m_Icon: {fileID: 0}

@@ -15,6 +15,8 @@ public class Bossman : MonoBehaviour
     public float health = 30;
     public bool klum = false;
     public int joe = 0;
+    private GameManager gameManager;
+
 
 
     private Rigidbody enemyRb;
@@ -25,6 +27,7 @@ public class Bossman : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         enemyRb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         bossD = false;
@@ -35,6 +38,11 @@ public class Bossman : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(gameManager.gameActive)
+        {
+            transform.position = new Vector3(gameManager.playerR.transform.position.x, transform.position.y, transform.position.z);
+        }
+        
         //instantiate object in front of this one every few secondeese
         if (numCollisions > health)
         {
