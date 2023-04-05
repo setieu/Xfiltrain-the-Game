@@ -10,9 +10,9 @@ public class Bossman : MonoBehaviour
     private float minLeftSpeed = 2;
     private float maxLeftSpeed = 3;
     private float maxTorque = 1;
-    public float forcemultiplier;
+    public float forcemultiplier = 20f;
     public bool bossD = false;
-    public float health = 3;
+    public float health = 30;
     public bool klum = false;
     public int joe = 0;
 
@@ -35,6 +35,7 @@ public class Bossman : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //instantiate object in front of this one every few secondeese
         if (numCollisions > health)
         {
             Rigidbody rb = GetComponent<Rigidbody>();
