@@ -16,8 +16,8 @@ public class Bossman : MonoBehaviour
     public bool klum = false;
     public int joe = 0;
     private GameManager gameManager;
-
-
+    public GameObject rocket;
+    private float spawnInterval = 2f;
 
     private Rigidbody enemyRb;
     public List<AudioClip> DeadAudio; // list of audio clips to choose from for hogrider dying
@@ -32,7 +32,7 @@ public class Bossman : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         bossD = false;
         numCollisions = 0;
-
+        StartCoroutine(SpawnObject());
     }
 
     // Update is called once per frame
@@ -110,6 +110,23 @@ public class Bossman : MonoBehaviour
         int randomIndex = Random.Range(0, DeadAudio.Count); // choose a random index within the list
         audioSource.clip = DeadAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
         audioSource.Play(); // play the audio
+    }
+    IEnumerator SpawnObject()
+    {
+        yield return new WaitForSeconds(0.01f);
+        while (true)
+        {
+            // Calculate the position in front of the boss
+            Vector3 spawnPosition = transform.position + transform.forward * 8f;
+
+            // Calculate the rotation to face left
+            Quaternion spawnRotation = Quaternion.Euler(-15.5f, -81f, -13.4f);
+            // Instantiate the object at the spawn position
+            Instantiate(rocket, spawnPosition, Quaternion.identity);
+
+            // Wait for the next spawn interval
+            yield return new WaitForSeconds(spawnInterval);
+        }
     }
 }
 
