@@ -3454,6 +3454,7 @@ GameObject:
   - component: {fileID: 5761955669806235297}
   - component: {fileID: 5761955669806235298}
   - component: {fileID: 2180213520787477279}
+  - component: {fileID: 28944649523487540}
   m_Layer: 0
   m_Name: Ridehogger 1 1
   m_TagString: Enemy
@@ -3689,6 +3690,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1808447, y: 0.26700088, z: 2.890227}
   m_Center: {x: 0.020623207, y: 0.27715594, z: -0.04234295}
+--- !u!114 &28944649523487540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5761955669806235299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5209cc6cc5eca4120b5f7a5ca6e5053a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numCollisions: 0
+  forcemultiplier: 0
+  bossD: 0
+  health: 3
+  klum: 0
+  joe: 0
+  DeadAudio: []
 --- !u!1 &5761955669931824343
 GameObject:
   m_ObjectHideFlags: 0
