@@ -23,6 +23,7 @@ public class FollowPlayer : MonoBehaviour
         audioSource.clip = audioClip;
         audioSource.loop = true;
         audioSource.Play();
+        audioSource.volume = 1f;
     
 
     }
@@ -37,6 +38,7 @@ public class FollowPlayer : MonoBehaviour
         }
         if(gameManager.modeeE == 5)
         {
+            audioSource.volume = .4f;
             audioSource.Pause();
             audioSource.clip = thirdAudioClip;
             audioSource.Play();

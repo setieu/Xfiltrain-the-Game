@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
 
     private AudioSource audioSource; // audio source component
 
+    public bool bosspawnedonce = true;
+    public GameObject hoglicopter;
     public GameObject titleScreen;
     public GameObject healtHbar;
     private HealthBar baR;
@@ -304,7 +306,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(bosspawnedonce && modeeE == 5 && timePassed >= 3.4f)
+        {
+            Instantiate(hoglicopter, new Vector3(55f, 7.6f, -24f), Quaternion.identity);
+            bosspawnedonce = false;
+        }
         if (yeeTer != null)
         {
             // Access the throwcooldown variable from yeeTer
@@ -352,8 +358,9 @@ public class GameManager : MonoBehaviour
     {
         if(diefirst == true)
         {
-            PlayRandomDeathAudio();
+            
             PlayRandomDeathTwoAudio();
+            PlayRandomDeathAudio();
             diefirst = false;
         }
        
