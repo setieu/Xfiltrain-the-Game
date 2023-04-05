@@ -12,7 +12,7 @@ public class Bossman : MonoBehaviour
     private float maxTorque = 1;
     public float forcemultiplier = 20f;
     public bool bossD = false;
-    public float health = 30;
+    public float health = 100;
     public bool klum = false;
     public int joe = 0;
     private GameManager gameManager;
@@ -32,16 +32,22 @@ public class Bossman : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         bossD = false;
         numCollisions = 0;
+
+        enemyRb.constraints = RigidbodyConstraints.FreezeRotation;
         StartCoroutine(SpawnObject());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(gameManager.gameActive)
+        if(bossD == false)
         {
-            transform.position = new Vector3(gameManager.playerR.transform.position.x, transform.position.y, transform.position.z);
+            if (gameManager.gameActive)
+            {
+                transform.position = new Vector3(gameManager.playerR.transform.position.x, transform.position.y, transform.position.z);
+            }
         }
+
         
         //instantiate object in front of this one every few secondeese
         if (numCollisions > health)
@@ -54,10 +60,13 @@ public class Bossman : MonoBehaviour
             
             gameObject.tag = "Enemy";
             bossD = true;
+            StopCoroutine("SpawnObject");
+            Debug.Log("coroutine stopped");
         }
 
         if (klum)
         {
+             enemyRb.constraints = RigidbodyConstraints.None;
              enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
              enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
              enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
@@ -114,7 +123,7 @@ public class Bossman : MonoBehaviour
     IEnumerator SpawnObject()
     {
         yield return new WaitForSeconds(0.01f);
-        while (true)
+        while (hogD == false)
         {
             // Calculate the position in front of the boss
             Vector3 spawnPosition = transform.position + transform.forward * 8f;
