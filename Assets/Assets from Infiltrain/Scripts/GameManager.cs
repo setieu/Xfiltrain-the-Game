@@ -308,7 +308,7 @@ public class GameManager : MonoBehaviour
     {
         if(bosspawnedonce && modeeE == 5 && timePassed >= 3.4f)
         {
-            Instantiate(hoglicopter);
+            Instantiate(hoglicopter, new Vector3(55f, 7.6f, -24f), Quaternion.identity);
             bosspawnedonce = false;
         }
         if (yeeTer != null)
