@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
         enemyRb = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        player = GameObject.Find("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         audioSource = GetComponent<AudioSource>();
         //transform.position = SpawnPosition();
         animator = GetComponent<Animator>();
