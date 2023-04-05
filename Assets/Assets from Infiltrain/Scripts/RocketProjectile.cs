@@ -6,7 +6,7 @@ public class RocketProjectile : MonoBehaviour
 {
     private GameManager gameManager;
     private PlayerController playerController;
-    private float speed = 0.1f;
+    private float speed = 0.15f;
     public ParticleSystem particle;
     private float rotationSpeed = 360f; // adjust this to change the speed of rotation
     public GameObject player;
@@ -18,7 +18,7 @@ public class RocketProjectile : MonoBehaviour
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         particle.Play();
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -45,7 +45,7 @@ public class RocketProjectile : MonoBehaviour
         {
 
             playerController.particle.Play();
-            player.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + speed * 250);
+            player.transform.position = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z + speed * 250);
             Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("Projectile"))
