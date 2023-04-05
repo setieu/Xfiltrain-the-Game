@@ -3714,6 +3714,7 @@ MonoBehaviour:
   health: 3
   klum: 0
   joe: 0
+  rocket: {fileID: 8719047834879420937, guid: f34966e1d8b4bdc448921b02a1561d8e, type: 3}
   DeadAudio: []
 --- !u!1 &5761955669931824343
 GameObject:
