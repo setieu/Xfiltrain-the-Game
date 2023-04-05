@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
     public bool lockYRotation = false;
     public bool lockZRotation = false;
 
-
+    public ParticleSystem particle;
 
 
 
@@ -71,6 +71,8 @@ public class PlayerController : MonoBehaviour
 
         // Store the initial rotation of the player
         initialRotation = transform.rotation;
+
+        particle.Stop();
     }
 
     // Update is called once per frame
