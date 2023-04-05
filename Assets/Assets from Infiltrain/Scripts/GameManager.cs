@@ -157,7 +157,7 @@ public class GameManager : MonoBehaviour
                 {
                     // Set the throwcooldown variable to 1.5 seconds
                     yeeTer.canSpawn = true;
-                    yeeTer.throwCD = 1.5f;
+                    yeeTer.throwCD = 0.7f;
                 }
                 pogHider.maxPogs = 15;
                 gameDiff = 1;
@@ -191,7 +191,7 @@ public class GameManager : MonoBehaviour
                 {
                     // Set the throwcooldown variable to 1.3 seconds
                     yeeTer.canSpawn = true;
-                    yeeTer.throwCD = 1.3f;
+                    yeeTer.throwCD = 0.9f;
                 }
                 pogHider.waveDelay = 2f;
                 pogHider.maxPogs = 30;
@@ -223,7 +223,7 @@ public class GameManager : MonoBehaviour
                 {
                     // Set the throwcooldown variable to 1.5 seconds
                     yeeTer.canSpawn = true;
-                    yeeTer.throwCD = 1.5f;
+                    yeeTer.throwCD = 0.8f;
                 }
                 pogHider.waveDelay = 4f;
                 pogHider.maxPogs = 20;
@@ -286,7 +286,7 @@ public class GameManager : MonoBehaviour
                 {
                     // Set the throwcooldown variable to 0.1 seconds
                     yeeTer.canSpawn = true;
-                    yeeTer.throwCD = 0.1f;
+                    yeeTer.throwCD = 0.2f;
                 }
 
                 pogHider.waveDelay = 3f;
