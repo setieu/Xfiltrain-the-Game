@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     public int yeeyee = 0;
     public int Dhog;
     public bool alive = true;
-
+    private bool hitonce = true;
     private Animator animator;
     public List<ParticleSystem> particleSystems;
     public ParticleSystem particle;
@@ -134,7 +134,11 @@ public class Enemy : MonoBehaviour
                     gameManager.hogdeaths++;
                 }
             }
-            
+            if (hitonce)
+            {
+                gameManager.hogdeaths++;
+                hitonce = false;
+            }
         }
         if (collision.gameObject.CompareTag("Projectile"))
         {
@@ -154,6 +158,7 @@ public class Enemy : MonoBehaviour
             }
             PlayRandomParticle();
             alive = false;
+
             
         }
         

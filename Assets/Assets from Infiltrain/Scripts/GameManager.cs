@@ -319,7 +319,6 @@ public class GameManager : MonoBehaviour
 
         }
         if (gameActive==true)
-
         {
             healtHbar.SetActive(true);
             timePassed = Time.time - startedTime;
