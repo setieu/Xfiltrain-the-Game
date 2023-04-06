@@ -82,6 +82,8 @@ public class Bossman : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
+        if(gameManager.gameActive)
+        {
             if (collision.gameObject.CompareTag("Projectile"))
             {
                 numCollisions++;
@@ -92,6 +94,8 @@ public class Bossman : MonoBehaviour
             {
                 klum = true;
             }
+        }
+
     }
    
 
