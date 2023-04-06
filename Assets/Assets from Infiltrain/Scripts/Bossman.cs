@@ -54,7 +54,7 @@ public class Bossman : MonoBehaviour
         if (numCollisions > health)
         {
             Rigidbody rb = GetComponent<Rigidbody>();
-            if (bossD == false)
+            if (bossD == false && rb != null)
                 {
                     rb.AddForce(Vector3.up * 2500f, ForceMode.Impulse);
                 }
