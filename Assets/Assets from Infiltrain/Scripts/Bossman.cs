@@ -16,18 +16,21 @@ public class Bossman : MonoBehaviour
     public bool klum = false;
     public int joe = 0;
     private GameManager gameManager;
+    private Enemy enemy;
     public GameObject rocket;
     private float spawnInterval = 2f;
 
     private Rigidbody enemyRb;
     public List<AudioClip> DeadAudio; // list of audio clips to choose from for hogrider dying
     private AudioSource audioSource; // audio source component
+    
 
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        enemy = GameObject.Find("Enemy").GetComponent<Enemy>();
         enemyRb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         bossD = false;
@@ -123,13 +126,13 @@ public class Bossman : MonoBehaviour
     IEnumerator SpawnObject()
     {
         yield return new WaitForSeconds(0.01f);
-        while (hogD == false)
+        while (enemy.hogD == false)
         {
             // Calculate the position in front of the boss
             Vector3 spawnPosition = transform.position + transform.forward * 8f;
 
             rocket.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
-            
+
             // Instantiate the object at the spawn position
             Instantiate(rocket, spawnPosition, rocket.transform.rotation);
             
