@@ -6,6 +6,7 @@ public class FollowPlayer : MonoBehaviour
 {
     public GameObject player;
     private Vector3 offsetX = new Vector3(-8, 16, 0);
+    private Vector3 offsettwo = new Vector3(-12, 20, 0);
     private PlayerController playerController;
     public float rotationSpeed = 2500;
     public int isFlipped = 1; // Flag to check if object is already flipped
@@ -52,39 +53,83 @@ public class FollowPlayer : MonoBehaviour
         // Camera Offset
         //if (playerController.isAlive == true)
         {
-            if(gameManager.gameActive)
+            if(gameManager.modeeE != 5)
             {
-                if (playerController.isOnDead == false)
+                if (gameManager.gameActive)
                 {
-                    transform.position = player.transform.position + offsetX;
+                    if (playerController.isOnDead == false)
+                    {
+                        transform.position = player.transform.position + offsetX;
+                    }
+                }
+                else
+                {
+                    transform.position = transform.position;
                 }
             }
-            else
+            else if(gameManager.modeeE == 5)
             {
-                transform.position = transform.position;
+                if (gameManager.gameActive)
+                {
+                    if (playerController.isOnDead == false)
+                    {
+                        transform.position = player.transform.position + offsettwo;
+                    }
+                }
+                else
+                {
+                    transform.position = transform.position;
+                }
             }
+
 
 
             // Rotate the camera clockwise about the y-axis while 'z' key is pressed
-            if (gameManager.gameActive == true)
+            if(gameManager.modeeE != 5)
             {
-                if (Input.GetKeyDown(KeyCode.Z) && isFlipped == 1) // Check if the 'z' key is pressed
+                if (gameManager.gameActive == true)
                 {
-                    // Flip the object 180 degrees about the y-axis
-                    transform.rotation = Quaternion.Euler(50f, transform.rotation.eulerAngles.y + 180f, 0f);
-                    offsetX = new Vector3(8, 16, 0);
-                    // Update the flag to reflect the current state of the object
-                    isFlipped = 2;
-                }
-                if (Input.GetKeyDown(KeyCode.X) && isFlipped == 2) // Check if the 'z' key is pressed
-                {
-                    // Flip the object 180 degrees about the y-axis
-                    transform.rotation = Quaternion.Euler(50f, transform.rotation.eulerAngles.y + 180f, 0f);
-                    offsetX = new Vector3(-8, 16, 0);
-                    // Update the flag to reflect the current state of the object
-                    isFlipped = 1;
+                    if (Input.GetKeyDown(KeyCode.Z) && isFlipped == 1) // Check if the 'z' key is pressed
+                    {
+                        // Flip the object 180 degrees about the y-axis
+                        transform.rotation = Quaternion.Euler(50f, transform.rotation.eulerAngles.y + 180f, 0f);
+                        offsetX = new Vector3(8, 16, 0);
+                        // Update the flag to reflect the current state of the object
+                        isFlipped = 2;
+                    }
+                    if (Input.GetKeyDown(KeyCode.X) && isFlipped == 2) // Check if the 'z' key is pressed
+                    {
+                        // Flip the object 180 degrees about the y-axis
+                        transform.rotation = Quaternion.Euler(50f, transform.rotation.eulerAngles.y + 180f, 0f);
+                        offsetX = new Vector3(-8, 16, 0);
+                        // Update the flag to reflect the current state of the object
+                        isFlipped = 1;
+                    }
                 }
             }
+            else if(gameManager.modeeE == 5)
+            {
+                if (gameManager.gameActive == true)
+                {
+                    if (Input.GetKeyDown(KeyCode.Z) && isFlipped == 1) // Check if the 'z' key is pressed
+                    {
+                        // Flip the object 180 degrees about the y-axis
+                        transform.rotation = Quaternion.Euler(50f, transform.rotation.eulerAngles.y + 180f, 0f);
+                        offsettwo = new Vector3(12, 20, 0);
+                        // Update the flag to reflect the current state of the object
+                        isFlipped = 2;
+                    }
+                    if (Input.GetKeyDown(KeyCode.X) && isFlipped == 2) // Check if the 'z' key is pressed
+                    {
+                        // Flip the object 180 degrees about the y-axis
+                        transform.rotation = Quaternion.Euler(50f, transform.rotation.eulerAngles.y + 180f, 0f);
+                        offsettwo = new Vector3(-12, 20, 0);
+                        // Update the flag to reflect the current state of the object
+                        isFlipped = 1;
+                    }
+                }
+            }
+
 
         }
 
