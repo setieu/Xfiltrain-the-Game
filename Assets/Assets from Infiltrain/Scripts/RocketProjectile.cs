@@ -27,8 +27,6 @@ public class RocketProjectile : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         audioSource1 = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player");
-        Quaternion rotation = Quaternion.Euler(0f, -90f, 0f) ;
-        transform.rotation = rotation;
     }
 
     // Update is called once per frame
