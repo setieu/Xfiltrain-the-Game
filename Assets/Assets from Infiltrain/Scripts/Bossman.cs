@@ -61,21 +61,28 @@ public class Bossman : MonoBehaviour
             
             gameObject.tag = "Enemy";
             bossD = true;
+            klum = true;
         }
+
 
         if (klum)
         {
-             enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
-             enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
-             enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
-             enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
-             joe++ ;
-             if (joe == 1)
+            if(enemyRb != null)
+            {
+                enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
+                enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
+                enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
+                enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
+                joe++;
+                if (joe == 1)
                 {
                     bossSounds.audioSource.Play();
+
                 }
-            gameObject.SetActive(false);
-            Debug.Log("Boss Killed");
+                gameObject.SetActive(false);
+                Debug.Log("Boss Killed");
+            }
+             
         }
 
 
