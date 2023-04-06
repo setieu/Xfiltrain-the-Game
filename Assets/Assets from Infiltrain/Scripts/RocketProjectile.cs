@@ -18,6 +18,7 @@ public class RocketProjectile : MonoBehaviour
     
     public bool boomed = false;
     public Explosion explosions;
+    public BossSounds bossSounds;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,7 @@ public class RocketProjectile : MonoBehaviour
         particle.Play();
         audioSource = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player");
+        bossSounds = GameObject.Find("Boss").GetComponent<BossSounds>();
     }
 
     // Update is called once per frame
@@ -58,20 +60,21 @@ public class RocketProjectile : MonoBehaviour
     {
 
         if (collision.gameObject == player)
-                {
+            {
 
-                    playerController.particle.Play();
-                    player.transform.position = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z + speed * 250);
-                    PlayRandomBoomAudio();
-                    Destroy(gameObject);
-                    playerController.isOnDead = true;
-                    boomed = true;
-                    audioSource.Stop();
-                }
-                else if (collision.gameObject.CompareTag("Projectile"))
-                {
-                    Destroy(gameObject);
-                }
+                playerController.particle.Play();
+                player.transform.position = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z + speed * 250);
+                PlayRandomBoomAudio();
+                Destroy(gameObject);
+                playerController.isOnDead = true;
+                boomed = true;
+                audioSource.Stop();
+            }
+        else if (collision.gameObject.CompareTag("Projectile"))
+            {
+                Destroy(gameObject);
+                bossSounds.audioSource1.Play();
+            }        
     }
 
     void PlayRandomLaunchAudio()

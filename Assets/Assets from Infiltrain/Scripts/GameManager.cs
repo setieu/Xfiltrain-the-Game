@@ -38,7 +38,6 @@ public class GameManager : MonoBehaviour
     public bool bosspawnedonce = true;
     public GameObject playerR;
     public GameObject hoglicopter;
-    public GameObject Boss;
     public GameObject titleScreen;
     public GameObject healtHbar;
     private HealthBar baR;
@@ -311,7 +310,6 @@ public class GameManager : MonoBehaviour
         if(bosspawnedonce && modeeE == 5 && timePassed >= 3.4f)
         {
             Instantiate(hoglicopter, new Vector3(55f, 7.6f, -18f), Quaternion.identity);
-            Instantiate(Boss);
             bosspawnedonce = false;
         }
         if (yeeTer != null)

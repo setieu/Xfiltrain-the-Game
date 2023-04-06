@@ -24,6 +24,8 @@ public class Bossman : MonoBehaviour
     private AudioSource audioSource; // audio source component
     private BoxCollider boxCollider;
     private BossSounds bossSounds;
+    public List<ParticleSystem> particleSystems;
+    public ParticleSystem particle;
 
 
     // Start is called before the first frame update
@@ -83,6 +85,7 @@ public class Bossman : MonoBehaviour
             if (collision.gameObject.CompareTag("Projectile"))
             {
                 numCollisions++;
+                PlayRandomParticle();
                 Debug.Log("Hit" + (int)numCollisions);
             }
             if (collision.gameObject.CompareTag("dead") && (bossD))
@@ -125,5 +128,11 @@ public class Bossman : MonoBehaviour
             yield return new WaitForSeconds(spawnInterval);
         }
     }
+    void PlayRandomParticle()
+        {
+            int randomIndex = Random.Range(0, particleSystems.Count);
+            particle = particleSystems[randomIndex];
+            particle.Play();
+        }
 }
 
