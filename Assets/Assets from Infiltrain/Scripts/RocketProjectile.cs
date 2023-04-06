@@ -12,20 +12,21 @@ public class RocketProjectile : MonoBehaviour
     public GameObject player;
     public AudioClip explosion;
     public AudioSource audioSource;
-    public AudioSource audioSource1;
+   
     public List<AudioClip> LaunchAudio; // list of audio clips to choose from for launch
     public bool launchS = false;
-    public List<AudioClip> BoomAudio; // list of audio clips to choose from for launch
+    
     public bool boomed = false;
+    public Explosion explosions;
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        explosions = GameObject.Find("FX_Explosion_Rubble").GetComponent<Explosion>();
         particle.Play();
         audioSource = GetComponent<AudioSource>();
-        audioSource1 = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -64,15 +65,13 @@ public class RocketProjectile : MonoBehaviour
                 Destroy(gameObject);
                 playerController.isOnDead = true;
                 boomed = true;
-
+                audioSource.Stop();
             }
             else if (collision.gameObject.CompareTag("Projectile"))
             {
                 Destroy(gameObject);
             }
         }
-        
-        
     }
 
     void PlayRandomLaunchAudio()
@@ -81,12 +80,11 @@ public class RocketProjectile : MonoBehaviour
         audioSource.clip = LaunchAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
         audioSource.Play(); // play the audio
     }
-    void PlayRandomBoomAudio()
+    public void PlayRandomBoomAudio()
     {
-        int randomIndex = Random.Range(0, BoomAudio.Count); // choose a random index within the list
-        audioSource1.clip = BoomAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
-        audioSource1.Play(); // play the audio
+        int randomIndex = Random.Range(0, explosions.BoomAudio.Count); // choose a random index within the list
+        explosions.audioSource.clip = explosions.BoomAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
+        explosions.audioSource.Play(); // play the audio
     }
-
 }
 
