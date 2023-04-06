@@ -12,7 +12,7 @@ public class Bossman : MonoBehaviour
     private float maxTorque = 1;
     public float forcemultiplier = 20f;
     public bool bossD = false;
-    public float health = 30;
+    private float health = 50;
     public bool klum = false;
     public int joe = 0;
     private GameManager gameManager;
@@ -22,12 +22,14 @@ public class Bossman : MonoBehaviour
     private Rigidbody enemyRb;
     public List<AudioClip> DeadAudio; // list of audio clips to choose from for hogrider dying
     private AudioSource audioSource; // audio source component
+    private BoxCollider boxCollider;
 
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        boxCollider = gameObject.GetComponent<BoxCollider>();
         enemyRb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         bossD = false;
@@ -38,6 +40,7 @@ public class Bossman : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(numCollisions);
         if(gameManager.gameActive)
         {
             transform.position = new Vector3(gameManager.playerR.transform.position.x, transform.position.y, transform.position.z);
@@ -67,7 +70,7 @@ public class Bossman : MonoBehaviour
                 {
                     PlayRandomDeadAudio();
                 }
-             
+             gameObject.SetActive(false);
              Debug.Log("Boss Killed");
         }
 
@@ -79,9 +82,6 @@ public class Bossman : MonoBehaviour
             {
                 numCollisions++;
                 Debug.Log("Hit" + (int)numCollisions);
-                
-                    
-                
             }
             if (collision.gameObject.CompareTag("dead") && (bossD))
             {

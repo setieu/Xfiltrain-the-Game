@@ -3537,6 +3537,7 @@ MonoBehaviour:
   xspeed: 0.2
   zspeed: 0.5
   isCoroutineRunning: 0
+  targetname: HogRider
 --- !u!65 &5761955669806235303
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3569,7 +3570,10 @@ MonoBehaviour:
   klum: 0
   joe: 0
   rocket: {fileID: 8719047834879420937, guid: f34966e1d8b4bdc448921b02a1561d8e, type: 3}
-  DeadAudio: []
+  DeadAudio:
+  - {fileID: 8300000, guid: 3cd8257cc859d4c868db0c1730685ce1, type: 3}
+  - {fileID: 8300000, guid: bc24f0114262847e9b38f00cfcac1332, type: 3}
+  - {fileID: 8300000, guid: 1bc057e75ac7745b4847dae6b13947bb, type: 3}
 --- !u!82 &5761955669806235296
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3674,7 +3678,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5761955669806235299}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 0}
   m_CullingMode: 0

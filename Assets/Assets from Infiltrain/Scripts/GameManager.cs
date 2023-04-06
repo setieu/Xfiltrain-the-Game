@@ -286,7 +286,7 @@ public class GameManager : MonoBehaviour
                 {
                     // Set the throwcooldown variable to 0.1 seconds
                     yeeTer.canSpawn = true;
-                    yeeTer.throwCD = 0.2f;
+                    yeeTer.throwCD = 0.7f;
                 }
 
                 pogHider.waveDelay = 3f;

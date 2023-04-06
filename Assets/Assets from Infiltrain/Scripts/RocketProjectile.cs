@@ -23,7 +23,10 @@ public class RocketProjectile : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        if(GameObject.FindGameObjectWithTag("Player") != null)
+        {
+            playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        }
         explosions = GameObject.Find("FX_Explosion_Rubble").GetComponent<Explosion>();
         particle.Play();
         audioSource = GetComponent<AudioSource>();
@@ -53,25 +56,22 @@ public class RocketProjectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-     
-        if(playerController.isOnDead == false)
-        {
-            if (collision.gameObject == player)
-            {
 
-                playerController.particle.Play();
-                player.transform.position = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z + speed * 250);
-                PlayRandomBoomAudio();
-                Destroy(gameObject);
-                playerController.isOnDead = true;
-                boomed = true;
-                audioSource.Stop();
-            }
-            else if (collision.gameObject.CompareTag("Projectile"))
-            {
-                Destroy(gameObject);
-            }
-        }
+        if (collision.gameObject == player)
+                {
+
+                    playerController.particle.Play();
+                    player.transform.position = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z + speed * 250);
+                    PlayRandomBoomAudio();
+                    Destroy(gameObject);
+                    playerController.isOnDead = true;
+                    boomed = true;
+                    audioSource.Stop();
+                }
+                else if (collision.gameObject.CompareTag("Projectile"))
+                {
+                    Destroy(gameObject);
+                }
     }
 
     void PlayRandomLaunchAudio()

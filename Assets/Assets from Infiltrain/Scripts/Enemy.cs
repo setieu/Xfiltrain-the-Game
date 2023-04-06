@@ -30,6 +30,7 @@ public class Enemy : MonoBehaviour
     public float xspeed = 0.2f;
     public float zspeed = 0.5f;
     public bool isCoroutineRunning = false;
+    public string targetname = "HogRider";
   
 
     // Start is called before the first frame update
@@ -45,7 +46,6 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         animator.SetBool("gallop", true);
         alive = true;
-  
         particle.Stop();
 
     }
@@ -119,27 +119,39 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("dead") && hogD)
         {
-            enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
-            enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
-            enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
-            enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
+            if(enemyRb != null)
+            {
+                enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
+                enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
+                enemyRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
+                enemyRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
+            }
             if (yeeyee == 1)
             {
-                PlayRandomDeadAudio();
-                gameManager.hogdeaths++;
+                if(gameObject.name == "HogRider")
+                {
+                    PlayRandomDeadAudio();
+                    gameManager.hogdeaths++;
+                }
             }
             
         }
         if (collision.gameObject.CompareTag("Projectile"))
         {
+            if(gameObject.tag != "Untagged")
+            {
+                gameObject.tag = "Untagged";
+            }
             Rigidbody rb = GetComponent<Rigidbody>();
             rb.constraints = RigidbodyConstraints.None;
             rb.AddForce(Vector3.up * 1000f, ForceMode.Impulse);
             numCollisions++;
             Debug.Log("Hit" + (int)numCollisions);
             hogD = true;
-            gameObject.tag = "Untagged";
-            animator.SetBool("gallop", false);
+            if(gameObject.name == targetname)
+            {
+                animator.SetBool("gallop", false);
+            }
             PlayRandomParticle();
             alive = false;
             

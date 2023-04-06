@@ -12,6 +12,7 @@ TagManager:
   - Projectile
   - Train
   - Rocket
+  - Explosion
   layers:
   - Default
   - TransparentFX
