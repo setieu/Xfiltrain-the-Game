@@ -3566,14 +3566,11 @@ MonoBehaviour:
   numCollisions: 0
   forcemultiplier: 0
   bossD: 0
-  health: 3
   klum: 0
   joe: 0
   rocket: {fileID: 8719047834879420937, guid: f34966e1d8b4bdc448921b02a1561d8e, type: 3}
   DeadAudio:
-  - {fileID: 8300000, guid: 3cd8257cc859d4c868db0c1730685ce1, type: 3}
-  - {fileID: 8300000, guid: bc24f0114262847e9b38f00cfcac1332, type: 3}
-  - {fileID: 8300000, guid: 1bc057e75ac7745b4847dae6b13947bb, type: 3}
+  - {fileID: 8300000, guid: 31969615d30fe7c4fa78c6eb626e4c6b, type: 3}
 --- !u!82 &5761955669806235296
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3584,7 +3581,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 31969615d30fe7c4fa78c6eb626e4c6b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.05
   m_Pitch: 1

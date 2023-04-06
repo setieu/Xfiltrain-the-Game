@@ -23,6 +23,7 @@ public class Bossman : MonoBehaviour
     public List<AudioClip> DeadAudio; // list of audio clips to choose from for hogrider dying
     private AudioSource audioSource; // audio source component
     private BoxCollider boxCollider;
+    private BossSounds bossSounds;
 
 
     // Start is called before the first frame update
@@ -35,6 +36,7 @@ public class Bossman : MonoBehaviour
         bossD = false;
         numCollisions = 0;
         StartCoroutine(SpawnObject());
+        bossSounds = GameObject.Find("Boss").GetComponent<BossSounds>();
     }
 
     // Update is called once per frame
@@ -68,10 +70,10 @@ public class Bossman : MonoBehaviour
              joe++ ;
              if (joe == 1)
                 {
-                    PlayRandomDeadAudio();
+                    bossSounds.audioSource.Play();
                 }
-             gameObject.SetActive(false);
-             Debug.Log("Boss Killed");
+            gameObject.SetActive(false);
+            Debug.Log("Boss Killed");
         }
 
 
@@ -105,12 +107,7 @@ public class Bossman : MonoBehaviour
         return Random.Range(-maxTorque, maxTorque) * forcemultiplier;
     }
 
-    void PlayRandomDeadAudio()
-    {
-        int randomIndex = Random.Range(0, DeadAudio.Count); // choose a random index within the list
-        audioSource.clip = DeadAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
-        audioSource.Play(); // play the audio
-    }
+    
     IEnumerator SpawnObject()
     {
         yield return new WaitForSeconds(0.01f);
