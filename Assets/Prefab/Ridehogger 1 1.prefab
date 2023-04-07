@@ -3455,7 +3455,7 @@ GameObject:
   - component: {fileID: 5761955669806235298}
   - component: {fileID: 2180213520787477279}
   m_Layer: 6
-  m_Name: Ridehogger
+  m_Name: Ridehogger 1 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
