@@ -12,7 +12,7 @@ public class Bossman : MonoBehaviour
     private float maxTorque = 1;
     public float forcemultiplier = 20f;
     public bool bossD = false;
-    private float health = 70;
+    private float health = 80;
     public bool klum = false;
     public int joe = 0;
     private GameManager gameManager;
