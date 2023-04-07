@@ -12,7 +12,7 @@ public class Bossman : MonoBehaviour
     private float maxTorque = 1;
     public float forcemultiplier = 20f;
     public bool bossD = false;
-    private float health = 70;
+    private float health = 80;
     public bool klum = false;
     public int joe = 0;
     private GameManager gameManager;
@@ -27,7 +27,7 @@ public class Bossman : MonoBehaviour
     public List<ParticleSystem> particleSystems;
     public ParticleSystem particle;
 
-    public float bosShp;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,8 +44,7 @@ public class Bossman : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bosShp = health - numCollisions;
-        //Debug.Log(numCollisions);
+        Debug.Log(numCollisions);
         if(gameManager.gameActive)
         {
             transform.position = new Vector3(gameManager.playerR.transform.position.x, transform.position.y, transform.position.z);
