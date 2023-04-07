@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
     public bool startedd = false;
     public bool gameStarted = false;
     private Bossman bossMan;
-    private GameObject bossObject;
     private PlayerController playerController;
     private PogHider pogHider;
     private Yeeter yeeTer;
@@ -320,20 +319,14 @@ public class GameManager : MonoBehaviour
 
         }
 
-        if(timePassed > 3.41f && modeeE == 5)
+        if(timePassed > 3.41f)
         {
-            bossObject = GameObject.Find("Ridehogger(Clone)");
-            if(bossObject != null)
-            {
-                bosshpobject.SetActive(true);
-                bossMan = GameObject.Find("Ridehogger(Clone)").GetComponent<Bossman>();
-                bosshP = bossMan.bosShp;
-                Debug.Log(bossMan.bosShp);
-                bossHPText.text = "Boss HP: " + bosshP.ToString();
-            }
-
-
-            if(bossObject == null)
+            bosshpobject.SetActive(true);
+            bossMan = GameObject.Find("Ridehogger(Clone)").GetComponent<Bossman>();
+            bosshP = bossMan.bosShp;
+            Debug.Log(bossMan.bosShp);
+            bossHPText.text = "Boss HP: " + bosshP.ToString();
+            if(bossMan.klum)
             {
                 bosshpobject.SetActive(false);
             }
@@ -351,7 +344,7 @@ public class GameManager : MonoBehaviour
             healtHbar.SetActive(true);
             timePassed = Time.time - startedTime;
             Scoree = (int)timePassed + hogdeaths*10;
-            timer.text = "Score: " + (int)Scoree + "0";
+            timer.text = "Score: " + (int)Scoree +"0";
 
         }
         if(gameActive == false)
