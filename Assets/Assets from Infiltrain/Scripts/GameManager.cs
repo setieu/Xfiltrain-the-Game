@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 
-
+    public float bosshP;
     public int stamina;
     private float throwRate = 45.0f;
     private int arrayRange;
@@ -17,12 +17,15 @@ public class GameManager : MonoBehaviour
     private float startedTime;
     public bool startedd = false;
     public bool gameStarted = false;
+    private Bossman bossMan;
+    private GameObject bossObject;
     private PlayerController playerController;
     private PogHider pogHider;
     private Yeeter yeeTer;
     public float cooldown;
     public int modeeE;
     public bool gameLost = false;
+
 
     public List<GameObject> targetPrefabs;
     public List<AudioClip> GSaudio; // list of audio clips to choose from for Game Start
@@ -36,12 +39,14 @@ public class GameManager : MonoBehaviour
     private AudioSource audioSource; // audio source component
 
     public bool bosspawnedonce = true;
+    public GameObject bosshpobject;
     public GameObject playerR;
     public GameObject hoglicopter;
     public GameObject titleScreen;
     public GameObject healtHbar;
     private HealthBar baR;
     public GameObject Bar;
+    public TextMeshProUGUI bossHPText;
     public TextMeshProUGUI gameOverLostText;
     public TextMeshProUGUI gameOverWonText;
     public TextMeshProUGUI credits;
@@ -86,7 +91,6 @@ public class GameManager : MonoBehaviour
         gameActive = false;
         audioSource = GetComponent<AudioSource>();
         Debug.Log("Scene Loaded");
-
     }
 
     public void StartGame(int difficulty)
@@ -307,11 +311,35 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         if(bosspawnedonce && modeeE == 5 && timePassed >= 3.4f)
         {
             Instantiate(hoglicopter, new Vector3(55f, 7.6f, -18f), Quaternion.identity);
             bosspawnedonce = false;
+
         }
+
+        if(timePassed > 3.41f && modeeE == 5)
+        {
+            bossObject = GameObject.Find("Ridehogger(Clone)");
+            if(bossObject != null)
+            {
+                bosshpobject.SetActive(true);
+                bossMan = GameObject.Find("Ridehogger(Clone)").GetComponent<Bossman>();
+                bosshP = bossMan.bosShp;
+                Debug.Log(bossMan.bosShp);
+                bossHPText.text = "Boss HP: " + bosshP.ToString();
+            }
+
+
+            if(bossObject == null)
+            {
+                bosshpobject.SetActive(false);
+            }
+        }
+        
+
         if (yeeTer != null)
         {
             // Access the throwcooldown variable from yeeTer
@@ -323,7 +351,7 @@ public class GameManager : MonoBehaviour
             healtHbar.SetActive(true);
             timePassed = Time.time - startedTime;
             Scoree = (int)timePassed + hogdeaths*10;
-            timer.text = "Score: " + (int)Scoree +"0";
+            timer.text = "Score: " + (int)Scoree + "0";
 
         }
         if(gameActive == false)
