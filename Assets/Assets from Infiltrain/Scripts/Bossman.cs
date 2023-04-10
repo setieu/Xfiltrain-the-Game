@@ -136,7 +136,11 @@ public class Bossman : MonoBehaviour
             rocket.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
             
             // Instantiate the object at the spawn position
-            Instantiate(rocket, spawnPosition, rocket.transform.rotation);
+            if(gameManager.gameActive)
+            {
+                Instantiate(rocket, spawnPosition, rocket.transform.rotation);
+            }
+
             
             // Wait for the next spawn interval
             yield return new WaitForSeconds(spawnInterval);

@@ -20,10 +20,12 @@ public class RocketProjectile : MonoBehaviour
     public Explosion explosions;
     public BossSounds bossSounds;
 
+    private PauseScreen pauseScreen;
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        pauseScreen = GameObject.Find("Canvas").GetComponent<PauseScreen>();
         if(GameObject.FindGameObjectWithTag("Player") != null)
         {
             playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
@@ -38,20 +40,18 @@ public class RocketProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameManager.gameActive)
+        if(pauseScreen.isPaused == false)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + speed);
             transform.Rotate(Vector3.right * rotationSpeed * Time.deltaTime); // rotates the object around the x-axis
         }
 
 
-        if (gameManager.gameActive)
-        {
             if(transform.position.z > 50)
             {
                 Destroy(gameObject);
             }
-        }
+
         if (launchS == false)
         {
             PlayRandomLaunchAudio();

@@ -5,7 +5,7 @@ public class PauseScreen : MonoBehaviour
 {
     public GameObject pausePanel;
     public Text instructionsText;
-    private bool isPaused = false;
+    public bool isPaused = false;
     private GameManager gameManager;
 
     private void Start()
