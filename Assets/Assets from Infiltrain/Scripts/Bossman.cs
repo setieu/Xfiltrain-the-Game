@@ -148,6 +148,7 @@ public class Bossman : MonoBehaviour
 
 
                 // Wait for the next spawn interval
+                spawnInterval = Random.Range(0.25f, 3f);
                 yield return new WaitForSeconds(spawnInterval);
                 firstRocket = false;
             }
