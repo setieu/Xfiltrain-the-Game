@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HogSpin : MonoBehaviour
 {
-
+    private PauseScreen pauseScreen;
     public float rotationSpeed = 10.0f;
     private PlayerController playerController;
     private GameManager gameManager;
@@ -12,13 +12,14 @@ public class HogSpin : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        pauseScreen = GameObject.Find("Canvas").GetComponent<PauseScreen>();
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if(gameManager.gameActive)
+        if(pauseScreen.isPaused == false)
         {
             transform.Rotate(Vector3.down * rotationSpeed);
         }
