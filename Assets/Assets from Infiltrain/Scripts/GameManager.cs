@@ -195,9 +195,9 @@ public class GameManager : MonoBehaviour
                 {
                     // Set the throwcooldown variable to 1.3 seconds
                     yeeTer.canSpawn = true;
-                    yeeTer.throwCD = 0.9f;
+                    yeeTer.throwCD = 0.7f;
                 }
-                pogHider.waveDelay = 2f;
+                pogHider.waveDelay = 2.5f;
                 pogHider.maxPogs = 30;
                 gameDiff = 2;
                 modeeE = 2;
@@ -365,10 +365,46 @@ public class GameManager : MonoBehaviour
         if(modeeE == 1)
         {
             //score is x10
-            if (Scoree >= 3)
+            if (Scoree >= 300)
             {
                 GameOverWon();
-                Debug.Log("score over 300");
+                Debug.Log("score over 3000");
+            }
+        }
+        if (modeeE == 2)
+        {
+            //score is x10
+            if (Scoree >= 1000)
+            {
+                GameOverWon();
+                Debug.Log("score over 10000");
+            }
+        }
+        if (modeeE == 3)
+        {
+            //score is x10
+            if (Scoree >= 1000)
+            {
+                GameOverWon();
+                Debug.Log("score over 10000");
+            }
+        }
+        if (modeeE == 4)
+        {
+            //score is x10
+            if (Scoree >= 15000)
+            {
+                GameOverWon();
+                Debug.Log("score over 150000");
+            }
+        }
+        if (modeeE == 5)
+        {
+            //score is x10
+            if (Scoree >= 30000)
+            {
+                GameOverWon();
+                Debug.Log("score over 300000");
             }
         }
     }
