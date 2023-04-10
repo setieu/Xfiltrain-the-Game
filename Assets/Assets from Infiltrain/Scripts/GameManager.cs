@@ -392,19 +392,19 @@ public class GameManager : MonoBehaviour
         if (modeeE == 4)
         {
             //score is x10
-            if (Scoree >= 300)
+            if (Scoree >= 15000)
             {
                 GameOverWon();
-                Debug.Log("score over 3000");
+                Debug.Log("score over 150000");
             }
         }
         if (modeeE == 5)
         {
             //score is x10
-            if (Scoree >= 300)
+            if (Scoree >= 30000)
             {
                 GameOverWon();
-                Debug.Log("score over 3000");
+                Debug.Log("score over 300000");
             }
         }
     }
