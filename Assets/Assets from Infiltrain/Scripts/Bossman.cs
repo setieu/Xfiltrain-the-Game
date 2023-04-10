@@ -18,6 +18,7 @@ public class Bossman : MonoBehaviour
     private GameManager gameManager;
     public GameObject rocket;
     private float spawnInterval = 2f;
+    private bool firstRocket = true;
 
     private Rigidbody enemyRb;
     public List<AudioClip> DeadAudio; // list of audio clips to choose from for hogrider dying
@@ -37,6 +38,7 @@ public class Bossman : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         bossD = false;
         numCollisions = 0;
+        
         StartCoroutine(SpawnObject());
         bossSounds = GameObject.Find("Boss").GetComponent<BossSounds>();
     }
@@ -127,20 +129,53 @@ public class Bossman : MonoBehaviour
     
     IEnumerator SpawnObject()
     {
-        yield return new WaitForSeconds(0.01f);
-        while (true)
+        
+        if(firstRocket)
         {
-            // Calculate the position in front of the boss
-            Vector3 spawnPosition = transform.position + transform.forward * 8f;
+            yield return new WaitForSeconds(1f);
+            while (true)
+            {
+                // Calculate the position in front of the boss
+                Vector3 spawnPosition = transform.position + transform.forward * 8f;
 
-            rocket.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
-            
-            // Instantiate the object at the spawn position
-            Instantiate(rocket, spawnPosition, rocket.transform.rotation);
-            
-            // Wait for the next spawn interval
-            yield return new WaitForSeconds(spawnInterval);
+                rocket.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+
+                // Instantiate the object at the spawn position
+                if(gameManager.gameActive)
+                {
+                    Instantiate(rocket, spawnPosition, rocket.transform.rotation);
+                }
+
+
+                // Wait for the next spawn interval
+                yield return new WaitForSeconds(spawnInterval);
+                firstRocket = false;
+            }
+
         }
+        else
+        {
+            yield return new WaitForSeconds(0.01f);
+            while (true)
+            {
+                // Calculate the position in front of the boss
+                Vector3 spawnPosition = transform.position + transform.forward * 8f;
+
+                rocket.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+
+                // Instantiate the object at the spawn position
+                if (gameManager.gameActive)
+                {
+                    Instantiate(rocket, spawnPosition, rocket.transform.rotation);
+
+                }
+
+
+                // Wait for the next spawn interval
+                yield return new WaitForSeconds(spawnInterval);
+            }
+        }
+
     }
     void PlayRandomParticle()
         {

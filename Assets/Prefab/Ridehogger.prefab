@@ -3447,7 +3447,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5761955669806235300}
-  - component: {fileID: 5761955669806235302}
   - component: {fileID: 5761955669806235303}
   - component: {fileID: 28944649523487540}
   - component: {fileID: 5761955669806235296}
@@ -3488,39 +3487,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5761955669806235302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5761955669806235299}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddf2767687af6494696bc04a442c33cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  forcemultiplier: 300
-  DeadAudio:
-  - {fileID: 8300000, guid: bc24f0114262847e9b38f00cfcac1332, type: 3}
-  - {fileID: 8300000, guid: 1bc057e75ac7745b4847dae6b13947bb, type: 3}
-  - {fileID: 8300000, guid: 3cd8257cc859d4c868db0c1730685ce1, type: 3}
-  numCollisions: 0
-  hogD: 0
-  yeeyee: 0
-  Dhog: 0
-  alive: 1
-  particleSystems:
-  - {fileID: 4071230374924111448}
-  - {fileID: 1401287044305226854}
-  - {fileID: 4498740176458968713}
-  particle: {fileID: 0}
-  player: {fileID: 0}
-  znum: 0
-  xspeed: 0.2
-  zspeed: 0.5
-  isCoroutineRunning: 0
-  targetname: HogRider
 --- !u!65 &5761955669806235303
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3559,6 +3525,7 @@ MonoBehaviour:
   - {fileID: 1401287044305226854}
   - {fileID: 4498740176458968713}
   particle: {fileID: 4071230374924111448}
+  bosShp: 0
 --- !u!82 &5761955669806235296
 AudioSource:
   m_ObjectHideFlags: 0
