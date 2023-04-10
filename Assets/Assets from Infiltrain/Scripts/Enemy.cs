@@ -163,9 +163,9 @@ public class Enemy : MonoBehaviour
         }
         
         
-        if(collision.gameObject.CompareTag("Player"))
+       // if(collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerController>().isOnDead = true;
+           // collision.gameObject.GetComponent<PlayerController>().isOnDead = true;
         }
         
         if (collision.gameObject.CompareTag("dead") && (hogD))

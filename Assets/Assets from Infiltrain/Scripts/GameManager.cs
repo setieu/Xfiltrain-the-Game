@@ -156,14 +156,14 @@ public class GameManager : MonoBehaviour
                 //StartCoroutine(Wait());
                 //PlayRandomSecondaryAudio();
                 // Input sounds
-                pogHider.waveDelay = 5f;
+                pogHider.waveDelay = 6f;
                 if (yeeTer != null)
                 {
                     // Set the throwcooldown variable to 1.5 seconds
                     yeeTer.canSpawn = true;
                     yeeTer.throwCD = 0.7f;
                 }
-                pogHider.maxPogs = 15;
+                pogHider.maxPogs = 12;
                 gameDiff = 1;
                 modeeE = 1;
                 Debug.Log("Easy");
@@ -227,10 +227,10 @@ public class GameManager : MonoBehaviour
                 {
                     // Set the throwcooldown variable to 1.5 seconds
                     yeeTer.canSpawn = true;
-                    yeeTer.throwCD = 0.8f;
+                    yeeTer.throwCD = 0.7f;
                 }
-                pogHider.waveDelay = 4f;
-                pogHider.maxPogs = 20;
+                pogHider.waveDelay = 5f;
+                pogHider.maxPogs = 14;
                 gameDiff = 1;
                 modeeE = 3;
                 break;
@@ -362,6 +362,15 @@ public class GameManager : MonoBehaviour
         {
             healtHbar.SetActive(false);
         }
+        if(modeeE == 1)
+        {
+            //score is x10
+            if (Scoree >= 3)
+            {
+                GameOverWon();
+                Debug.Log("score over 300");
+            }
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -377,6 +386,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOverWon()
     {
+        Debug.Log("Won");
         gameOverWonText.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
         playerController.isAlive = false;
