@@ -197,7 +197,7 @@ public class GameManager : MonoBehaviour
                     yeeTer.canSpawn = true;
                     yeeTer.throwCD = 0.7f;
                 }
-                pogHider.waveDelay = 2f;
+                pogHider.waveDelay = 2.5f;
                 pogHider.maxPogs = 30;
                 gameDiff = 2;
                 modeeE = 2;
