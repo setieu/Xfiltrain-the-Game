@@ -21,9 +21,18 @@ public class RocketProjectile : MonoBehaviour
     public BossSounds bossSounds;
 
     private PauseScreen pauseScreen;
+    private bool spawnPosPositive;
     // Start is called before the first frame update
     void Start()
     {
+        Vector3 direction = (new Vector3(0f, 0f, 0f) - transform.position).normalized;
+        if (direction.z > 0)
+        {
+            spawnPosPositive = true;
+        }else if (direction.z < 0)
+        {
+            spawnPosPositive = false;
+        }
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         pauseScreen = GameObject.Find("Canvas").GetComponent<PauseScreen>();
         if(GameObject.FindGameObjectWithTag("Player") != null)
@@ -42,12 +51,19 @@ public class RocketProjectile : MonoBehaviour
     {
         if(pauseScreen.isPaused == false)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + speed);
+            if (spawnPosPositive)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + speed);
+            } else if (!spawnPosPositive)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - speed);
+            }
+            
             transform.Rotate(Vector3.right * rotationSpeed * Time.deltaTime); // rotates the object around the x-axis
         }
 
 
-            if(transform.position.z > 50)
+            if(transform.position.z > 50 || transform.position.z < -50)
             {
                 Destroy(gameObject);
             }
