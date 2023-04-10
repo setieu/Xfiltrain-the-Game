@@ -152,7 +152,7 @@ public class Enemy : MonoBehaviour
             numCollisions++;
             Debug.Log("Hit" + (int)numCollisions);
             hogD = true;
-            if(gameObject.name == targetname)
+            if(gameObject.name == targetname || gameObject.name == "HogRider(1)")
             {
                 animator.SetBool("gallop", false);
             }
@@ -209,5 +209,17 @@ public class Enemy : MonoBehaviour
     private void Destroy()
     {
         Destroy(gameObject);
+    }
+
+    void LateUpdate()
+    {
+        Transform parentTransform = transform.parent;
+        if (parentTransform != null)
+        {
+            Transform childTransform = transform;
+            Vector3 childPosition = childTransform.position;
+            childPosition.y = parentTransform.position.y;
+            childTransform.position = childPosition;
+        }
     }
 }

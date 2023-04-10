@@ -25,8 +25,13 @@ public class PoghiderAnim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameManager.gameActive)
+        {
+            float newY = startingPosition.y + height * Mathf.Sin(Time.time * speed);
+            transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+        }
         
-        float newY = startingPosition.y + height * Mathf.Sin(Time.time * speed);
+        
       
     }
 

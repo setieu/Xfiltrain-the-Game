@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 17.5
-  height: 0.75
+  height: 0.5
   znum: 0
   enemy: {fileID: 5663842506482577349}
   hogrider: {fileID: 8740029798176514981}
@@ -151,6 +151,10 @@ PrefabInstance:
       propertyPath: zspeed
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: -8595655357615331691, guid: 05706e801febf4d0cb3dc326c47319c6, type: 3}
+      propertyPath: Poghider
+      value: 
+      objectReference: {fileID: 5056445335558395399}
     - target: {fileID: -8595655357615331691, guid: 05706e801febf4d0cb3dc326c47319c6, type: 3}
       propertyPath: particle
       value: 
