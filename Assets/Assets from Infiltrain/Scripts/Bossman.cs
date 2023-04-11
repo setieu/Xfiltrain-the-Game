@@ -19,6 +19,7 @@ public class Bossman : MonoBehaviour
     public GameObject rocket;
     private float spawnInterval = 2f;
     private bool firstRocket = true;
+    private bool spawnPosPositive;
 
     private Rigidbody enemyRb;
     public List<AudioClip> DeadAudio; // list of audio clips to choose from for hogrider dying
@@ -41,6 +42,16 @@ public class Bossman : MonoBehaviour
         
         StartCoroutine(SpawnObject());
         bossSounds = GameObject.Find("Boss").GetComponent<BossSounds>();
+
+        Vector3 direction = (new Vector3(0f, 0f, 0f) - transform.position).normalized;
+        if (direction.z > 0)
+        {
+            spawnPosPositive = true;
+        }
+        else if (direction.z < 0)
+        {
+            spawnPosPositive = false;
+        }
     }
 
     // Update is called once per frame
@@ -137,8 +148,14 @@ public class Bossman : MonoBehaviour
             {
                 // Calculate the position in front of the boss
                 Vector3 spawnPosition = transform.position + transform.forward * 8f;
-
-                rocket.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+                if (spawnPosPositive)
+                {
+                    rocket.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+                }else if (!spawnPosPositive)
+                {
+                    rocket.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+                }
+                
 
                 // Instantiate the object at the spawn position
                 if(gameManager.gameActive)
@@ -161,6 +178,14 @@ public class Bossman : MonoBehaviour
             {
                 // Calculate the position in front of the boss
                 Vector3 spawnPosition = transform.position + transform.forward * 8f;
+                if (spawnPosPositive)
+                {
+                    rocket.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+                }
+                else if (!spawnPosPositive)
+                {
+                    rocket.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+                }
 
                 rocket.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
 
