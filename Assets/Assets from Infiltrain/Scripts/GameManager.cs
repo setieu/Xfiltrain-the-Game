@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
     public bool gameActive;
     public int Scoree =  0;
     public int hogdeaths = 0;
+    public int bossdeaths = 0;
     public int gameDiff;
 
 
@@ -256,7 +257,7 @@ public class GameManager : MonoBehaviour
         {
             healtHbar.SetActive(true);
             timePassed = Time.time - startedTime;
-            Scoree = (int)timePassed + hogdeaths*10;
+            Scoree = (int)timePassed + hogdeaths*10 + bossdeaths*1000;
             timer.text = "Score: " + (int)Scoree + "0";
 
         }
@@ -271,7 +272,7 @@ public class GameManager : MonoBehaviour
         if(modeeE == 1)
         {
             //score is x10
-            if (Scoree >= 3)
+            if (Scoree >= 300)
             {
                 GameOverWon();
                 Debug.Log("score over 3000");

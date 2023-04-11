@@ -77,6 +77,7 @@ public class Bossman : MonoBehaviour
             bossD = true;
             klum = true;
             bossSounds.audioSource.Play();
+            gameManager.bossdeaths++;
             gameObject.SetActive(false);
         }
 
@@ -95,6 +96,7 @@ public class Bossman : MonoBehaviour
                     bossSounds.audioSource.Play();
 
                 }
+ 
                 gameObject.SetActive(false);
                 Debug.Log("Boss Killed");
             }
