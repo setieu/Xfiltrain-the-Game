@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private float startedTime;
     public bool startedd = false;
     public bool gameStarted = false;
+    private PauseScreen pauseScreen;
     private Bossman bossMan;
     private GameObject bossObject;
     private PlayerController playerController;
@@ -70,6 +71,7 @@ public class GameManager : MonoBehaviour
 
     public Button restartButton;
 
+    public bool gameWon = false;
     public bool gameActive;
     public int Scoree =  0;
     public int hogdeaths = 0;
@@ -80,6 +82,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        pauseScreen = GameObject.Find("Canvas").GetComponent<PauseScreen>();
         // Assign the Yeeter component to yeeTer
         yeeTer = GameObject.Find("Player").GetComponent<Yeeter>() as Yeeter;
         if (yeeTer == null)
@@ -101,27 +104,8 @@ public class GameManager : MonoBehaviour
             case 0:
                 // Set up for peaceful mode
                 arrayRange = difficulty;
-                playerController.isAlive = true;
-                gameActive = true;
-                
-                modeTexttGameobject.SetActive(true);
-                timergameobject.SetActive(true);
                 modeText.text = "Sandbox";
-
-                stamina = 50;
-                throwRate = throwRate /= difficulty;
-                //StartCoroutine(SpawnTarget());
-                playerController.playerRb.constraints = RigidbodyConstraints.None;
-                titleScreen.SetActive(false);
-                toolAssist.SetActive(true);
-                PlayRandomGSAudio();
-                startedd = true;
-                Debug.Log("Game started");
-                healtHbar.transform.position = new Vector3(1255, 710, 0);
-                startedTime = Time.time;
-                //StartCoroutine(Wait());
-                //PlayRandomSecondaryAudio();
-                // Input sounds
+                StartTheGame();
                 //Yeeter.throwCD
                 if (yeeTer != null)
                 {
@@ -136,26 +120,8 @@ public class GameManager : MonoBehaviour
             case 1:
                 // Set up for easy mode
                 arrayRange = difficulty;
-                playerController.isAlive = true;
-                gameActive = true;
-                modeTexttGameobject.SetActive(true);
-                timergameobject.SetActive(true);
                 modeText.text = "Easy";
-
-                stamina = 50;
-                throwRate = throwRate /= difficulty;
-                //StartCoroutine(SpawnTarget());
-                playerController.playerRb.constraints = RigidbodyConstraints.None;
-                titleScreen.SetActive(false);
-                toolAssist.SetActive(true);
-                PlayRandomGSAudio();
-                startedd = true;
-                Debug.Log("Game started");
-                healtHbar.transform.position = new Vector3(1255, 710, 0);
-                startedTime = Time.time;
-                //StartCoroutine(Wait());
-                //PlayRandomSecondaryAudio();
-                // Input sounds
+                StartTheGame();
                 pogHider.waveDelay = 6f;
                 if (yeeTer != null)
                 {
@@ -171,26 +137,8 @@ public class GameManager : MonoBehaviour
             case 2:
                 // Set up for hard mode
                 arrayRange = difficulty;
-                playerController.isAlive = true;
-                gameActive = true;
-                modeTexttGameobject.SetActive(true);
-                timergameobject.SetActive(true);
                 modeText.text = "Hard";
-
-                stamina = 50;
-                throwRate = throwRate /= difficulty;
-                //StartCoroutine(SpawnTarget());
-                playerController.playerRb.constraints = RigidbodyConstraints.None;
-                titleScreen.SetActive(false);
-                toolAssist.SetActive(true);
-                PlayRandomGSAudio();
-                startedd = true;
-                Debug.Log("Game started");
-                healtHbar.transform.position = new Vector3(1255, 710, 0);
-                startedTime = Time.time;
-                //StartCoroutine(Wait());
-                //PlayRandomSecondaryAudio();
-                // Input sounds
+                StartTheGame();
                 if (yeeTer != null)
                 {
                     // Set the throwcooldown variable to 1.3 seconds
@@ -206,23 +154,8 @@ public class GameManager : MonoBehaviour
             case 3:
                 // Set up for normal mode
                 arrayRange = difficulty;
-                playerController.isAlive = true;
-                gameActive = true;
-                modeTexttGameobject.SetActive(true);
-                timergameobject.SetActive(true);
                 modeText.text = "Normal";
-
-                stamina = 50;
-                throwRate = throwRate /= difficulty;
-                //StartCoroutine(SpawnTarget());
-                playerController.playerRb.constraints = RigidbodyConstraints.None;
-                titleScreen.SetActive(false);
-                toolAssist.SetActive(true);
-                PlayRandomGSAudio();
-                startedd = true;
-                Debug.Log("Game started");
-                healtHbar.transform.position = new Vector3(1255, 710, 0);
-                startedTime = Time.time;
+                StartTheGame();
                 if (yeeTer != null)
                 {
                     // Set the throwcooldown variable to 1.5 seconds
@@ -237,23 +170,8 @@ public class GameManager : MonoBehaviour
             case 4:
                 //set up for anarchy mode
                 arrayRange = difficulty;
-                playerController.isAlive = true;
-                gameActive = true;
-                modeTexttGameobject.SetActive(true);
-                timergameobject.SetActive(true);
                 modeText.text = "Anarchy";
-
-                stamina = 50;
-                throwRate = throwRate /= difficulty;
-                //StartCoroutine(SpawnTarget());
-                playerController.playerRb.constraints = RigidbodyConstraints.None;
-                titleScreen.SetActive(false);
-                toolAssist.SetActive(true);
-                PlayRandomGSAudio();
-                startedd = true;
-                Debug.Log("Game started");
-                healtHbar.transform.position = new Vector3(1255, 710, 0);
-                startedTime = Time.time;
+                StartTheGame();
                 if (yeeTer != null)
                 {
                     // Set the throwcooldown variable to 0.1 seconds
@@ -269,23 +187,8 @@ public class GameManager : MonoBehaviour
             case 5:
                 //set up for ??? mode
                 arrayRange = difficulty;
-                playerController.isAlive = true;
-                gameActive = true;
-                modeTexttGameobject.SetActive(true);
-                timergameobject.SetActive(true);
                 modeText.text = "???";
-
-                stamina = 50;
-                throwRate = throwRate /= difficulty;
-                //StartCoroutine(SpawnTarget());
-                playerController.playerRb.constraints = RigidbodyConstraints.None;
-                titleScreen.SetActive(false);
-                toolAssist.SetActive(true);
-                PlayRandomGSAudio();
-                startedd = true;
-                Debug.Log("Game started");
-                healtHbar.transform.position = new Vector3(1255, 710, 0);
-                startedTime = Time.time;
+                StartTheGame();
                 if (yeeTer != null)
                 {
                     // Set the throwcooldown variable to 0.1 seconds
@@ -297,6 +200,9 @@ public class GameManager : MonoBehaviour
                 pogHider.maxPogs = 15;
                 gameDiff = 1;
                 modeeE = 5;
+                break;
+            case 6:
+                //Set up for hidden mode
                 break;
             default:
                 Debug.LogError("Invalid difficulty level: " + difficulty);
@@ -354,7 +260,7 @@ public class GameManager : MonoBehaviour
             timer.text = "Score: " + (int)Scoree + "0";
 
         }
-        if(gameActive == false)
+        if(gameActive == false && gameWon == false)
         {
             healtHbar.SetActive(false);
         }
@@ -365,7 +271,7 @@ public class GameManager : MonoBehaviour
         if(modeeE == 1)
         {
             //score is x10
-            if (Scoree >= 300)
+            if (Scoree >= 3)
             {
                 GameOverWon();
                 Debug.Log("score over 3000");
@@ -400,12 +306,24 @@ public class GameManager : MonoBehaviour
         }
         if (modeeE == 5)
         {
+
             //score is x10
             if (Scoree >= 30000)
             {
                 GameOverWon();
                 Debug.Log("score over 300000");
             }
+        }
+        if(gameWon == true && gameActive == false)
+        {
+            Time.timeScale = 0;
+        }
+        else if(gameWon == false && gameActive == false && gameLost == false && pauseScreen.isPaused == false)
+        {
+            //work in progress code
+            //havent tested it yet but i imagine if change the timescale to something
+            //then pause and unpause, the timescale will be set back to 1
+            Time.timeScale = 1;
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -419,14 +337,32 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
+    private void StartTheGame()
+    {
+        playerController.isAlive = true;
+        gameActive = true;
+        modeTexttGameobject.SetActive(true);
+        timergameobject.SetActive(true);
+        stamina = 50;
+        //StartCoroutine(SpawnTarget());
+        playerController.playerRb.constraints = RigidbodyConstraints.None;
+        titleScreen.SetActive(false);
+        toolAssist.SetActive(true);
+        PlayRandomGSAudio();
+        startedd = true;
+        Debug.Log("Game started");
+        healtHbar.transform.position = new Vector3(1255, 710, 0);
+        startedTime = Time.time;
+    }
     public void GameOverWon()
     {
+
         Debug.Log("Won");
         gameOverWonText.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
         playerController.isAlive = false;
         gameActive = false;
+        gameWon = true;
     }
     public void GameOverLost()
     {
@@ -452,6 +388,7 @@ public class GameManager : MonoBehaviour
         startedd = false;
         Time.timeScale = 1;
         Debug.Log("Game Restarted");
+
     }
 
    // IEnumerator SpawnTarget()
