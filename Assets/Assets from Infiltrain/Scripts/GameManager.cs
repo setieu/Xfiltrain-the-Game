@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     private float throwRate = 45.0f;
     private int arrayRange;
     private int time = 0;
-    private float timePassed;
+    public float timePassed;
     private float startedTime;
     public bool startedd = false;
     public bool gameStarted = false;
