@@ -167,7 +167,7 @@ public class FollowPlayer : MonoBehaviour
                     {
                         // Flip the object 180 degrees about the y-axis
                         transform.rotation = Quaternion.Euler(50f, transform.rotation.eulerAngles.y + 180f, 0f);
-                        offsettwo = new Vector3(12, 20, 0);
+                        offsettwo = new Vector3(-12, 20, 0);
                         // Update the flag to reflect the current state of the object
                         isFlipped = 2;
                     }
@@ -175,7 +175,7 @@ public class FollowPlayer : MonoBehaviour
                     {
                         // Flip the object 180 degrees about the y-axis
                         transform.rotation = Quaternion.Euler(50f, transform.rotation.eulerAngles.y + 180f, 0f);
-                        offsettwo = new Vector3(-12, 20, 0);
+                        offsettwo = new Vector3(12, 20, 0);
                         // Update the flag to reflect the current state of the object
                         isFlipped = 1;
                     }

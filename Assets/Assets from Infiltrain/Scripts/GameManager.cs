@@ -309,7 +309,7 @@ public class GameManager : MonoBehaviour
         {
 
             //score is x10
-            if (Scoree >= 30000)
+            if (Scoree >= 1500)
             {
                 GameOverWon();
                 Debug.Log("score over 300000");
