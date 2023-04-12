@@ -12,28 +12,58 @@ public class FollowPlayer : MonoBehaviour
     public int isFlipped = 1; // Flag to check if object is already flipped
     private GameManager gameManager;
     public AudioSource audioSource;
-    public AudioClip audioClip;
-    public AudioClip secondAudioClip;
-    public AudioClip thirdAudioClip;
+    public AudioClip lagtrain;
+    public AudioClip gsc;
+    public AudioClip pillyman;
+    public AudioClip chill;
+    public AudioClip journey;
     // Start is called before the first frame update
     void Start()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         audioSource = GetComponent<AudioSource>();
-        audioSource.clip = audioClip;
+        audioSource.clip = journey;
         audioSource.loop = true;
         audioSource.Play();
         audioSource.volume = 1f;
-    
+        gameManager.modeeE = 7;
 
     }
      void Update()
     {
-        if(gameManager.modeeE == 4)
+        if (gameManager.modeeE == 0)
+        {
+            audioSource.volume = .4f;
+            audioSource.Pause();
+            audioSource.clip = chill;
+            audioSource.Play();
+        }
+        if (gameManager.modeeE == 1)
+        {
+            audioSource.volume = .4f;
+            audioSource.Pause();
+            audioSource.clip = lagtrain;
+            audioSource.Play();
+        }
+        if (gameManager.modeeE == 2)
+        {
+            audioSource.volume = .4f;
+            audioSource.Pause();
+            audioSource.clip = lagtrain;
+            audioSource.Play();
+        }
+        if (gameManager.modeeE == 3)
+        {
+            audioSource.volume = .4f;
+            audioSource.Pause();
+            audioSource.clip = lagtrain;
+            audioSource.Play();
+        }
+        if (gameManager.modeeE == 4)
         {
             audioSource.Pause();
-            audioSource.clip = secondAudioClip;
+            audioSource.clip = gsc;
             audioSource.Play();
             //Debug.Log("secondaudio");
         }
@@ -41,10 +71,16 @@ public class FollowPlayer : MonoBehaviour
         {
             audioSource.volume = .4f;
             audioSource.Pause();
-            audioSource.clip = thirdAudioClip;
+            audioSource.clip = pillyman;
             audioSource.Play();
         }
-
+        if (gameManager.modeeE == 7)
+        {
+            audioSource.volume = .4f;
+            audioSource.Pause();
+            audioSource.clip = journey;
+            audioSource.Play();
+        }
     }
     // Update is called once per frame
     void LateUpdate()
