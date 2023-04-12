@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
             case 0:
                 // Set up for peaceful mode
                 arrayRange = difficulty;
-                modeText.text = "Sandbox";
+                modeText.text = "Peaceful";
                 StartTheGame();
                 //Yeeter.throwCD
                 if (yeeTer != null)
@@ -188,7 +188,7 @@ public class GameManager : MonoBehaviour
             case 5:
                 //set up for ??? mode
                 arrayRange = difficulty;
-                modeText.text = "???";
+                modeText.text = "Bossfight";
                 StartTheGame();
                 if (yeeTer != null)
                 {
