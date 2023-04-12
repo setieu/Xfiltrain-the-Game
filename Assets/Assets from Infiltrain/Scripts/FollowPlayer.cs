@@ -38,28 +38,28 @@ public class FollowPlayer : MonoBehaviour
     {
         if (gameManager.modeeE == 0)
         {
-            audioSource.volume = .4f;
+            audioSource.volume = 1.0f;
             audioSource.Pause();
             audioSource.clip = chill;
             audioSource.Play();
         }
         if (gameManager.modeeE == 1)
         {
-            audioSource.volume = .4f;
+            audioSource.volume = 1.0f;
             audioSource.Pause();
             audioSource.clip = lagtrain;
             audioSource.Play();
         }
         if (gameManager.modeeE == 2)
         {
-            audioSource.volume = .4f;
+            audioSource.volume = 1.0f;
             audioSource.Pause();
             audioSource.clip = lagtrain;
             audioSource.Play();
         }
         if (gameManager.modeeE == 3)
         {
-            audioSource.volume = .4f;
+            audioSource.volume = 1.0f;
             audioSource.Pause();
             audioSource.clip = lagtrain;
             audioSource.Play();
@@ -80,7 +80,7 @@ public class FollowPlayer : MonoBehaviour
         }
         if (gameManager.modeeE == 7)
         {
-            audioSource.volume = .4f;
+            audioSource.volume = 1.0f;
             audioSource.Pause();
             audioSource.clip = journey;
             audioSource.Play();
