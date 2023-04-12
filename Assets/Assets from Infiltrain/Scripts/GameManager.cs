@@ -275,7 +275,7 @@ public class GameManager : MonoBehaviour
             if (Scoree >= 300)
             {
                 GameOverWon();
-                Debug.Log("score over 3000");
+
             }
         }
         if (modeeE == 2)
@@ -284,7 +284,7 @@ public class GameManager : MonoBehaviour
             if (Scoree >= 1000)
             {
                 GameOverWon();
-                Debug.Log("score over 10000");
+
             }
         }
         if (modeeE == 3)
@@ -293,7 +293,7 @@ public class GameManager : MonoBehaviour
             if (Scoree >= 1000)
             {
                 GameOverWon();
-                Debug.Log("score over 10000");
+
             }
         }
         if (modeeE == 4)
@@ -302,17 +302,17 @@ public class GameManager : MonoBehaviour
             if (Scoree >= 15000)
             {
                 GameOverWon();
-                Debug.Log("score over 150000");
+
             }
         }
         if (modeeE == 5)
         {
 
             //score is x10
-            if (Scoree >= 30000)
+            if (Scoree >= 1500)
             {
                 GameOverWon();
-                Debug.Log("score over 300000");
+
             }
         }
         if(gameWon == true && gameActive == false)
@@ -358,7 +358,7 @@ public class GameManager : MonoBehaviour
     public void GameOverWon()
     {
 
-        Debug.Log("Won");
+
         gameOverWonText.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
         playerController.isAlive = false;
