@@ -84,6 +84,7 @@ public class RocketProjectile : MonoBehaviour
 
                 playerController.particle.Play();
                 player.transform.position = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z + speed * 250);
+                explosions.audioSource.volume = 1f;
                 PlayRandomBoomAudio();
                 Destroy(gameObject);
                 playerController.isOnDead = true;
@@ -93,8 +94,9 @@ public class RocketProjectile : MonoBehaviour
         else if (collision.gameObject.CompareTag("Projectile"))
             {
                 Destroy(gameObject);
-                bossSounds.audioSource1.Play();
-            }        
+                explosions.audioSource.volume = 0.3f;
+                PlayRandomBoomAudio();
+        }        
     }
 
     void PlayRandomLaunchAudio()

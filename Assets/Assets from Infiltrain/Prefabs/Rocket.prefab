@@ -118,16 +118,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particle: {fileID: 3712052172993086565}
   player: {fileID: 0}
-  explosion: {fileID: 0}
+  explosion: {fileID: 8300000, guid: 07cee6b620e57401494860bb1457e8bb, type: 3}
   audioSource: {fileID: 3546295043528819688}
-  audioSource1: {fileID: 8142115984566147157}
   LaunchAudio:
   - {fileID: 8300000, guid: f30755e7a268d4ff1959ddd635c5a48e, type: 3}
   - {fileID: 8300000, guid: f30755e7a268d4ff1959ddd635c5a48e, type: 3}
   launchS: 0
-  BoomAudio:
-  - {fileID: 8300000, guid: 07cee6b620e57401494860bb1457e8bb, type: 3}
-  - {fileID: 8300000, guid: 07cee6b620e57401494860bb1457e8bb, type: 3}
+  boomed: 0
+  explosions: {fileID: 0}
+  bossSounds: {fileID: 0}
 --- !u!82 &3546295043528819688
 AudioSource:
   m_ObjectHideFlags: 0

@@ -5,36 +5,65 @@ using UnityEngine;
 public class FollowPlayer : MonoBehaviour
 {
     public GameObject player;
-    private Vector3 offsetX = new Vector3(8, 16, 0);
-    private Vector3 offsettwo = new Vector3(12, 20, 0);
+    private Vector3 offsetX = new Vector3(-8, 16, 0);
+    private Vector3 offsettwo = new Vector3(-12, 20, 0);
     private PlayerController playerController;
     public float rotationSpeed = 2500;
-    public int isFlipped = 2; // Flag to check if object is already flipped
+    public int isFlipped = 1; // Flag to check if object is already flipped
     private GameManager gameManager;
     public AudioSource audioSource;
-    public AudioClip audioClip;
-    public AudioClip secondAudioClip;
-    public AudioClip thirdAudioClip;
-    public bool rotateonce = true;
+    public AudioClip lagtrain;
+    public AudioClip gsc;
+    public AudioClip pillyman;
+    public AudioClip chill;
+    public AudioClip journey;
     // Start is called before the first frame update
     void Start()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         audioSource = GetComponent<AudioSource>();
-        audioSource.clip = audioClip;
+        audioSource.clip = journey;
         audioSource.loop = true;
         audioSource.Play();
         audioSource.volume = 1f;
-    
+        gameManager.modeeE = 7;
 
     }
      void Update()
     {
-        if(gameManager.modeeE == 4)
+        if (gameManager.modeeE == 0)
+        {
+            audioSource.volume = .4f;
+            audioSource.Pause();
+            audioSource.clip = chill;
+            audioSource.Play();
+        }
+        if (gameManager.modeeE == 1)
+        {
+            audioSource.volume = .4f;
+            audioSource.Pause();
+            audioSource.clip = lagtrain;
+            audioSource.Play();
+        }
+        if (gameManager.modeeE == 2)
+        {
+            audioSource.volume = .4f;
+            audioSource.Pause();
+            audioSource.clip = lagtrain;
+            audioSource.Play();
+        }
+        if (gameManager.modeeE == 3)
+        {
+            audioSource.volume = .4f;
+            audioSource.Pause();
+            audioSource.clip = lagtrain;
+            audioSource.Play();
+        }
+        if (gameManager.modeeE == 4)
         {
             audioSource.Pause();
-            audioSource.clip = secondAudioClip;
+            audioSource.clip = gsc;
             audioSource.Play();
             //Debug.Log("secondaudio");
         }
@@ -42,10 +71,16 @@ public class FollowPlayer : MonoBehaviour
         {
             audioSource.volume = .4f;
             audioSource.Pause();
-            audioSource.clip = thirdAudioClip;
+            audioSource.clip = pillyman;
             audioSource.Play();
         }
-
+        if (gameManager.modeeE == 7)
+        {
+            audioSource.volume = .4f;
+            audioSource.Pause();
+            audioSource.clip = journey;
+            audioSource.Play();
+        }
     }
     // Update is called once per frame
     void LateUpdate()
@@ -60,12 +95,6 @@ public class FollowPlayer : MonoBehaviour
                 {
                     if (playerController.isOnDead == false)
                     {
-                      if(rotateonce)
-                        {
-                            transform.rotation = Quaternion.Euler(50f, transform.rotation.eulerAngles.y + 180f, 0f);
-                            rotateonce = false;
-                        }
-                        
                         transform.position = player.transform.position + offsetX;
                     }
                 }
@@ -80,12 +109,6 @@ public class FollowPlayer : MonoBehaviour
                 {
                     if (playerController.isOnDead == false)
                     {
-                        if (rotateonce)
-                        {
-                            transform.rotation = Quaternion.Euler(50f, transform.rotation.eulerAngles.y + 180f, 0f);
-                            rotateonce = false;
-                        }
-
                         transform.position = player.transform.position + offsettwo;
                     }
                 }
@@ -106,7 +129,7 @@ public class FollowPlayer : MonoBehaviour
                     {
                         // Flip the object 180 degrees about the y-axis
                         transform.rotation = Quaternion.Euler(50f, transform.rotation.eulerAngles.y + 180f, 0f);
-                        offsetX = new Vector3(-8, 16, 0);
+                        offsetX = new Vector3(8, 16, 0);
                         // Update the flag to reflect the current state of the object
                         isFlipped = 2;
                     }
@@ -114,7 +137,7 @@ public class FollowPlayer : MonoBehaviour
                     {
                         // Flip the object 180 degrees about the y-axis
                         transform.rotation = Quaternion.Euler(50f, transform.rotation.eulerAngles.y + 180f, 0f);
-                        offsetX = new Vector3(8, 16, 0);
+                        offsetX = new Vector3(-8, 16, 0);
                         // Update the flag to reflect the current state of the object
                         isFlipped = 1;
                     }
