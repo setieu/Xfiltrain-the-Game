@@ -174,11 +174,11 @@ public class PlayerController : MonoBehaviour
             // Normalize the movement direction vector
             if (followPlayer.isFlipped == 1)
             {
-                 movementDirection = movementDirection.normalized;
+                 movementDirection = -movementDirection.normalized;
             }
             else if (followPlayer.isFlipped == 2)
             {
-                movementDirection = -movementDirection.normalized;
+                movementDirection = movementDirection.normalized;
             }
 
 
