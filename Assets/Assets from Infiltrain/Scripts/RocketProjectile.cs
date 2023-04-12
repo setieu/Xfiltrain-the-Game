@@ -22,9 +22,11 @@ public class RocketProjectile : MonoBehaviour
 
     private PauseScreen pauseScreen;
     private bool spawnPosPositive;
+    private GameObject particleS;
     // Start is called before the first frame update
     void Start()
     {
+        particleS = GameObject.FindGameObjectWithTag("Particles");
         Vector3 direction = (new Vector3(0f, 0f, 0f) - transform.position).normalized;
         if (direction.z > 0)
         {
@@ -93,6 +95,9 @@ public class RocketProjectile : MonoBehaviour
             }
         else if (collision.gameObject.CompareTag("Projectile"))
             {
+                particleS.transform.position = transform.position;
+                Particles particles = GameObject.FindGameObjectWithTag("Particles").GetComponent<Particles>();
+                particles.PlayRandomParticle();
                 Destroy(gameObject);
                 explosions.audioSource.volume = 0.3f;
                 PlayRandomBoomAudio();

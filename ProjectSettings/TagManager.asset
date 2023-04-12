@@ -13,6 +13,7 @@ TagManager:
   - Train
   - Rocket
   - Explosion
+  - Particles
   layers:
   - Default
   - TransparentFX
