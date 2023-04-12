@@ -19,6 +19,8 @@ public class Projectile : MonoBehaviour
     public AudioClip destroySound;
     private AudioSource audioSource; // audio source component
     private bool soundonce = true;
+    public List<ParticleSystem> particleSystems;
+    public ParticleSystem particle;
 
     private PlayerController playerController;
 
@@ -29,7 +31,7 @@ public class Projectile : MonoBehaviour
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         player = GameObject.Find("Player");
-
+        particle.Stop();
         projectileRb = GetComponent<Rigidbody>();
 
        // projectileRb.AddForce(RandomLeftForce(), ForceMode.Impulse);
@@ -102,6 +104,7 @@ public class Projectile : MonoBehaviour
             }
       
         }
+        
 
       //  if(collision.gameObject.CompareTag("Ground") && collision.gameObject.CompareTag("Player"))
        // {
@@ -109,8 +112,13 @@ public class Projectile : MonoBehaviour
        // }
 
     }
-    
 
+    public void PlayRandomParticle()
+    {
+        int randomIndex = Random.Range(0, particleSystems.Count);
+        particle = particleSystems[randomIndex];
+        particle.Play();
+    }
 
 
 }
