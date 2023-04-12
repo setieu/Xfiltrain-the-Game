@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
             case 0:
                 // Set up for peaceful mode
                 arrayRange = difficulty;
-                modeText.text = "Peaceful";
+                modeText.text = "Peaceful - Sandbox";
                 StartTheGame();
                 //Yeeter.throwCD
                 if (yeeTer != null)
@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
             case 1:
                 // Set up for easy mode
                 arrayRange = difficulty;
-                modeText.text = "Easy";
+                modeText.text = "Easy - Get 3000 points";
                 StartTheGame();
                 pogHider.waveDelay = 6f;
                 if (yeeTer != null)
@@ -138,7 +138,7 @@ public class GameManager : MonoBehaviour
             case 2:
                 // Set up for hard mode
                 arrayRange = difficulty;
-                modeText.text = "Hard";
+                modeText.text = "Hard - Get 10000 points";
                 StartTheGame();
                 if (yeeTer != null)
                 {
@@ -155,7 +155,7 @@ public class GameManager : MonoBehaviour
             case 3:
                 // Set up for normal mode
                 arrayRange = difficulty;
-                modeText.text = "Normal";
+                modeText.text = "Normal - Get 10000 points";
                 StartTheGame();
                 if (yeeTer != null)
                 {
@@ -171,7 +171,7 @@ public class GameManager : MonoBehaviour
             case 4:
                 //set up for anarchy mode
                 arrayRange = difficulty;
-                modeText.text = "Anarchy";
+                modeText.text = "Anarchy - Play for score";
                 StartTheGame();
                 if (yeeTer != null)
                 {
@@ -188,7 +188,7 @@ public class GameManager : MonoBehaviour
             case 5:
                 //set up for ??? mode
                 arrayRange = difficulty;
-                modeText.text = "Bossfight";
+                modeText.text = "Bossfight - Objective: Survive";
                 StartTheGame();
                 if (yeeTer != null)
                 {
