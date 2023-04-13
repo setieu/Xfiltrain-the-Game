@@ -7,9 +7,9 @@ using UnityEngine.UI;
 
 public class Bossman : MonoBehaviour
 {
-    public Image healthBar;
-
-
+    private Image healthBar;
+    public TextMeshProUGUI healthtext;
+    public float healthnumtext;
 
 
     public int numCollisions = 0;
