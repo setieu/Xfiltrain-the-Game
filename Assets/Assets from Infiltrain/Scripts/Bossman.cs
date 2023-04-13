@@ -73,7 +73,7 @@ public class Bossman : MonoBehaviour
         }
         
         //instantiate object in front of this one every few secondeese
-        if (numCollisions > health)
+        if (numCollisions >= health)
         {
             Rigidbody rb = GetComponent<Rigidbody>();
             if (bossD == false && rb != null)

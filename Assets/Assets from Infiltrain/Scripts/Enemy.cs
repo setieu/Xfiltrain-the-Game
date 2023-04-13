@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour
         }
         else if (gameManager.modeeE == 5)
         {
-            xspeed = 0.1f;
+            xspeed = 0.25f;
         }
             //Destroy enemy when out of bounds
             if (transform.position.x < leftBound && gameObject.CompareTag("Enemy"))

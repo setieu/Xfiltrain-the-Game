@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
     public int bossdeaths = 0;
     public int gameDiff;
 
-
+    public GameObject BossHpBar;
     // Start is called before the first frame update
     void Start()
     {
@@ -171,7 +171,7 @@ public class GameManager : MonoBehaviour
             case 4:
                 //set up for anarchy mode
                 arrayRange = difficulty;
-                modeText.text = "Anarchy - Play for score";
+                modeText.text = "Anarchy - Objective: Survive";
                 StartTheGame();
                 if (yeeTer != null)
                 {
@@ -188,7 +188,7 @@ public class GameManager : MonoBehaviour
             case 5:
                 //set up for ??? mode
                 arrayRange = difficulty;
-                modeText.text = "Bossfight - Objective: Survive";
+                modeText.text = "Bossfight - Get 15000 points";
                 StartTheGame();
                 if (yeeTer != null)
                 {
@@ -198,7 +198,7 @@ public class GameManager : MonoBehaviour
                 }
 
                 pogHider.waveDelay = 3.5f;
-                pogHider.maxPogs = 15;
+                pogHider.maxPogs = 5;
                 gameDiff = 1;
                 modeeE = 5;
                 break;
@@ -237,12 +237,14 @@ public class GameManager : MonoBehaviour
                 bosshP = bossMan.bosShp;
                 Debug.Log(bossMan.bosShp);
                 bossHPText.text = "Boss HP: " + bosshP.ToString();
+                BossHpBar.SetActive(true);
             }
 
 
             if(bossObject == null)
             {
                 bosshpobject.SetActive(false);
+                BossHpBar.SetActive(false);
             }
         }
         

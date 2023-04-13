@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class BopsHP : MonoBehaviour
 {
     public Image healthBar;
-    public float bosHP = 10f;
+    public float bosHP = 70f;
     public TextMeshProUGUI health;
-    public float HP = 10f;
+    public float HP = 70f;
     private Bossman bossMan;
     private GameManager gameManager;
     private GameObject bossObject;
@@ -26,8 +26,8 @@ public class BopsHP : MonoBehaviour
     void Update()
     {
 
-        healthBar.fillAmount = HP / bosHP;
-        health.text = "Train Health: " + HP + "/" + bosHP;
+        healthBar.fillAmount = bosHP / HP;
+        health.text = "Boss HP: " + bosHP;
 
         //if (gameManager.timePassed > 3.41f && gameManager.modeeE == 5)
         {
@@ -35,7 +35,7 @@ public class BopsHP : MonoBehaviour
             if (bossObject != null)
             {
                 bossMan = GameObject.Find("Ridehogger(Clone)").GetComponent<Bossman>();
-                //bosHP = Bossman.bosShp;
+                bosHP = bossMan.bosShp;
             }
         }
         
