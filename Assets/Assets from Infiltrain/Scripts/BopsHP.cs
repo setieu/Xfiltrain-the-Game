@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class BopsHP : MonoBehaviour
 {
-    private Image healthBar;
+    public Image healthBar;
     public float bosHP = 10f;
     public TextMeshProUGUI health;
     public float HP = 10f;
@@ -17,7 +17,7 @@ public class BopsHP : MonoBehaviour
     void Start()
     {
         
-        healthBar = GetComponent<Image>();
+        healthBar = GameObject.Find("BossHealthBar").GetComponent<Image>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
     }
@@ -35,8 +35,9 @@ public class BopsHP : MonoBehaviour
             if (bossObject != null)
             {
                 bossMan = GameObject.Find("Ridehogger(Clone)").GetComponent<Bossman>();
+                //bosHP = Bossman.bosShp;
             }
         }
-        //bosHP = Bossman.bosShp;
+        
     }
 }

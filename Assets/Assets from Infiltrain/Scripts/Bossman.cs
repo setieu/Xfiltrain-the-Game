@@ -1,9 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Bossman : MonoBehaviour
 {
+    public Image healthBar;
+
+
+
+
     public int numCollisions = 0;
     private float minUpSpeed = 2;
     private float maxUpSpeed = 3;
@@ -12,7 +20,7 @@ public class Bossman : MonoBehaviour
     private float maxTorque = 1;
     public float forcemultiplier = 20f;
     public bool bossD = false;
-    private float health = 70;
+    public float health = 70;
     public bool klum = false;
     public int joe = 0;
     private GameManager gameManager;
