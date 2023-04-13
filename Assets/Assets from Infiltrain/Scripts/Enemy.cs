@@ -53,8 +53,28 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Destroy enemy when out of bounds
-        if (transform.position.x < leftBound && gameObject.CompareTag("Enemy"))
+        if(gameManager.modeeE == 1)
+        {
+            xspeed = 0.08f;
+        }
+        else if(gameManager.modeeE == 2)
+        {
+            xspeed = 0.15f;
+        }
+        else if (gameManager.modeeE ==  3)
+        {
+            xspeed = 0.1f;
+        }
+        else if (gameManager.modeeE == 4)
+        {
+            xspeed = 0.2f;
+        }
+        else if (gameManager.modeeE == 5)
+        {
+            xspeed = 0.1f;
+        }
+            //Destroy enemy when out of bounds
+            if (transform.position.x < leftBound && gameObject.CompareTag("Enemy"))
         {
             Destroy(gameObject);
         }
