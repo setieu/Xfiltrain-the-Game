@@ -269,7 +269,22 @@ public class GameManager : MonoBehaviour
         {
             healtHbar.SetActive(false);
         }
-        if(modeeE == 1)
+
+        if(gameWon == true && gameActive == false)
+        {
+            Time.timeScale = 0;
+        }
+        else if(gameWon == false && gameActive == false && gameLost == false && pauseScreen.isPaused == false)
+        {
+            //work in progress code
+            //havent tested it yet but i imagine if change the timescale to something
+            //then pause and unpause, the timescale will be set back to 1
+            Time.timeScale = 1;
+        }
+    }
+    public void LateUpdate()
+    {
+        if (modeeE == 1)
         {
             //score is x10
             if (Scoree >= 300)
@@ -314,17 +329,6 @@ public class GameManager : MonoBehaviour
                 GameOverWon();
 
             }
-        }
-        if(gameWon == true && gameActive == false)
-        {
-            Time.timeScale = 0;
-        }
-        else if(gameWon == false && gameActive == false && gameLost == false && pauseScreen.isPaused == false)
-        {
-            //work in progress code
-            //havent tested it yet but i imagine if change the timescale to something
-            //then pause and unpause, the timescale will be set back to 1
-            Time.timeScale = 1;
         }
     }
     private void OnCollisionEnter(Collision collision)
