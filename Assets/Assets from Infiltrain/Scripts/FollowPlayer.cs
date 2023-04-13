@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class FollowPlayer : MonoBehaviour
 {
@@ -21,6 +25,8 @@ public class FollowPlayer : MonoBehaviour
     public AudioClip chill;
     public AudioClip journey;
     public bool rotateonce = true;
+    private AudioListener audioListener;
+    public Text statusText;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,10 +38,17 @@ public class FollowPlayer : MonoBehaviour
         audioSource.Play();
         audioSource.volume = 1f;
         gameManager.modeeE = 7;
-
+        audioListener = GetComponent<AudioListener>();
+        UpdateStatusText();
     }
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            audioListener.enabled = !audioListener.enabled;
+            UpdateStatusText();
+        }
+
         if (gameManager.modeeE == 0)
         {
             audioSource.volume = 1.0f;
@@ -186,6 +199,17 @@ public class FollowPlayer : MonoBehaviour
         }
 
 
+    }
+    void UpdateStatusText()
+    {
+        if (audioListener.enabled)
+        {
+            statusText.text = "MUSIC: ON";
+        }
+        else
+        {
+            statusText.text = "MUSIC: OFF";
+        }
     }
 }
 
