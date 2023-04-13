@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5056445335558395398}
   m_Layer: 7
   m_Name: Poghider
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -185,7 +185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 969368498166980370, guid: 05706e801febf4d0cb3dc326c47319c6, type: 3}
       propertyPath: m_Constraints
-      value: 4
+      value: 116
       objectReference: {fileID: 0}
     - target: {fileID: 4568559826911036913, guid: 05706e801febf4d0cb3dc326c47319c6, type: 3}
       propertyPath: m_Layer

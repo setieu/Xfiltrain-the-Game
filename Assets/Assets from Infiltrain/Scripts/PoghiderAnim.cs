@@ -31,7 +31,10 @@ public class PoghiderAnim : MonoBehaviour
             transform.position = new Vector3(transform.position.x, newY, transform.position.z);
         }
         
-        
+        if(hogrider.transform.position.x < -100)
+        {
+            Destroy(gameObject);
+        }
       
     }
 

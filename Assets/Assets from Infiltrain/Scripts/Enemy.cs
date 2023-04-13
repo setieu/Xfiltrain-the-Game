@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     private float minLeftSpeed = 32;
     private float maxLeftSpeed = 38;
     private float maxTorque = 50;
-    private float leftBound = -300;
+    private float leftBound = -100;
     public float forcemultiplier;
     public List<AudioClip> DeadAudio; // list of audio clips to choose from for hogrider dying
     public int numCollisions = 0;
