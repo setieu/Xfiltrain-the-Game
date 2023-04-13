@@ -99,6 +99,7 @@ public class RocketProjectile : MonoBehaviour
                 Particles particles = GameObject.FindGameObjectWithTag("Particles").GetComponent<Particles>();
                 particles.PlayRandomParticle();
                 Destroy(gameObject);
+                Destroy(collision.gameObject);
                 explosions.audioSource.volume = 0.3f;
                 PlayRandomBoomAudio();
         }        
