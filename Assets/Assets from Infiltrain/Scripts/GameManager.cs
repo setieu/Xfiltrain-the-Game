@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
     public int modeeE;
     public bool gameLost = false;
     public AudioClip winn;
+    public GameObject tanks;
+    public GameObject rogueTrain;
+    [SerializeField] private Light sunLight;
 
 
     public List<GameObject> targetPrefabs;
@@ -205,6 +208,9 @@ public class GameManager : MonoBehaviour
                 break;
             case 6:
                 //Set up for extra mode
+                Destroy(tanks);
+                sunLight.color = Color.red;
+                rogueTrain.SetActive(true);
                 arrayRange = difficulty;
                 modeText.text = "Extra Mode";
                 StartTheGame();
@@ -216,7 +222,7 @@ public class GameManager : MonoBehaviour
                 }
 
                 pogHider.waveDelay = 1.0f;
-                pogHider.maxPogs = 2;
+                pogHider.maxPogs = 0; //fix
                 gameDiff = 1;
                 modeeE = 6;
                 break;

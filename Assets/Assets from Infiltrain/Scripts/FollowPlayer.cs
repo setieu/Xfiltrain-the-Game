@@ -94,7 +94,7 @@ public class FollowPlayer : MonoBehaviour
             audioSource.clip = pillyman;
             audioSource.Play();
         }
-        if (gameManager.modeeE == 7)
+        if (gameManager.modeeE == 7) //main menu
         {
             audioSource.volume = 1.0f;
             audioSource.Pause();
