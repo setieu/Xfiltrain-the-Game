@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public float cooldown;
     public int modeeE;
     public bool gameLost = false;
+    public AudioClip winn;
 
 
     public List<GameObject> targetPrefabs;
@@ -203,8 +204,43 @@ public class GameManager : MonoBehaviour
                 modeeE = 5;
                 break;
             case 6:
-                //Set up for hidden mode
+                //Set up for extra mode
+                arrayRange = difficulty;
+                modeText.text = "Extra Mode";
+                StartTheGame();
+                if (yeeTer != null)
+                {
+                    // Set the throwcooldown variable to 0.1 seconds
+                    yeeTer.canSpawn = true;
+                    yeeTer.throwCD = 0.7f;
+                }
+
+                pogHider.waveDelay = 1.0f;
+                pogHider.maxPogs = 2;
+                gameDiff = 1;
+                modeeE = 6;
                 break;
+            case 8:
+                //Set up for hidden mode
+                arrayRange = difficulty;
+                modeText.text = "Secret Mode";
+                StartTheGame();
+                if (yeeTer != null)
+                {
+                    // Set the throwcooldown variable to 0.1 seconds
+                    yeeTer.canSpawn = true;
+                    yeeTer.throwCD = 0.7f;
+                }
+
+                pogHider.waveDelay = 1.0f;
+                pogHider.maxPogs = 2;
+                gameDiff = 1;
+                modeeE = 8;
+                break;
+
+
+
+
             default:
                 Debug.LogError("Invalid difficulty level: " + difficulty);
                 break;
@@ -292,7 +328,6 @@ public class GameManager : MonoBehaviour
             if (Scoree >= 300)
             {
                 GameOverWon();
-
             }
         }
         if (modeeE == 2)
@@ -364,7 +399,9 @@ public class GameManager : MonoBehaviour
     public void GameOverWon()
     {
 
-
+        audioSource.Pause();
+        audioSource.clip = winn;
+        audioSource.Play();
         gameOverWonText.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
         playerController.isAlive = false;
