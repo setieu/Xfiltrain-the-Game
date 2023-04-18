@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour
         }
         else if (gameManager.modeeE == 4)
         {
-            xspeed = 0.2f;
+            xspeed = 1f;
         }
         else if (gameManager.modeeE == 5)
         {
