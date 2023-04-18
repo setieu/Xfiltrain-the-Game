@@ -6,16 +6,18 @@ public class TranslateOnX : MonoBehaviour
 {
     public bool heet = true; // Set to true to enable translation
     private Rigidbody enemyRb;
-
+    public bool isRunning = false;
 
     public float speed = 1.0f; // Speed of translation
 
 
     private IEnumerator SetHeetFalseFor3Seconds()
     {
+        isRunning = true;
         heet = false;
         yield return new WaitForSeconds(3f);
         heet = true;
+        isRunning = false;
     }
 
 
@@ -31,8 +33,9 @@ public class TranslateOnX : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Projectile"))
+        if (collision.gameObject.CompareTag("Projectile") && isRunning == false)
         {
+
             StartCoroutine(SetHeetFalseFor3Seconds());
         }
     }
