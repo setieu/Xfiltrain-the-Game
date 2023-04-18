@@ -301,7 +301,7 @@ public class GameManager : MonoBehaviour
         {
             healtHbar.SetActive(true);
             timePassed = Time.time - startedTime;
-            Scoree = (int)timePassed + hogdeaths*10 + bossdeaths*1000;
+            Scoree = (int)timePassed + hogdeaths*10 + bossdeaths*1250;
             timer.text = "Score: " + (int)Scoree + "0";
 
         }
