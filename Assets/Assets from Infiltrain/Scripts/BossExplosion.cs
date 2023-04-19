@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BossExplosion : MonoBehaviour
 {
-    public bool boom = false;
     public AudioSource audioSource;
     public List<AudioClip> BoomAudio; // list of audio clips to choose from for launch
     public ParticleSystem particle;
