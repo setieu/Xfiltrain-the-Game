@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class MoveBackOnCollision : MonoBehaviour
 {
+    private float minUpSpeed = 10;
+    private float maxUpSpeed = 16;
+    private float minLeftSpeed = 32;
+    private float maxLeftSpeed = 38;
+    private float maxTorque = 1500;
     private float leftBound = -100;
+    public float forcemultiplier;
     public float speed = 100f;
     public int detachD = 0;
     public int HPP = 100;
@@ -58,12 +64,22 @@ public class MoveBackOnCollision : MonoBehaviour
 
         if (other.gameObject.CompareTag("Rogue"))
         {
-            Debug.Log("rogue");
-            PlayRandomCrashAudio();
             gameObject.AddComponent<Rigidbody>().mass = 1;
             rb = gameObject.GetComponent<Rigidbody>();
-            rb.AddForce(Vector3.up * 1000f, ForceMode.Impulse);
-            StartCoroutine(MoveBack());
+            Debug.Log("rogue");
+            PlayRandomCrashAudio();
+            
+            rb.AddForce(Vector3.up * 1050f, ForceMode.Impulse);
+            rb.AddForce(Vector3.left * 1050f, ForceMode.Impulse);
+            //rb.AddForce(Vector3.forward * 350f, ForceMode.Impulse);
+            //transform.Rotate(Vector3.right * Time.deltaTime * 30f);
+            rb.AddForce(RandomLeftForce(), ForceMode.Impulse);
+            rb.AddForce(Vector3.up * 1050f, ForceMode.Impulse);
+            //rb.AddForce(Vector3.left * 50f, ForceMode.Impulse);
+            rb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
+            //yield return new WaitForSeconds(3f); FIX THIS
+
+            //StartCoroutine(MoveBack());
         }
 
     }
@@ -94,6 +110,20 @@ public class MoveBackOnCollision : MonoBehaviour
         int randomIndex = Random.Range(0, Crash.Count); // choose a random index within the list
         audioSource.clip = Crash[randomIndex]; // set the audio source's clip to the chosen audio clip
         audioSource.Play(); // play the audio
+    }
+
+
+    Vector3 RandomLeftForce()
+    {
+        return Vector3.left * Random.Range(minLeftSpeed, maxLeftSpeed) * forcemultiplier;
+    }
+    Vector3 RandomUpForce()
+    {
+        return Vector3.up * Random.Range(minUpSpeed, maxUpSpeed) * forcemultiplier;
+    }
+    float RandomTorque()
+    {
+        return Random.Range(-maxTorque, maxTorque) * forcemultiplier;
     }
 }
 

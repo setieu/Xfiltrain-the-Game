@@ -7,6 +7,7 @@ public class TranslateOnX : MonoBehaviour
     public bool heet = true; // Set to true to enable translation
     private Rigidbody enemyRb;
     public bool isRunning = false;
+    public bool nall = true;
 
     public float speed = 1.0f; // Speed of translation
 
@@ -24,7 +25,7 @@ public class TranslateOnX : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (heet)
+        if (heet && nall)
         {
             transform.Translate(Vector3.back * speed * Time.deltaTime);
         }
@@ -38,5 +39,12 @@ public class TranslateOnX : MonoBehaviour
 
             StartCoroutine(SetHeetFalseFor3Seconds());
         }
+
+        if (collision.gameObject.CompareTag("Train"))
+        {
+
+            nall = false;
+        }
     }
+
 }
