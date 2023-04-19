@@ -8,6 +8,7 @@ public class MoveBackOnCollision : MonoBehaviour
     public float speed = 100f;
     public int detachD = 0;
     public int HPP = 100;
+    private Rigidbody rb;
     private HealthBar healthBar;
     private HealthBar healthText;
     private AudioSource audioSource; // audio source component
@@ -59,6 +60,9 @@ public class MoveBackOnCollision : MonoBehaviour
         {
             Debug.Log("rogue");
             PlayRandomCrashAudio();
+            gameObject.AddComponent<Rigidbody>().mass = 1;
+            rb = gameObject.GetComponent<Rigidbody>();
+            rb.AddForce(Vector3.up * 1000f, ForceMode.Impulse);
             StartCoroutine(MoveBack());
         }
 
