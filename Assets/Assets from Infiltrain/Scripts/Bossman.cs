@@ -71,7 +71,7 @@ public class Bossman : MonoBehaviour
         {
             spawnPosPositive = false;
         }
-        health = 5;
+        health = 70;
     }
 
     // Update is called once per frame
