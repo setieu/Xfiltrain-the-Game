@@ -67,11 +67,17 @@ public class Enemy : MonoBehaviour
         }
         else if (gameManager.modeeE == 4)
         {
-            xspeed = 1f;
+            xspeed = 0.3f;
+          
         }
         else if (gameManager.modeeE == 5)
         {
             xspeed = 0.25f;
+        }
+        else if(gameManager.modeeE == 8)
+        {
+            xspeed = 1f;
+            zspeed = 1f * xspeed;
         }
             //Destroy enemy when out of bounds
             if (transform.position.x < leftBound && gameObject.CompareTag("Enemy"))
