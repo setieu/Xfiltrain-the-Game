@@ -20,7 +20,7 @@ public class Bossman : MonoBehaviour
     private float maxTorque = 1;
     public float forcemultiplier = 20f;
     public bool bossD = false;
-    public float health = 70;
+    public float health;
     public bool klum = false;
     public int joe = 0;
     private GameManager gameManager;
@@ -36,6 +36,8 @@ public class Bossman : MonoBehaviour
     private BossSounds bossSounds;
     public List<ParticleSystem> particleSystems;
     public ParticleSystem particle;
+
+    public GameObject explosion;
 
     public float bosShp;
     // Start is called before the first frame update
@@ -60,6 +62,7 @@ public class Bossman : MonoBehaviour
         {
             spawnPosPositive = false;
         }
+        health = 5;
     }
 
     // Update is called once per frame
