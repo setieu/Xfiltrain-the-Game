@@ -9,7 +9,7 @@ public class BopsHP : MonoBehaviour
     public Image healthBar;
     public float bosHP = 70f;
     public TextMeshProUGUI health;
-    public float HP = 70f;
+    public float HP;
     private Bossman bossMan;
     private GameManager gameManager;
     private GameObject bossObject;
@@ -35,6 +35,7 @@ public class BopsHP : MonoBehaviour
             if (bossObject != null)
             {
                 bossMan = GameObject.Find("Ridehogger(Clone)").GetComponent<Bossman>();
+                HP = bossMan.health;
                 bosHP = bossMan.bosShp;
             }
         }
