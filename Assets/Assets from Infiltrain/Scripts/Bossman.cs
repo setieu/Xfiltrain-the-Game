@@ -38,11 +38,20 @@ public class Bossman : MonoBehaviour
     public ParticleSystem particle;
 
     public GameObject explosion;
+    public BossExplosion bossExplosion;
 
     public float bosShp;
     // Start is called before the first frame update
     void Start()
     {
+
+        explosion = GameObject.Find("BossExplosion");
+        if(explosion != null)
+        {
+            bossExplosion = GameObject.Find("BossExplosion").GetComponent<BossExplosion>();
+        }
+        bossExplosion.audioSource.Stop();
+        bossExplosion.particle.Stop();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         boxCollider = gameObject.GetComponent<BoxCollider>();
         enemyRb = GetComponent<Rigidbody>();
@@ -89,6 +98,9 @@ public class Bossman : MonoBehaviour
             klum = true;
             bossSounds.audioSource.Play();
             gameManager.bossdeaths++;
+            explosion.transform.position = transform.position;
+            bossExplosion.audioSource.Play();
+            bossExplosion.particle.Play();
             gameObject.SetActive(false);
         }
 

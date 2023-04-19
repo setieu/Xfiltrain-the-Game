@@ -8,8 +8,7 @@ public class BossExplosion : MonoBehaviour
     public AudioSource audioSource;
     public List<AudioClip> BoomAudio; // list of audio clips to choose from for launch
     public ParticleSystem particle;
-    public Transform transforms;
-
+  
     // Start is called before the first frame update
     void Start()
     {
