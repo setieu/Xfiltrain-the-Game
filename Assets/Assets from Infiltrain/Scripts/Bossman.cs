@@ -20,7 +20,7 @@ public class Bossman : MonoBehaviour
     private float maxTorque = 1;
     public float forcemultiplier = 20f;
     public bool bossD = false;
-    public float health = 70;
+    public float health;
     public bool klum = false;
     public int joe = 0;
     private GameManager gameManager;
@@ -37,10 +37,21 @@ public class Bossman : MonoBehaviour
     public List<ParticleSystem> particleSystems;
     public ParticleSystem particle;
 
+    public GameObject explosion;
+    public BossExplosion bossExplosion;
+
     public float bosShp;
     // Start is called before the first frame update
     void Start()
     {
+
+        explosion = GameObject.Find("BossExplosion");
+        if(explosion != null)
+        {
+            bossExplosion = GameObject.Find("BossExplosion").GetComponent<BossExplosion>();
+        }
+        bossExplosion.audioSource.Stop();
+        bossExplosion.particle.Stop();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         boxCollider = gameObject.GetComponent<BoxCollider>();
         enemyRb = GetComponent<Rigidbody>();
@@ -60,6 +71,7 @@ public class Bossman : MonoBehaviour
         {
             spawnPosPositive = false;
         }
+        health = 70;
     }
 
     // Update is called once per frame
@@ -86,6 +98,9 @@ public class Bossman : MonoBehaviour
             klum = true;
             bossSounds.audioSource.Play();
             gameManager.bossdeaths++;
+            explosion.transform.position = transform.position;
+            bossExplosion.audioSource.Play();
+            bossExplosion.particle.Play();
             gameObject.SetActive(false);
         }
 

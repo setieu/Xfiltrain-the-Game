@@ -260,7 +260,14 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Physics.gravity /= 3;
+            startedd = false;
+            Time.timeScale = 1;
+            Debug.Log("Game Restarted");
+        }
 
         if(bosspawnedonce && modeeE == 5 && timePassed >= 3.4f)
         {
