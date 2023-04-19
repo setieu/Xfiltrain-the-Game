@@ -239,7 +239,7 @@ public class GameManager : MonoBehaviour
                 }
 
                 pogHider.waveDelay = 1.0f;
-                pogHider.maxPogs = 2;
+                pogHider.maxPogs = 5;
                 gameDiff = 1;
                 modeeE = 8;
                 break;
