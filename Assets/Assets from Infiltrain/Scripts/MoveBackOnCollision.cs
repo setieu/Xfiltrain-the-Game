@@ -12,7 +12,7 @@ public class MoveBackOnCollision : MonoBehaviour
     private float leftBound = -100;
     public float forcemultiplier;
     public float speed1 = 100f;
-    public float speed2 = 10f;
+    private float speed2 = 50f;
     public int detachD = 0;
     public int HPP = 100;
     private Rigidbody rb;
@@ -65,7 +65,7 @@ public class MoveBackOnCollision : MonoBehaviour
 
         if (other.gameObject.CompareTag("Rogue"))
         {
-            gameObject.AddComponent<Rigidbody>().mass = 1;
+            gameObject.AddComponent<Rigidbody>().mass = 1000;
             rb = gameObject.GetComponent<Rigidbody>();
             Debug.Log("rogue");
             PlayRandomCrashAudio();
@@ -80,7 +80,7 @@ public class MoveBackOnCollision : MonoBehaviour
             //rb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
             //yield return new WaitForSeconds(3f); FIX THIS
             //WaitCoroutine();
-            StartCoroutine(MoveBackSlower());
+            StartCoroutine(MoveBack());
         }
 
     }
@@ -99,7 +99,6 @@ public class MoveBackOnCollision : MonoBehaviour
     }
     IEnumerator MoveBackSlower()
     {
-        yield return new WaitForSeconds(.8f);
         while (true)
         {
            

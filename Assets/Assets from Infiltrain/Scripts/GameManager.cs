@@ -406,7 +406,11 @@ public class GameManager : MonoBehaviour
         PlayRandomGSAudio();
         startedd = true;
         Debug.Log("Game started");
-        healtHbar.transform.position = new Vector3(1255, 710, 0);
+        if(modeeE != 6)
+        {
+            healtHbar.transform.position = new Vector3(1255, 710, 0);
+        }
+
         startedTime = Time.time;
     }
     public void GameOverWon()

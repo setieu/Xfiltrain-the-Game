@@ -11,8 +11,8 @@ public class TranslateOnX : MonoBehaviour
     private Rigidbody rb;
 
 
-    public float speed = 1.0f; // Speed of translation
-
+    private float speed = 10.0f; // Speed of translation
+    private float speed2 = 50.0f; // Speed of translation
 
     private IEnumerator SetHeetFalseFor3Seconds()
     {
@@ -57,7 +57,7 @@ public class TranslateOnX : MonoBehaviour
     {
         while (true)
         {
-            transform.Translate(Vector3.forward * Time.deltaTime * speed);
+            transform.Translate(Vector3.forward * Time.deltaTime * speed2);
             yield return new WaitForSeconds(0.01f); // add a delay between each movement
         }
     }
