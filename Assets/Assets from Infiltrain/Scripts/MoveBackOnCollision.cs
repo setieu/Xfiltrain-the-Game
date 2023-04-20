@@ -11,7 +11,8 @@ public class MoveBackOnCollision : MonoBehaviour
     private float maxTorque = 1500;
     private float leftBound = -100;
     public float forcemultiplier;
-    public float speed = 100f;
+    public float speed1 = 100f;
+    public float speed2 = 10f;
     public int detachD = 0;
     public int HPP = 100;
     private Rigidbody rb;
@@ -68,27 +69,41 @@ public class MoveBackOnCollision : MonoBehaviour
             rb = gameObject.GetComponent<Rigidbody>();
             Debug.Log("rogue");
             PlayRandomCrashAudio();
-            
-            rb.AddForce(Vector3.up * 1050f, ForceMode.Impulse);
-            rb.AddForce(Vector3.left * 1050f, ForceMode.Impulse);
+
+            //rb.AddForce(Vector3.up * 1050f, ForceMode.Impulse);
+            //rb.AddForce(Vector3.forward * 50f, ForceMode.Impulse);
             //rb.AddForce(Vector3.forward * 350f, ForceMode.Impulse);
             //transform.Rotate(Vector3.right * Time.deltaTime * 30f);
-            rb.AddForce(RandomLeftForce(), ForceMode.Impulse);
+            //rb.AddForce(RandomLeftForce(), ForceMode.Impulse);
             //rb.AddForce(Vector3.up * 1050f, ForceMode.Impulse);
             //rb.AddForce(Vector3.left * 50f, ForceMode.Impulse);
-            rb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
+            //rb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
             //yield return new WaitForSeconds(3f); FIX THIS
-
-            StartCoroutine(MoveBack());
+            //WaitCoroutine();
+            StartCoroutine(MoveBackSlower());
         }
 
     }
-    
+
+    IEnumerator WaitCoroutine()
+    {
+        yield return new WaitForSeconds(1);
+    }
     IEnumerator MoveBack()
     {
         while (true)
         {
-            transform.Translate(Vector3.back * Time.deltaTime * speed);
+            transform.Translate(Vector3.back * Time.deltaTime * speed1);
+            yield return new WaitForSeconds(0.01f); // add a delay between each movement
+        }
+    }
+    IEnumerator MoveBackSlower()
+    {
+        yield return new WaitForSeconds(.8f);
+        while (true)
+        {
+           
+            transform.Translate(Vector3.back * Time.deltaTime * speed2);
             yield return new WaitForSeconds(0.01f); // add a delay between each movement
         }
     }
