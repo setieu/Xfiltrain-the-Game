@@ -17,6 +17,7 @@ public class MoveBackOnCollision : MonoBehaviour
     private Rigidbody rb;
     private HealthBar healthBar;
     private HealthBar healthText;
+    private GameManager gameManager;
     private AudioSource audioSource; // audio source component
     public List<AudioClip> DetachmentAudio; // list of audio clips to choose from for Detachment
     public List<AudioClip> Smacking; // list of audio clips to choose from for Detachment
@@ -25,6 +26,7 @@ public class MoveBackOnCollision : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         healthBar = GameObject.Find("Bar").GetComponent<HealthBar>();
         //healthText = GameObject.Find("HPText").GetComponent<HealthBar>();
         audioSource = GetComponent<AudioSource>();
@@ -68,22 +70,35 @@ public class MoveBackOnCollision : MonoBehaviour
             rb = gameObject.GetComponent<Rigidbody>();
             Debug.Log("rogue");
             PlayRandomCrashAudio();
-            
+            gameManager.gameLost = true;
+
             rb.AddForce(Vector3.up * 1050f, ForceMode.Impulse);
             rb.AddForce(Vector3.left * 1050f, ForceMode.Impulse);
             //rb.AddForce(Vector3.forward * 350f, ForceMode.Impulse);
             //transform.Rotate(Vector3.right * Time.deltaTime * 30f);
-            rb.AddForce(RandomLeftForce(), ForceMode.Impulse);
-            rb.AddForce(Vector3.up * 1050f, ForceMode.Impulse);
+            
+            //rb.AddForce(Vector3.up * 1050f, ForceMode.Impulse);
             //rb.AddForce(Vector3.left * 50f, ForceMode.Impulse);
-            rb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
+            StartCoroutine(Wait());
+            //transform.Translate(Vector3.forward * 10f * Time.deltaTime);
+            //transform.Translate(Vector3.left * 10f * Time.deltaTime);
+            Debug.Log("thonk");
+            
+            //rb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
             //yield return new WaitForSeconds(3f); FIX THIS
-
+            //rb.AddForce(Vector3.up * 1050f, ForceMode.Impulse);
+            //rb.AddForce(Vector3.left * 1050f, ForceMode.Impulse);
+           // rb.AddForce(RandomLeftForce(), ForceMode.Impulse);
             //StartCoroutine(MoveBack());
         }
 
     }
-    
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1f);
+        Debug.Log("One seconds have passed.");
+    }
     IEnumerator MoveBack()
     {
         while (true)

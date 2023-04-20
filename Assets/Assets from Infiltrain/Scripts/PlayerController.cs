@@ -167,23 +167,27 @@ public class PlayerController : MonoBehaviour
         {
             // Get the player movement direction
 
+            if(gameManager.gameLost == false)
+            {
                 Vector3 movementDirection = new Vector3(verticalInput, 0.0f, -1.5f * horizontalInput);
 
 
 
-            // Normalize the movement direction vector
-            if (followPlayer.isFlipped == 1)
-            {
-                 movementDirection = -movementDirection.normalized;
-            }
-            else if (followPlayer.isFlipped == 2)
-            {
-                movementDirection = movementDirection.normalized;
-            }
+                // Normalize the movement direction vector
+                if (followPlayer.isFlipped == 1)
+                {
+                    movementDirection = -movementDirection.normalized;
+                }
+                else if (followPlayer.isFlipped == 2)
+                {
+                    movementDirection = movementDirection.normalized;
+                }
 
 
-            // Translate the player's position based on the movement direction
-            playerRb.transform.Translate(movementDirection * speed * forceMultiplier * Time.deltaTime, Space.World);
+                // Translate the player's position based on the movement direction
+                playerRb.transform.Translate(movementDirection * speed * forceMultiplier * Time.deltaTime, Space.World);
+            }
+
         }
 
 

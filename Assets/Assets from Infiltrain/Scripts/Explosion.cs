@@ -20,10 +20,14 @@ public class Explosion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerController.isOnDead == false)
+        if(playerController !=null)
         {
-            transform.position = player.transform.position;
+            if (playerController.isOnDead == false)
+            {
+                transform.position = player.transform.position;
+            }
         }
+
     }
    
     
