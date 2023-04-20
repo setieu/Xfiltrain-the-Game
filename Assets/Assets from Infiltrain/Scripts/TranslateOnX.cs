@@ -8,6 +8,8 @@ public class TranslateOnX : MonoBehaviour
     private Rigidbody enemyRb;
     public bool isRunning = false;
     public bool nall = true;
+    private Rigidbody rb;
+
 
     public float speed = 1.0f; // Speed of translation
 
@@ -42,9 +44,21 @@ public class TranslateOnX : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Train"))
         {
-
+            //gameObject.AddComponent<Rigidbody>().mass = 1;
+            //rb = gameObject.GetComponent<Rigidbody>();
             nall = false;
+            //rb.AddForce(Vector3.up * 1050f, ForceMode.Impulse);
+            //rb.AddForce(Vector3.left * 1050f, ForceMode.Impulse);
+            StartCoroutine(MoveBack());
+
         }
     }
-
+    IEnumerator MoveBack()
+    {
+        while (true)
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * speed);
+            yield return new WaitForSeconds(0.01f); // add a delay between each movement
+        }
+    }
 }

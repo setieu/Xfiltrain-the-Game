@@ -74,12 +74,12 @@ public class MoveBackOnCollision : MonoBehaviour
             //rb.AddForce(Vector3.forward * 350f, ForceMode.Impulse);
             //transform.Rotate(Vector3.right * Time.deltaTime * 30f);
             rb.AddForce(RandomLeftForce(), ForceMode.Impulse);
-            rb.AddForce(Vector3.up * 1050f, ForceMode.Impulse);
+            //rb.AddForce(Vector3.up * 1050f, ForceMode.Impulse);
             //rb.AddForce(Vector3.left * 50f, ForceMode.Impulse);
             rb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
             //yield return new WaitForSeconds(3f); FIX THIS
 
-            //StartCoroutine(MoveBack());
+            StartCoroutine(MoveBack());
         }
 
     }
