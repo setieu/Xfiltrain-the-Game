@@ -23,6 +23,14 @@ public class Enemy : MonoBehaviour
     private Animator animator;
     public List<ParticleSystem> particleSystems;
     public ParticleSystem particle;
+
+    public GameObject explosion;
+    public ParticleSystem attackParticle;
+    public ParticleSystem attackParticle1;
+    public ParticleSystem attackParticle2;
+
+    private bool spawnPosPositive;
+
     private AudioSource audioSource; // audio source component
     private PlayerController playerController;
     public GameObject player;
@@ -47,13 +55,27 @@ public class Enemy : MonoBehaviour
         animator.SetBool("gallop", true);
         alive = true;
         particle.Stop();
+        attackParticle.Stop();
+        attackParticle1.Stop();
+        attackParticle2.Stop();
 
+        Vector3 direction = (new Vector3(0f, 0f, 0f) - transform.position).normalized;
+        if (direction.z > 0)
+        {
+            spawnPosPositive = true;
+        }
+        else if (direction.z < 0)
+        {
+            spawnPosPositive = false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(gameManager.modeeE == 1)
+        
+
+        if (gameManager.modeeE == 1)
         {
             xspeed = 0.08f;
         }
@@ -176,6 +198,19 @@ public class Enemy : MonoBehaviour
             rb.constraints = RigidbodyConstraints.None;
             rb.AddForce(Vector3.up * 1000f, ForceMode.Impulse);
             numCollisions++;
+
+            if (spawnPosPositive)
+            {
+                explosion.transform.position = new Vector3(explosion.transform.position.x - 0.5f, explosion.transform.position.y, explosion.transform.position.z);
+            }else if (!spawnPosPositive)
+            {
+                explosion.transform.position = new Vector3(explosion.transform.position.x + 0.5f, explosion.transform.position.y, explosion.transform.position.z);
+            }
+            attackParticle.Play();
+            attackParticle1.Play();
+            attackParticle2.Play();
+
+
             Debug.Log("Hit" + (int)numCollisions);
             hogD = true;
             if(gameObject.name == targetname || gameObject.name == "HogRider(1)")
