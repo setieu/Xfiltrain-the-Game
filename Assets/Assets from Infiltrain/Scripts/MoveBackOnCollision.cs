@@ -61,6 +61,7 @@ public class MoveBackOnCollision : MonoBehaviour
             Enemy enemyS = other.gameObject.GetComponent<Enemy>();
             enemyS.StartCoroutine("Reattack");
             enemyS.isCoroutineRunning = true;
+            enemyS.dmg.Play();
         }
 
         if (other.gameObject.CompareTag("Rogue"))

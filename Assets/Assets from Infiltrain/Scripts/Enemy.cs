@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour
     public bool isCoroutineRunning = false;
     public string targetname = "HogRider";
     public bool troll = false;
+    public ParticleSystem dmg;
 
     // Start is called before the first frame update
     void Start()
@@ -47,7 +48,7 @@ public class Enemy : MonoBehaviour
         animator.SetBool("gallop", true);
         alive = true;
         particle.Stop();
-
+        dmg.Stop();
     }
 
     // Update is called once per frame
@@ -216,7 +217,11 @@ public class Enemy : MonoBehaviour
             Rigidbody rb = GetComponent<Rigidbody>();
             rb.constraints = RigidbodyConstraints.None;
             rb.AddForce(Vector3.up * 1000f, ForceMode.Impulse);
+
+
+            //When Hog gets hit by projectile
             numCollisions++;
+
             Debug.Log("Hit" + (int)numCollisions);
             hogD = true;
             if(gameObject.name == targetname || gameObject.name == "HogRider(1)")
