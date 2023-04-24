@@ -409,7 +409,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game started");
         if(modeeE != 6)
         {
-            healtHbar.transform.position = new Vector3(1255, 710, 0);
+            healtHbar.transform.position = new Vector3(940, 530, 0);
         }
 
         startedTime = Time.time;
