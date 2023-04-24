@@ -142,7 +142,7 @@ public class GameManager : MonoBehaviour
             case 2:
                 // Set up for hard mode
                 arrayRange = difficulty;
-                modeText.text = "Hard - Get 10000 points";
+                modeText.text = "Hard - Get 15000 points";
                 StartTheGame();
                 if (yeeTer != null)
                 {
@@ -342,11 +342,12 @@ public class GameManager : MonoBehaviour
             {
                 GameOverWon();
             }
+
         }
         if (modeeE == 2)
         {
             //score is x10
-            if (Scoree >= 1000)
+            if (Scoree >= 1500)
             {
                 GameOverWon();
 

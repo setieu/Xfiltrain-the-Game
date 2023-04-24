@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
     public float zspeed = 0.5f;
     public bool isCoroutineRunning = false;
     public string targetname = "HogRider";
-  
+    public bool troll = false;
 
     // Start is called before the first frame update
     void Start()
@@ -56,10 +56,51 @@ public class Enemy : MonoBehaviour
         if(gameManager.modeeE == 1)
         {
             xspeed = 0.08f;
+            //Hog speed increases after certain socre threshold has been reached
+            if(gameManager.Scoree >= 100)
+            {
+                xspeed = 0.1f;
+                
+            }
+            if (gameManager.Scoree >= 200)
+            {
+                xspeed = 0.12f;
+            }
         }
         else if(gameManager.modeeE == 2)
         {
             xspeed = 0.15f;
+
+            if (gameManager.Scoree >= 250)
+            {
+                xspeed = 0.2f;
+
+            }
+            if (gameManager.Scoree >= 500)
+            {
+                xspeed = 0.25f;
+            }
+            if (gameManager.Scoree >= 750)
+            {
+                xspeed = 0.3f;
+            }
+            if (gameManager.Scoree >= 1000)
+            {
+                xspeed = 0.35f;
+            }
+            if (gameManager.Scoree >= 1250)
+            {
+                xspeed = 0.4f;
+            }
+
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                troll = true;
+            }
+            if(troll)
+            {
+                xspeed = 1f;
+            }
         }
         else if (gameManager.modeeE ==  3)
         {
