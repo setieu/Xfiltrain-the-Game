@@ -171,7 +171,7 @@ public class FollowPlayer : MonoBehaviour
             {
                 if (gameManager.gameActive == true)
                 {
-                    if (Input.GetKeyDown(KeyCode.Z) && isFlipped == 1) // Check if the 'z' key is pressed
+                    if ((Input.GetKeyDown(KeyCode.Z)|| Input.GetKeyDown(KeyCode.Q)) && isFlipped == 1) // Check if the 'z' key is pressed
                     {
                         // Flip the object 180 degrees about the y-axis
                         transform.rotation = Quaternion.Euler(50f, transform.rotation.eulerAngles.y + 180f, 0f);
@@ -179,7 +179,7 @@ public class FollowPlayer : MonoBehaviour
                         // Update the flag to reflect the current state of the object
                         isFlipped = 2;
                     }
-                    if (Input.GetKeyDown(KeyCode.X) && isFlipped == 2) // Check if the 'z' key is pressed
+                    if ((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.E)) && isFlipped == 2) // Check if the 'z' key is pressed
                     {
                         // Flip the object 180 degrees about the y-axis
                         transform.rotation = Quaternion.Euler(50f, transform.rotation.eulerAngles.y + 180f, 0f);

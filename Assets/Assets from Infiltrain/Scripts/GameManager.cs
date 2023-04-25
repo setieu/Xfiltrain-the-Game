@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public AudioClip winn;
     public GameObject tanks;
     public GameObject rogueTrain;
+    public GameObject rails;
     [SerializeField] private Light sunLight;
 
 
@@ -88,6 +89,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rails.SetActive(true);
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         pauseScreen = GameObject.Find("Canvas").GetComponent<PauseScreen>();
         // Assign the Yeeter component to yeeTer
@@ -262,7 +264,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameActive == false && pauseScreen.isPaused == false)
+        if(gameActive == false && pauseScreen.isPaused == false && flawless == false)
         {
             if(Input.GetKeyDown(KeyCode.F))
             {
@@ -271,8 +273,22 @@ public class GameManager : MonoBehaviour
                 {
                     baR.MaxHP = 1;
                     baR.HP = 1;
+
                 }
             }
+        }
+        if(gameActive == false && pauseScreen.isPaused == false && flawless == true)
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                flawless = false;
+                baR.MaxHP = 10;
+                baR.HP = 10;
+            }
+        }
+        if(flawless)
+        {
+            sunLight.color = Color.red;
         }
         if(Input.GetKeyDown(KeyCode.R))
         {
@@ -394,6 +410,14 @@ public class GameManager : MonoBehaviour
                 GameOverWon();
 
             }
+        }
+        if (modeeE != 6 && modeeE != 7)
+        {
+            rails.SetActive(false);
+        }
+        if (modeeE == 6)
+        {
+            rails.SetActive(true);
         }
     }
     private void OnCollisionEnter(Collision collision)
