@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
 
     private AudioSource audioSource; // audio source component
 
+    public bool flawless = false;
     public bool bosspawnedonce = true;
     public GameObject bosshpobject;
     public GameObject playerR;
@@ -81,6 +82,7 @@ public class GameManager : MonoBehaviour
     public int hogdeaths = 0;
     public int bossdeaths = 0;
     public int gameDiff;
+
 
     public GameObject BossHpBar;
     // Start is called before the first frame update
@@ -260,6 +262,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(gameActive == false && pauseScreen.isPaused == false)
+        {
+            if(Input.GetKeyDown(KeyCode.F))
+            {
+                flawless = true;
+                if(flawless)
+                {
+                    baR.MaxHP = 1;
+                    baR.HP = 1;
+                }
+            }
+        }
         if(Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
