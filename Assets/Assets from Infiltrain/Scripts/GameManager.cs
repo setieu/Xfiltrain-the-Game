@@ -45,6 +45,10 @@ public class GameManager : MonoBehaviour
 
     public bool flawless = false;
     public bool bosspawnedonce = true;
+    public GameObject rail1;
+    public GameObject rail2;
+    public GameObject rail3;
+    public GameObject rail4;
     public GameObject bosshpobject;
     public GameObject playerR;
     public GameObject hoglicopter;
@@ -211,6 +215,10 @@ public class GameManager : MonoBehaviour
             case 6:
                 //Set up for extra mode
                 Destroy(tanks);
+                rail1.SetActive(true);
+                rail2.SetActive(true);
+                rail3.SetActive(true);
+                rail4.SetActive(true);
                 sunLight.color = Color.red;
                 rogueTrain.SetActive(true);
                 arrayRange = difficulty;
@@ -290,7 +298,7 @@ public class GameManager : MonoBehaviour
         {
             sunLight.color = Color.red;
         }
-        else if(flawless == false)
+        else if(flawless == false && modeeE != 6)
         {
             sunLight.color = Color.white;
         }
