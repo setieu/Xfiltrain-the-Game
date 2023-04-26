@@ -114,6 +114,7 @@ public class GameManager : MonoBehaviour
         {
             case 0:
                 // Set up for peaceful mode
+                modeeE = 0;
                 arrayRange = difficulty;
                 modeText.text = "Peaceful - Sandbox";
                 StartTheGame();
@@ -125,11 +126,12 @@ public class GameManager : MonoBehaviour
                     yeeTer.throwCD = 1f;
                 }
                 gameDiff = 0;
-                modeeE = 0;
+
                 Debug.Log("Peaceful");
                 break;
             case 1:
                 // Set up for easy mode
+                modeeE = 1;
                 arrayRange = difficulty;
                 modeText.text = "Easy - Get 3000 points";
                 StartTheGame();
@@ -142,11 +144,12 @@ public class GameManager : MonoBehaviour
                 }
                 pogHider.maxPogs = 12;
                 gameDiff = 1;
-                modeeE = 1;
+
                 Debug.Log("Easy");
                 break;
             case 2:
                 // Set up for hard mode
+                modeeE = 2;
                 arrayRange = difficulty;
                 modeText.text = "Hard - Get 15000 points";
                 StartTheGame();
@@ -159,11 +162,12 @@ public class GameManager : MonoBehaviour
                 pogHider.waveDelay = 2.5f;
                 pogHider.maxPogs = 30;
                 gameDiff = 2;
-                modeeE = 2;
+
                 Debug.Log("Hard");
                 break;
             case 3:
                 // Set up for normal mode
+                modeeE = 3;
                 arrayRange = difficulty;
                 modeText.text = "Normal - Get 10000 points";
                 StartTheGame();
@@ -176,10 +180,11 @@ public class GameManager : MonoBehaviour
                 pogHider.waveDelay = 5f;
                 pogHider.maxPogs = 14;
                 gameDiff = 1;
-                modeeE = 3;
+
                 break;
             case 4:
                 //set up for anarchy mode
+                modeeE = 4;
                 arrayRange = difficulty;
                 modeText.text = "Anarchy - Objective: Survive";
                 StartTheGame();
@@ -193,10 +198,11 @@ public class GameManager : MonoBehaviour
                 pogHider.waveDelay = 0.3f;
                 pogHider.maxPogs = 75;
                 gameDiff = 2;
-                modeeE = 4;
+
                 break;
             case 5:
                 //set up for ??? mode
+                modeeE = 5;
                 arrayRange = difficulty;
                 modeText.text = "Bossfight - Get 15000 points";
                 StartTheGame();
@@ -210,10 +216,11 @@ public class GameManager : MonoBehaviour
                 pogHider.waveDelay = 3.5f;
                 pogHider.maxPogs = 5;
                 gameDiff = 1;
-                modeeE = 5;
+
                 break;
             case 6:
                 //Set up for extra mode
+                modeeE = 6;
                 Destroy(tanks);
                 rail1.SetActive(true);
                 rail2.SetActive(true);
@@ -234,10 +241,11 @@ public class GameManager : MonoBehaviour
                 pogHider.waveDelay = 1.0f;
                 pogHider.maxPogs = 0; //fix
                 gameDiff = 1;
-                modeeE = 6;
+
                 break;
             case 8:
                 //Set up for hidden mode
+                modeeE = 8;
                 arrayRange = difficulty;
                 modeText.text = "Secret Mode";
                 StartTheGame();
@@ -251,7 +259,7 @@ public class GameManager : MonoBehaviour
                 pogHider.waveDelay = 1.0f;
                 pogHider.maxPogs = 5;
                 gameDiff = 1;
-                modeeE = 8;
+
                 break;
 
 
