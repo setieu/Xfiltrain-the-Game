@@ -262,19 +262,41 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameActive == false && pauseScreen.isPaused == false)
+        if (gameActive == false && pauseScreen.isPaused == false && flawless == false)
         {
-            if(Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 flawless = true;
-                if(flawless)
+                if (flawless)
                 {
                     baR.MaxHP = 1;
                     baR.HP = 1;
+
                 }
             }
         }
-        if(Input.GetKeyDown(KeyCode.R))
+        else if (gameActive == false && pauseScreen.isPaused == false && flawless == true)
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                flawless = false;
+                baR.MaxHP = 10;
+                baR.HP = 10;
+            }
+        }
+
+
+        if(flawless)
+        {
+            sunLight.color = Color.red;
+        }
+        else if(flawless == false)
+        {
+            sunLight.color = Color.white;
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             Physics.gravity /= 3;
@@ -346,6 +368,7 @@ public class GameManager : MonoBehaviour
             //then pause and unpause, the timescale will be set back to 1
             Time.timeScale = 1;
         }
+
     }
     public void LateUpdate()
     {
