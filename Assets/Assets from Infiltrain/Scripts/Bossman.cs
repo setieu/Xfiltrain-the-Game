@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class Bossman : MonoBehaviour
 {
     private Image healthBar;
+    private PogHider pogHider;
     public TextMeshProUGUI healthtext;
     public float healthnumtext;
 
@@ -44,7 +45,7 @@ public class Bossman : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        pogHider = GameObject.Find("PogHide Spawner").GetComponent<PogHider>();
         explosion = GameObject.Find("BossExplosion");
         if(explosion != null)
         {
@@ -98,6 +99,9 @@ public class Bossman : MonoBehaviour
             klum = true;
             bossSounds.audioSource.Play();
             gameManager.bossdeaths++;
+            pogHider.waveDelay = 0.3f;
+            pogHider.maxPogs = 10;
+            Debug.Log("wave delay reduced");
             explosion.transform.position = transform.position;
             bossExplosion.audioSource.Play();
             bossExplosion.particle.Play();
