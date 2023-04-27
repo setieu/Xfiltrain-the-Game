@@ -452,21 +452,14 @@ public class GameManager : MonoBehaviour
     {
         playerController.isAlive = true;
         gameActive = true;
-        modeTexttGameobject.SetActive(true);
-        timergameobject.SetActive(true);
-        fpscounter.SetActive(true);
         stamina = 50;
         //StartCoroutine(SpawnTarget());
         playerController.playerRb.constraints = RigidbodyConstraints.None;
         titleScreen.SetActive(false);
-        toolAssist.SetActive(true);
         PlayRandomGSAudio();
         startedd = true;
         Debug.Log("Game started");
-        if(modeeE != 6)
-        {
-            healtHbar.transform.position = new Vector3(940, 530, 0);
-        }
+
 
         startedTime = Time.time;
     }
