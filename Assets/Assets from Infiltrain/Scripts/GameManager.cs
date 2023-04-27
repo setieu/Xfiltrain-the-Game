@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
 
     public bool flawless = false;
     public bool bosspawnedonce = true;
+    public GameObject fpscounter;
     public GameObject rail1;
     public GameObject rail2;
     public GameObject rail3;
@@ -453,6 +454,7 @@ public class GameManager : MonoBehaviour
         gameActive = true;
         modeTexttGameobject.SetActive(true);
         timergameobject.SetActive(true);
+        fpscounter.SetActive(true);
         stamina = 50;
         //StartCoroutine(SpawnTarget());
         playerController.playerRb.constraints = RigidbodyConstraints.None;
