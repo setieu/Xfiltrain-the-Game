@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     private Rigidbody enemyRb;
     private GameManager gameManager;
+    private Receiver receiver;
     private float minUpSpeed = 10;
     private float maxUpSpeed = 16;
     private float minLeftSpeed = 32;
@@ -33,6 +34,8 @@ public class Enemy : MonoBehaviour
     public string targetname = "HogRider";
     public bool troll = false;
     public ParticleSystem dmg;
+    //public GameObject receiverObject;
+    public List<AudioClip> Pinggaudio;
 
     // Start is called before the first frame update
     void Start()
@@ -49,9 +52,19 @@ public class Enemy : MonoBehaviour
         alive = true;
         particle.Stop();
         dmg.Stop();
+        
     }
 
     // Update is called once per frame
+    private void PingReceiver()
+    {
+        // Get the receiver script component from the receiver object
+        //Receiver receiver = receiverObject.GetComponent<Receiver>();
+
+        // Call the PlayAudio method on the receiver script
+        receiver.PlayAudio();
+    }
+
     void Update()
     {
         if(gameManager.modeeE == 1)
@@ -72,9 +85,10 @@ public class Enemy : MonoBehaviour
         {
             xspeed = 0.15f;
 
-            if (gameManager.Scoree >= 250)
+            if (gameManager.Scoree >= 25)
             {
                 xspeed = 0.2f;
+                //PingReceiver();
 
             }
             if (gameManager.Scoree >= 500)
@@ -263,6 +277,7 @@ public class Enemy : MonoBehaviour
             audioSource.clip = DeadAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
             audioSource.Play(); // play the audio
         }
+        
         void PlayRandomParticle()
         {
             int randomIndex = Random.Range(0, particleSystems.Count);

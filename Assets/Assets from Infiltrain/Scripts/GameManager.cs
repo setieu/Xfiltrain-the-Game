@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     public GameObject tanks;
     public GameObject rogueTrain;
     [SerializeField] private Light sunLight;
+    
 
 
     public List<GameObject> targetPrefabs;

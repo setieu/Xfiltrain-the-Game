@@ -37,7 +37,7 @@ public class PoghiderAnim : MonoBehaviour
         }
       
     }
-
+    
 
 }
         
