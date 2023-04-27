@@ -23,6 +23,31 @@ public class Receiver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameManager.modeeE == 1)
+        {
+            if (gameManager.Scoree >= 100)
+            {
+                if (playedh1 == false)
+                {
+                    PlayAudio();
+                    Debug.Log("Try to ping");
+                    playedh1 = true;
+                }
+                else if (gameManager.Scoree >= 200)
+                {
+                    if (playedh2 == false)
+                    {
+                        PlayAudio();
+                        Debug.Log("Try to ping");
+                        playedh2 = true;
+                    }
+                    
+                }
+
+            }
+        }
+
+
         if (gameManager.modeeE == 2)
         {
             if (gameManager.Scoree >= 250)
@@ -73,7 +98,50 @@ public class Receiver : MonoBehaviour
 
             }
         }
-        
+
+
+        if (gameManager.modeeE == 3)
+        {
+            if (gameManager.Scoree >= 200)
+            {
+                if (playedh1 == false)
+                {
+                    PlayAudio();
+                    Debug.Log("Try to ping");
+                    playedh1 = true;
+                }
+                else if (gameManager.Scoree >= 400)
+                {
+                    if (playedh2 == false)
+                    {
+                        PlayAudio();
+                        Debug.Log("Try to ping");
+                        playedh2 = true;
+                    }
+                    else if (gameManager.Scoree >= 600)
+                    {
+                        if (playedh3 == false)
+                        {
+                            PlayAudio();
+                            Debug.Log("Try to ping");
+                            playedh3 = true;
+                        }
+                        else if (gameManager.Scoree >= 800)
+                        {
+                            if (playedh4 == false)
+                            {
+                                PlayAudio();
+                                Debug.Log("Try to ping");
+                                playedh4 = true;
+                            }
+                            
+                        }
+                    }
+                }
+
+            }
+        }
+
     }
 
     public void PlayAudio()

@@ -88,7 +88,7 @@ public class Enemy : MonoBehaviour
             if (gameManager.Scoree >= 25)
             {
                 xspeed = 0.2f;
-                //PingReceiver();
+                
 
             }
             if (gameManager.Scoree >= 500)
@@ -120,6 +120,25 @@ public class Enemy : MonoBehaviour
         else if (gameManager.modeeE ==  3)
         {
             xspeed = 0.1f;
+            if (gameManager.Scoree >= 200)
+            {
+                xspeed = 0.125f;
+
+            }
+            if (gameManager.Scoree >= 400)
+            {
+                xspeed = 0.15f;
+            }
+            if (gameManager.Scoree >= 600)
+            {
+                xspeed = 0.175f;
+
+            }
+            if (gameManager.Scoree >= 800)
+            {
+                xspeed = 0.2f;
+            }
+
         }
         else if (gameManager.modeeE == 4)
         {
