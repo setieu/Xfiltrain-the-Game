@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
     public float testY;
 
     public Button restartButton;
+    public GameObject rbutton;
 
     public bool gameWon = false;
     public bool gameActive;
@@ -94,6 +95,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rbutton.SetActive(false);
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         pauseScreen = GameObject.Find("Canvas").GetComponent<PauseScreen>();
         // Assign the Yeeter component to yeeTer
@@ -450,6 +452,7 @@ public class GameManager : MonoBehaviour
 
     private void StartTheGame()
     {
+        rbutton.SetActive(true);
         playerController.isAlive = true;
         gameActive = true;
         modeTexttGameobject.SetActive(true);
