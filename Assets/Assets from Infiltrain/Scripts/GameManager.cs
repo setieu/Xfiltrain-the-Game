@@ -88,6 +88,8 @@ public class GameManager : MonoBehaviour
     public int hogdeaths = 0;
     public int bossdeaths = 0;
     public int gameDiff;
+    public bool flashingman = false;
+    public GameObject glower;
 
 
     public GameObject BossHpBar;
@@ -107,6 +109,7 @@ public class GameManager : MonoBehaviour
         gameActive = false;
         audioSource = GetComponent<AudioSource>();
         Debug.Log("Scene Loaded");
+        glower.SetActive(false);
     }
 
     public void StartGame(int difficulty)
@@ -280,7 +283,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameActive == false && pauseScreen.isPaused == false && flawless == false)
+        if (Input.GetKeyDown(KeyCode.H) && flashingman)
+        {
+            glower.SetActive(false);
+            flashingman = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.H) && !flashingman)
+        {
+            glower.SetActive(true);
+            flashingman = true;
+        }
+            if (gameActive == false && pauseScreen.isPaused == false && flawless == false)
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
@@ -455,6 +468,8 @@ public class GameManager : MonoBehaviour
         modeTexttGameobject.SetActive(true);
         timergameobject.SetActive(true);
         fpscounter.SetActive(true);
+        glower.SetActive(true);
+        flashingman = true;
         stamina = 50;
         //StartCoroutine(SpawnTarget());
         playerController.playerRb.constraints = RigidbodyConstraints.None;
