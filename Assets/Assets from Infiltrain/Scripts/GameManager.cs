@@ -234,7 +234,7 @@ public class GameManager : MonoBehaviour
                 sunLight.color = Color.red;
                 rogueTrain.SetActive(true);
                 arrayRange = difficulty;
-                modeText.text = "Extra Mode";
+                modeText.text = "Chase Mode - Survive";
                 StartTheGame();
                 if (yeeTer != null)
                 {
@@ -252,7 +252,7 @@ public class GameManager : MonoBehaviour
                 //Set up for hidden mode
                 modeeE = 8;
                 arrayRange = difficulty;
-                modeText.text = "Secret Mode";
+                modeText.text = "Ramp Up Mode - Survive";
                 StartTheGame();
                 if (yeeTer != null)
                 {
@@ -266,7 +266,24 @@ public class GameManager : MonoBehaviour
                 gameDiff = 1;
 
                 break;
+            case 9:
+                //Set up for secret mode
+                modeeE = 8;
+                arrayRange = difficulty;
+                modeText.text = "PC Crash Mode";
+                StartTheGame();
+                if (yeeTer != null)
+                {
+                    // Set the throwcooldown variable to 0.1 seconds
+                    yeeTer.canSpawn = true;
+                    yeeTer.throwCD = 0.01f;
+                }
 
+                pogHider.waveDelay = 1.0f;
+                pogHider.maxPogs = 50;
+                gameDiff = 1;
+
+                break;
 
 
 
