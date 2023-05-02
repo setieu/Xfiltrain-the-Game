@@ -22,6 +22,7 @@ public class MoveBackOnCollision : MonoBehaviour
     public List<AudioClip> DetachmentAudio; // list of audio clips to choose from for Detachment
     public List<AudioClip> Smacking; // list of audio clips to choose from for Detachment
     public List<AudioClip> Crash; // list of audio clips to choose from for Detachment
+    public bool boomboom = false;
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +71,8 @@ public class MoveBackOnCollision : MonoBehaviour
             rb = gameObject.GetComponent<Rigidbody>();
             Debug.Log("rogue");
             PlayRandomCrashAudio();
+            boomboom = true;
+
 
             //rb.AddForce(Vector3.up * 1050f, ForceMode.Impulse);
             //rb.AddForce(Vector3.forward * 50f, ForceMode.Impulse);

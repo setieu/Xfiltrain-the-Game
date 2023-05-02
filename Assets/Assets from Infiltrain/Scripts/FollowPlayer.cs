@@ -32,11 +32,15 @@ public class FollowPlayer : MonoBehaviour
     public Text statusText;
     public Text viewText;
     public GameObject CamStatus;
+    public MoveBackOnCollision moveBackOnCollision;
+    public ParticleSystem particle;
+
     // Start is called before the first frame update
     void Start()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        moveBackOnCollision = GameObject.Find("Cars").GetComponent<MoveBackOnCollision>();
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = journey;
         audioSource.loop = true;
@@ -46,9 +50,11 @@ public class FollowPlayer : MonoBehaviour
         audioListener = GetComponent<AudioListener>();
         UpdateStatusText();
         CamStatus.SetActive(false);
+        particle.Stop();
     }
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.M))
         {
             audioListener.enabled = !audioListener.enabled;
@@ -118,7 +124,15 @@ public class FollowPlayer : MonoBehaviour
             audioSource.clip = thomas;
             audioSource.Play();
         }
+
+        if (moveBackOnCollision.boomboom == true)
+        {
+            particle.Play();
+        }
     }
+
+   
+
     // Update is called once per frame
     void LateUpdate()
     {
@@ -249,6 +263,8 @@ public class FollowPlayer : MonoBehaviour
             viewText.text = "Front View - Press E or X to flip camera";
         }
     }
+
+    
 }
 
 
