@@ -88,6 +88,8 @@ public class GameManager : MonoBehaviour
     public int hogdeaths = 0;
     public int bossdeaths = 0;
     public int gameDiff;
+    public bool flashingman = false;
+    public GameObject glower;
 
 
     public GameObject BossHpBar;
@@ -107,6 +109,7 @@ public class GameManager : MonoBehaviour
         gameActive = false;
         audioSource = GetComponent<AudioSource>();
         Debug.Log("Scene Loaded");
+        glower.SetActive(false);
     }
 
     public void StartGame(int difficulty)
@@ -231,7 +234,7 @@ public class GameManager : MonoBehaviour
                 sunLight.color = Color.red;
                 rogueTrain.SetActive(true);
                 arrayRange = difficulty;
-                modeText.text = "Extra Mode";
+                modeText.text = "Chase Mode - Survive";
                 StartTheGame();
                 if (yeeTer != null)
                 {
@@ -249,7 +252,7 @@ public class GameManager : MonoBehaviour
                 //Set up for hidden mode
                 modeeE = 8;
                 arrayRange = difficulty;
-                modeText.text = "Secret Mode";
+                modeText.text = "Ramp Up Mode - Survive";
                 StartTheGame();
                 if (yeeTer != null)
                 {
@@ -263,7 +266,24 @@ public class GameManager : MonoBehaviour
                 gameDiff = 1;
 
                 break;
+            case 9:
+                //Set up for secret mode
+                modeeE = 8;
+                arrayRange = difficulty;
+                modeText.text = "PC Crash Mode";
+                StartTheGame();
+                if (yeeTer != null)
+                {
+                    // Set the throwcooldown variable to 0.1 seconds
+                    yeeTer.canSpawn = true;
+                    yeeTer.throwCD = 0.01f;
+                }
 
+                pogHider.waveDelay = 1.0f;
+                pogHider.maxPogs = 50;
+                gameDiff = 1;
+
+                break;
 
 
 
@@ -280,7 +300,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameActive == false && pauseScreen.isPaused == false && flawless == false)
+        if (Input.GetKeyDown(KeyCode.H) && flashingman)
+        {
+            glower.SetActive(false);
+            flashingman = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.H) && !flashingman)
+        {
+            glower.SetActive(true);
+            flashingman = true;
+        }
+            if (gameActive == false && pauseScreen.isPaused == false && flawless == false)
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
@@ -455,6 +485,8 @@ public class GameManager : MonoBehaviour
         modeTexttGameobject.SetActive(true);
         timergameobject.SetActive(true);
         fpscounter.SetActive(true);
+        glower.SetActive(true);
+        flashingman = true;
         stamina = 50;
         //StartCoroutine(SpawnTarget());
         playerController.playerRb.constraints = RigidbodyConstraints.None;
