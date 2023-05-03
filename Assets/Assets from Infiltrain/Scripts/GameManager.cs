@@ -276,7 +276,7 @@ public class GameManager : MonoBehaviour
                 //Set up for secret mode
                 modeeE = 9;
                 arrayRange = difficulty;
-                modeText.text = "PC Crash Mode";
+                modeText.text = "Carpal Tunnel Simulator";
                 StartTheGame();
                 if (yeeTer != null)
                 {
