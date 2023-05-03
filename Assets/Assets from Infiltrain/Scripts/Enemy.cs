@@ -142,8 +142,22 @@ public class Enemy : MonoBehaviour
         }
         else if (gameManager.modeeE == 4)
         {
-            xspeed = 0.3f;
-          
+            xspeed = 0.2f;
+            if (gameManager.Scoree >= 1000)
+            {
+                xspeed = 0.25f;
+
+            }
+            if (gameManager.Scoree >= 2000)
+            {
+                xspeed = 0.3f;
+
+            }
+            if (gameManager.Scoree >= 3000)
+            {
+                xspeed = 0.35f;
+
+            }
         }
         else if (gameManager.modeeE == 5)
         {
