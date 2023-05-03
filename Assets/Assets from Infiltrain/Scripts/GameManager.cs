@@ -508,11 +508,15 @@ public class GameManager : MonoBehaviour
         if(modeeE != 6)
         {
             healtHbar.transform.position = new Vector3(940, 530, 0);
-            // Set the UI text gameobject to active
-            uiTextObject.SetActive(true);
+            if(modeeE != 0)
+            {
+                // Set the UI text gameobject to active
+                uiTextObject.SetActive(true);
 
-            // Wait for the specified amount of time
-            StartCoroutine(WaitAndTranslate());
+                // Wait for the specified amount of time
+                StartCoroutine(WaitAndTranslate());
+            }
+            
         }
         
 
