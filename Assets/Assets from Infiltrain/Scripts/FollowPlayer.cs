@@ -72,7 +72,7 @@ public class FollowPlayer : MonoBehaviour
         }
         if (gameManager.modeeE == 1)
         {
-            audioSource.volume = 1.0f;
+            audioSource.volume = 3.0f;
             audioSource.Pause();
             audioSource.clip = thomas;
             audioSource.Play();
