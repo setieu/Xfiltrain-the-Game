@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private float startedTime;
     public bool startedd = false;
     public bool gameStarted = false;
+    private MoveBackOnCollision backOnCollision;
     private PauseScreen pauseScreen;
     private Bossman bossMan;
     private GameObject bossObject;
@@ -96,6 +97,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        backOnCollision = GameObject.Find("Cars").GetComponent<MoveBackOnCollision>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         pauseScreen = GameObject.Find("Canvas").GetComponent<PauseScreen>();
         // Assign the Yeeter component to yeeTer
@@ -300,6 +302,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(backOnCollision.randomvariable)
+        {
+            glower.SetActive(false);
+        }
         if (Input.GetKeyDown(KeyCode.H) && flashingman)
         {
             glower.SetActive(false);

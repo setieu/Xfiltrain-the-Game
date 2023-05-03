@@ -15,6 +15,7 @@ public class MoveBackOnCollision : MonoBehaviour
     private float speed2 = 50f;
     public int detachD = 0;
     public int HPP = 100;
+    public bool randomvariable = false;
     private Rigidbody rb;
     private HealthBar healthBar;
     private HealthBar healthText;
@@ -72,7 +73,7 @@ public class MoveBackOnCollision : MonoBehaviour
             Debug.Log("rogue");
             PlayRandomCrashAudio();
             boomboom = true;
-
+            randomvariable = true;
 
             //rb.AddForce(Vector3.up * 1050f, ForceMode.Impulse);
             //rb.AddForce(Vector3.forward * 50f, ForceMode.Impulse);
