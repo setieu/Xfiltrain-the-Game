@@ -154,8 +154,13 @@ public class Enemy : MonoBehaviour
             xspeed = 0.005f * gameManager.Scoree;
             zspeed = 0.5f * xspeed;
         }
-            //Destroy enemy when out of bounds
-            if (transform.position.x < leftBound && gameObject.CompareTag("Enemy"))
+        else if (gameManager.modeeE == 9)
+        {
+            xspeed = 0.005f * gameManager.Scoree;
+            zspeed = 0.5f * xspeed;
+        }
+        //Destroy enemy when out of bounds
+        if (transform.position.x < leftBound && gameObject.CompareTag("Enemy"))
         {
             Destroy(gameObject);
         }

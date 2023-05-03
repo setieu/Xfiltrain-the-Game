@@ -33,14 +33,7 @@ public class GLowEffect : MonoBehaviour
             yeeyee = !yeeyee;
         }
 
-        if (gameManager.gameActive == true && yeeyee == true)
-        {
-            glower.SetActive(true);
-        }
-        else
-        {
-            glower.SetActive(false);
-        }
+
 
         // If the effect is on, update the red color and fade effect
         if (isEffectOn)

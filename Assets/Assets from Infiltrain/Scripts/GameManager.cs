@@ -270,7 +270,7 @@ public class GameManager : MonoBehaviour
                 break;
             case 9:
                 //Set up for secret mode
-                modeeE = 8;
+                modeeE = 9;
                 arrayRange = difficulty;
                 modeText.text = "PC Crash Mode";
                 StartTheGame();
