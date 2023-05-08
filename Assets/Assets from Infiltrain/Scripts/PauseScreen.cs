@@ -7,10 +7,14 @@ public class PauseScreen : MonoBehaviour
     public Text instructionsText;
     public bool isPaused = false;
     private GameManager gameManager;
-
+    private BlinkingObject blinkingObject;
     private void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        blinkingObject = GameObject.Find("Cube (1)").GetComponent<BlinkingObject>();
+        blinkingObject = GameObject.Find("Cube (2)").GetComponent<BlinkingObject>();
+        blinkingObject = GameObject.Find("Cube (3)").GetComponent<BlinkingObject>();
+        blinkingObject = GameObject.Find("Cube (4)").GetComponent<BlinkingObject>();
         gameManager.titleScreen.SetActive(true);
         isPaused = false;
     }
@@ -25,6 +29,7 @@ public class PauseScreen : MonoBehaviour
                 pausePanel.SetActive(true);
                 gameManager.gameActive = false;
                 gameManager.titleScreen.SetActive(false);
+                blinkingObject.isActive = false;
             }
             else
             {
@@ -34,6 +39,7 @@ public class PauseScreen : MonoBehaviour
                 if (gameManager.startedd == true)
                 {
                     gameManager.gameActive = true;
+                    blinkingObject.isActive = true;
                 }
                 else
                 {
