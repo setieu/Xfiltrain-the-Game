@@ -8,14 +8,15 @@ public class ScoreFloat : MonoBehaviour
     private Text text;
     private RectTransform rectTransform;
     private float timer;
-    public GameObject scoreSpawn;
+    public int fontSize = 20;
+
 
     void Start()
     {
+        Debug.Log("hihi");
         text = GetComponent<Text>();
         rectTransform = GetComponent<RectTransform>();
         timer = 0f;
-        CreateFloatingText();
     }
 
     void Update()
@@ -28,23 +29,28 @@ public class ScoreFloat : MonoBehaviour
             return;
         }
 
-        
-
         rectTransform.anchoredPosition += Vector2.up * moveSpeed * Time.deltaTime;
     }
 
-    public static void CreateFloatingText()
+
+    public static void CreateFloatingText(string text, Vector3 position)
     {
-        Debug.Log("Run");
         GameObject floatingTextObj = new GameObject("Floating Text", typeof(RectTransform), typeof(CanvasRenderer), typeof(Text), typeof(ScoreFloat));
-        //floatingTextObj.transform.SetParent(parent, false);
-        floatingTextObj.transform.position = new Vector3(21,68,0);
+        floatingTextObj.transform.SetParent(GameObject.Find("Canvas").transform);
+        floatingTextObj.transform.position = position;
 
-        Text text = floatingTextObj.GetComponent<Text>();
-        text.text = "Enemy Wiped +100";
+        Text floatingText = floatingTextObj.GetComponent<Text>();
+        floatingText.text = text;
+        floatingText.fontSize = 30;
+        floatingText.font = Resources.GetBuiltinResource<Font>("Arial.ttf"); // Set the font to Arial
+        floatingText.rectTransform.sizeDelta = new Vector2(400, floatingText.rectTransform.sizeDelta.y);
 
-        ScoreFloat floatingText = floatingTextObj.GetComponent<ScoreFloat>();
-        Destroy(floatingTextObj, floatingText.lifeTime);
-        Debug.Log("created and destroyed");
+        ScoreFloat floatingTextScript = floatingTextObj.GetComponent<ScoreFloat>();
+        Destroy(floatingTextObj, floatingTextScript.lifeTime);
     }
+
+
+
+
 }
+

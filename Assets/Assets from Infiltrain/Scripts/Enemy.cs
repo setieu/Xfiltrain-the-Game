@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public GameObject spawnedScore;
     private Rigidbody enemyRb;
     private GameManager gameManager;
     private Receiver receiver;
@@ -252,13 +253,19 @@ public class Enemy : MonoBehaviour
                 {
                     PlayRandomDeadAudio();
                     gameManager.hogdeaths++;
-                    ScoreFloat.CreateFloatingText();
+
                 }
             }
             if (hitonce)
             {
                 gameManager.hogdeaths++;
+
+                ScoreFloat.CreateFloatingText("Enemy Wiped +100", new Vector3(220, 780, 0));
+
+
+
                 hitonce = false;
+                
             }
         }
         if (collision.gameObject.CompareTag("Projectile"))
