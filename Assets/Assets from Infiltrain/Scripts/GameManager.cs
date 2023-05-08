@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 
+    private ScoreFloat scoreFloat;
     public float bosshP;
     public int stamina;
     private float throwRate = 45.0f;
@@ -101,6 +102,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        scoreFloat = GameObject.Find("ScoreSpawn").GetComponent<ScoreFloat>();
         backOnCollision = GameObject.Find("Cars").GetComponent<MoveBackOnCollision>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         pauseScreen = GameObject.Find("Canvas").GetComponent<PauseScreen>();
@@ -134,7 +136,7 @@ public class GameManager : MonoBehaviour
                 {
                     // Set the throwcooldown variable to 1 seconds
                     yeeTer.canSpawn = true;
-                    yeeTer.throwCD = 1f;
+                    yeeTer.throwCD = 0.7f;
                 }
                 gameDiff = 0;
 

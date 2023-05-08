@@ -252,6 +252,7 @@ public class Enemy : MonoBehaviour
                 {
                     PlayRandomDeadAudio();
                     gameManager.hogdeaths++;
+                    ScoreFloat.CreateFloatingText();
                 }
             }
             if (hitonce)
