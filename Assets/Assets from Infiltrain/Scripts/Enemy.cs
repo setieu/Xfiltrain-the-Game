@@ -142,8 +142,22 @@ public class Enemy : MonoBehaviour
         }
         else if (gameManager.modeeE == 4)
         {
-            xspeed = 0.3f;
-          
+            xspeed = 0.2f;
+            if (gameManager.Scoree >= 1000)
+            {
+                xspeed = 0.25f;
+
+            }
+            if (gameManager.Scoree >= 2000)
+            {
+                xspeed = 0.3f;
+
+            }
+            if (gameManager.Scoree >= 3000)
+            {
+                xspeed = 0.35f;
+
+            }
         }
         else if (gameManager.modeeE == 5)
         {
@@ -154,8 +168,13 @@ public class Enemy : MonoBehaviour
             xspeed = 0.005f * gameManager.Scoree;
             zspeed = 0.5f * xspeed;
         }
-            //Destroy enemy when out of bounds
-            if (transform.position.x < leftBound && gameObject.CompareTag("Enemy"))
+        else if (gameManager.modeeE == 9)
+        {
+            xspeed = 0.005f * gameManager.Scoree;
+            zspeed = 0.5f * xspeed;
+        }
+        //Destroy enemy when out of bounds
+        if (transform.position.x < leftBound && gameObject.CompareTag("Enemy"))
         {
             Destroy(gameObject);
         }

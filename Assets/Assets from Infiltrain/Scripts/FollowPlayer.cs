@@ -25,8 +25,10 @@ public class FollowPlayer : MonoBehaviour
     public AudioClip thomas;
     public AudioClip chill;
     public AudioClip journey;
+    public AudioClip goldenWind;
     public AudioClip fom;
     public AudioClip chase;
+    public AudioClip error;
     public bool rotateonce = true;
     private AudioListener audioListener;
     public Text statusText;
@@ -70,9 +72,9 @@ public class FollowPlayer : MonoBehaviour
         }
         if (gameManager.modeeE == 1)
         {
-            audioSource.volume = 1.0f;
+            audioSource.volume = 3.0f;
             audioSource.Pause();
-            audioSource.clip = lagtrain;
+            audioSource.clip = thomas;
             audioSource.Play();
         }
         if (gameManager.modeeE == 2)
@@ -92,7 +94,7 @@ public class FollowPlayer : MonoBehaviour
         if (gameManager.modeeE == 4)
         {
             audioSource.Pause();
-            audioSource.clip = gsc;
+            audioSource.clip = goldenWind;
             audioSource.Play();
             //Debug.Log("secondaudio");
         }
@@ -121,7 +123,14 @@ public class FollowPlayer : MonoBehaviour
         {
             audioSource.volume = 1.0f;
             audioSource.Pause();
-            audioSource.clip = thomas;
+            audioSource.clip = gsc;
+            audioSource.Play();
+        }
+        if (gameManager.modeeE == 9)
+        {
+            audioSource.volume = 1.0f;
+            audioSource.Pause();
+            audioSource.clip = error;
             audioSource.Play();
         }
 

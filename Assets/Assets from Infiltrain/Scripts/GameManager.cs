@@ -83,6 +83,10 @@ public class GameManager : MonoBehaviour
 
     public Button restartButton;
 
+    public GameObject uiTextObject;
+    public float transitionSpeed = 500.0f;
+    public float waitTime = 2.0f;
+
     public bool gameWon = false;
     public bool gameActive;
     public int Scoree =  0;
@@ -270,9 +274,9 @@ public class GameManager : MonoBehaviour
                 break;
             case 9:
                 //Set up for secret mode
-                modeeE = 8;
+                modeeE = 9;
                 arrayRange = difficulty;
-                modeText.text = "PC Crash Mode";
+                modeText.text = "Carpal Tunnel Simulator";
                 StartTheGame();
                 if (yeeTer != null)
                 {
@@ -281,7 +285,7 @@ public class GameManager : MonoBehaviour
                     yeeTer.throwCD = 0.01f;
                 }
 
-                pogHider.waveDelay = 1.0f;
+                pogHider.waveDelay = .3f;
                 pogHider.maxPogs = 50;
                 gameDiff = 1;
 
@@ -504,7 +508,17 @@ public class GameManager : MonoBehaviour
         if(modeeE != 6)
         {
             healtHbar.transform.position = new Vector3(940, 530, 0);
+            if(modeeE != 0)
+            {
+                // Set the UI text gameobject to active
+                uiTextObject.SetActive(true);
+
+                // Wait for the specified amount of time
+                StartCoroutine(WaitAndTranslate());
+            }
+            
         }
+        
 
         startedTime = Time.time;
     }
@@ -547,12 +561,12 @@ public class GameManager : MonoBehaviour
 
     }
 
-   // IEnumerator SpawnTarget()
+    // IEnumerator SpawnTarget()
     //{
     //    while (gameActive)
     //    {
-     //       yield return new WaitForSeconds(throwRate);
-     //       int index = Random.Range(0, arrayRange);
+    //       yield return new WaitForSeconds(throwRate);
+    //       int index = Random.Range(0, arrayRange);
 
 
     //        Instantiate(targetPrefabs[index]);
@@ -565,9 +579,12 @@ public class GameManager : MonoBehaviour
 
 
 
-    
+
     //frame limiter
-     void Awake ()
+
+
+
+void Awake ()
      {
      QualitySettings.vSyncCount = 0;  // VSync must be disabled
      Application.targetFrameRate = 90;
@@ -616,5 +633,22 @@ public class GameManager : MonoBehaviour
         int randomIndex = Random.Range(0, DeathTwoAudio.Count); // choose a random index within the list
         audioSource.clip = DeathTwoAudio[randomIndex]; // set the audio source's clip to the chosen audio clip
         audioSource.Play(); // play the audio
+    }
+    private IEnumerator WaitAndTranslate()
+    {
+        // Wait for the specified amount of time
+        yield return new WaitForSeconds(waitTime);
+
+        // Translate the UI text gameobject off screen to the top
+        while (uiTextObject.transform.position.y < Screen.height)
+        {
+            Vector3 newPos = uiTextObject.transform.position;
+            newPos.y += transitionSpeed * Time.deltaTime;
+            uiTextObject.transform.position = newPos;
+            yield return null;
+        }
+
+        // Set the UI text gameobject to inactive after the transition is complete
+        uiTextObject.SetActive(false);
     }
 }
