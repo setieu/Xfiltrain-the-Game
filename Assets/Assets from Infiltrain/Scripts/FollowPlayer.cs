@@ -96,7 +96,6 @@ public class FollowPlayer : MonoBehaviour
             audioSource.Pause();
             audioSource.clip = goldenWind;
             audioSource.Play();
-            //Debug.Log("secondaudio");
         }
         if (gameManager.modeeE == 5)
         {
