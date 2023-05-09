@@ -176,54 +176,7 @@ public class Enemy : MonoBehaviour
         }
         
 
-        //Destroy enemy when out of bounds
-        if (transform.position.x < leftBound && gameObject.CompareTag("Enemy"))
-        {
-            Destroy(gameObject);
-        }
-        Vector3 direction = (new Vector3(0f, 0f, 0f) - transform.position).normalized;
-        if(isCoroutineRunning && gameManager.gameActive)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - (znum/2.5f));
-        }
-        znum += direction.z * zspeed * Time.fixedDeltaTime;
-        if (gameManager.gameActive && alive && !isCoroutineRunning)
-        {
-            if ((transform.position.z < -20 || transform.position.z > 30) && transform.position.x < 0)
-            {
-                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + znum);
-            }
-            else if ((transform.position.z < 10f && transform.position.z > -1f) && transform.position.x < 0)
-            {
-                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - znum);
-            }
-            else
-            {
-                if (transform.position.x > 60  && (transform.position.z > 8.25 || transform.position.z < -1f))
-                {
-                    if (transform.position.x < 80)
-                    {
-                        transform.position = new Vector3(transform.position.x + xspeed / 2.5f, transform.position.y, transform.position.z + (znum / 2.5f));
-                    }
-                    else
-                    {
-                        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + (znum/2.5f));
-                    }
-                }
-                else if (transform.position.x < 60 && (transform.position.z > 8.25 || transform.position.z < -1f))
-                {
-                    transform.position = new Vector3(transform.position.x + xspeed, transform.position.y, transform.position.z);
-                }
-                else
-                {
-                    if (!isCoroutineRunning && transform.position.x < 60 && (transform.position.z >= 8.5 || transform.position.z <= -0.5f)) 
-                    {
-                        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + (znum/ 2.5f));
-                    }
-                }
-            }
-       
-        }
+        
 
 
     }
@@ -357,6 +310,57 @@ public class Enemy : MonoBehaviour
             Vector3 childPosition = childTransform.position;
             childPosition.y = parentTransform.position.y;
             childTransform.position = childPosition;
+        }
+    }
+    private void FixedUpdate()
+    {
+        //Destroy enemy when out of bounds
+        if (transform.position.x < leftBound && gameObject.CompareTag("Enemy"))
+        {
+            //Destroy(gameObject);
+        }
+        Vector3 direction = (new Vector3(0f, 0f, 0f) - transform.position).normalized;
+        if (isCoroutineRunning && gameManager.gameActive)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, (transform.position.z - znum / 2.5f));
+        }
+        znum += direction.z * zspeed * Time.fixedDeltaTime;
+        if (gameManager.gameActive && alive && !isCoroutineRunning)
+        {
+            if ((transform.position.z < -20 || transform.position.z > 30) && transform.position.x < 0)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + znum);
+            }
+            else if ((transform.position.z < 10f && transform.position.z > -1f) && transform.position.x < 0)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - znum);
+            }
+            else
+            {
+                if (transform.position.x > 60 && (transform.position.z > 8.25 || transform.position.z < -1f))
+                {
+                    if (transform.position.x < 80)
+                    {
+                        transform.position = new Vector3(transform.position.x + (xspeed / 2.5f), transform.position.y, transform.position.z + (znum / 2.5f));
+                    }
+                    else
+                    {
+                        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + (znum / 2.5f));
+                    }
+                }
+                else if (transform.position.x < 60 && (transform.position.z > 8.25 || transform.position.z < -1f))
+                {
+                    transform.position = new Vector3(transform.position.x + xspeed, transform.position.y, transform.position.z);
+                }
+                else
+                {
+                    if (!isCoroutineRunning && transform.position.x < 60 && (transform.position.z >= 8.5 || transform.position.z <= -0.5f))
+                    {
+                        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + (znum / 2.5f));
+                    }
+                }
+            }
+
         }
     }
 }
