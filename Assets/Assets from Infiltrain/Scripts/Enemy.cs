@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Time.fixedDeltaTime = 0.01f;
         enemyRb = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
@@ -174,6 +174,8 @@ public class Enemy : MonoBehaviour
             xspeed = 0.005f * gameManager.Scoree;
             zspeed = 0.5f * xspeed;
         }
+        
+
         //Destroy enemy when out of bounds
         if (transform.position.x < leftBound && gameObject.CompareTag("Enemy"))
         {
@@ -182,9 +184,9 @@ public class Enemy : MonoBehaviour
         Vector3 direction = (new Vector3(0f, 0f, 0f) - transform.position).normalized;
         if(isCoroutineRunning && gameManager.gameActive)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - znum/2.5f);
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - (znum/2.5f));
         }
-        znum += direction.z * zspeed * Time.deltaTime;
+        znum += direction.z * zspeed * Time.fixedDeltaTime;
         if (gameManager.gameActive && alive && !isCoroutineRunning)
         {
             if ((transform.position.z < -20 || transform.position.z > 30) && transform.position.x < 0)
@@ -201,11 +203,11 @@ public class Enemy : MonoBehaviour
                 {
                     if (transform.position.x < 80)
                     {
-                        transform.position = new Vector3(transform.position.x + xspeed / 2.5f, transform.position.y, transform.position.z + znum / 2.5f);
+                        transform.position = new Vector3(transform.position.x + xspeed / 2.5f, transform.position.y, transform.position.z + (znum / 2.5f));
                     }
                     else
                     {
-                        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + znum/2.5f);
+                        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + (znum/2.5f));
                     }
                 }
                 else if (transform.position.x < 60 && (transform.position.z > 8.25 || transform.position.z < -1f))
@@ -216,12 +218,14 @@ public class Enemy : MonoBehaviour
                 {
                     if (!isCoroutineRunning && transform.position.x < 60 && (transform.position.z >= 8.5 || transform.position.z <= -0.5f)) 
                     {
-                        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + znum/ 2.5f);
+                        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + (znum/ 2.5f));
                     }
                 }
             }
        
         }
+
+
     }
     Vector3 RandomLeftForce()
     {
@@ -336,7 +340,7 @@ public class Enemy : MonoBehaviour
     IEnumerator Reattack() 
     {
         isCoroutineRunning = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.7f);
         isCoroutineRunning = false;
     }
     private void Destroy()
