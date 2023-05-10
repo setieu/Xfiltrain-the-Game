@@ -13,6 +13,145 @@ public class CommitInflationFraud : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //commit2
+        //commit3
+        //commit4
+        //commit5
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit//commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit//commit
+        //commit//commit
+        //commit//commit
+        //commit    //commit//commit
+        //commit//commit
+        //commit//commit
+        //commit
+        //commit
+        //commit
+        //commit//commit
+        //commit//commit//commit//commit
+        //commit//commit//commit//commit
+        //commit//commit
+        //commit//commit
+        //commit//commit//commit
+        //commit//commit
+        //commit
+        //commit//commit
+        //commit//commit
+        //commit//commit
+        //commit//commit
+        //commit
+        //commitv
+        //commit//commit//commit//commit//commit//commit
+        //commit//commit//commit//commit//commit//commit//commit//commit
+        //commit//commit
+        //commit//commit//commit//commit//commit
+        //commit//commit//commit//commit//commit
+        //commit//commit//commit//commit//commit//commit//commit
+        //commit
+        //commit//commit//commit
+        //commit//commit//commit//commit
+        //commit//commit//commit//commit//commit
+        //commit//commit//commit//commit
+        //commit
+        //commit//commitv//commit//commit//commit
+        //commit//commit//commit
+        //commit//commit//commit//commit//commit//commit//commit//commit//commit
+        //commit//commit
+        //commit//commit//commit//commit//commit
+        //commit
+        //commit//commit//commit//commit//commit//commit//commit
+
+        //commits//commit//commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit//commit//commit//commit//commit//commit//commit//commit//commit//commit
+        //commit//commit//commit//commit//commit//commit//commit//commit//commit//commit//commit
+        //commit//commit//commit//commit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //sss   s
+
+        //commit//commit//commit//commit//commit//commit//commit//commit//commit
+        //commit//commit//commit//commit//commit//commit
+
+        //commit//commit//commit
+        //commit//commit//commit//commit
+        //commit
+
+        //commit    //commit//commit//commit//commit//commit//commit//commit//commit
+
+        //commit//commit//commit//commit//commit
+        //commit//commit//commit//commit
+        //commit//commit
+        //commit    //commit
+        //commit    //commit
+        //commit
+        //commit
+        //commit//commit//commit
+        //commit//commit
+
+        //commit//commit//commit
+        //commit//commit
+        //commit//commit
+        //commit//commit
+        //commit
+        //commit    //commit
+        //commit
+        //commit//commit//commit//commit//commit//commit//commit
+        //commit
+        //commit
+        //commit
+        //commit//commit//commit//commit//commit//commit
     }
 }
