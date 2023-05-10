@@ -22,5 +22,5 @@ public class WheelSpin : MonoBehaviour
         {
             transform.Rotate(Vector3.right * rotationSpeed);
         }
-    }//dsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+    }//dssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
 }
