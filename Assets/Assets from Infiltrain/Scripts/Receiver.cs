@@ -41,7 +41,7 @@ public class Receiver : MonoBehaviour
                         Debug.Log("Try to ping");
                         playedh2 = true;
                     }
-                    
+
                 }
 
             }
@@ -90,7 +90,7 @@ public class Receiver : MonoBehaviour
                                     Debug.Log("Try to ping");
                                     playedh5 = true;
                                 }
-                               
+
                             }
                         }
                     }
@@ -134,7 +134,7 @@ public class Receiver : MonoBehaviour
                                 Debug.Log("Try to ping");
                                 playedh4 = true;
                             }
-                            
+
                         }
                     }
                 }
@@ -142,6 +142,37 @@ public class Receiver : MonoBehaviour
             }
         }
 
+        if (gameManager.modeeE == 4)
+        {
+            if (gameManager.Scoree >= 1000)
+            {
+                if (playedh1 == false)
+                {
+                    PlayAudio();
+                    Debug.Log("Try to ping");
+                    playedh1 = true;
+                }
+                else if (gameManager.Scoree >= 2000)
+                {
+                    if (playedh2 == false)
+                    {
+                        PlayAudio();
+                        Debug.Log("Try to ping");
+                        playedh2 = true;
+                    }
+                    else if (gameManager.Scoree >= 3000)
+                    {
+                        if (playedh3 == false)
+                        {
+                            PlayAudio();
+                            Debug.Log("Try to ping");
+                            playedh3 = true;
+                        }
+
+                    }
+                }
+            }
+        }
     }
 
     public void PlayAudio()

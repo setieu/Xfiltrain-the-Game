@@ -50,7 +50,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -4971,6 +4971,10 @@ PrefabInstance:
       propertyPath: poghider
       value: 
       objectReference: {fileID: 5056445335558395399}
+    - target: {fileID: -8595655357615331691, guid: 05706e801febf4d0cb3dc326c47319c6, type: 3}
+      propertyPath: spawnedScore
+      value: 
+      objectReference: {fileID: 8541627764993022430, guid: d7aceb59a7fa24c7587eb283a7570500, type: 3}
     - target: {fileID: -8595655357615331691, guid: 05706e801febf4d0cb3dc326c47319c6, type: 3}
       propertyPath: particleSystems.Array.size
       value: 3

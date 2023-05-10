@@ -52,7 +52,37 @@ public class Yeeter : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
             {
-                if (Time.time - lastSpawnTime >= throwCD)
+                if(gameManager.modeeE == 9)
+                {
+                    if (Time.time - lastSpawnTime >= throwCD)
+                    {
+                        if (canSpawn)
+                        {
+                            animator.SetBool("throw", true);
+                            StartCoroutine(SpawnObjectWithDelay(0f));
+                            canSpawn = false;
+                            PlayRandomThrowAudio();
+                        }
+                        // Update the last spawn time
+                        lastSpawnTime = Time.time;
+                    }
+                }
+                else if (gameManager.modeeE == 4)
+                {
+                    if (Time.time - lastSpawnTime >= throwCD)
+                    {
+                        if (canSpawn)
+                        {
+                            animator.SetBool("throw", true);
+                            StartCoroutine(SpawnObjectWithDelay(0.2f));
+                            canSpawn = false;
+                            PlayRandomThrowAudio();
+                        }
+                        // Update the last spawn time
+                        lastSpawnTime = Time.time;
+                    }
+                }
+                else if (Time.time - lastSpawnTime >= throwCD)
                 {
                     if (canSpawn)
                     {

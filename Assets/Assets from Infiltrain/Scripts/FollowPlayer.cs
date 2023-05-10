@@ -25,16 +25,24 @@ public class FollowPlayer : MonoBehaviour
     public AudioClip thomas;
     public AudioClip chill;
     public AudioClip journey;
+    public AudioClip goldenWind;
     public AudioClip fom;
     public AudioClip chase;
+    public AudioClip error;
     public bool rotateonce = true;
     private AudioListener audioListener;
     public Text statusText;
+    public Text viewText;
+    public GameObject CamStatus;
+    public MoveBackOnCollision moveBackOnCollision;
+    public ParticleSystem particle;
+
     // Start is called before the first frame update
     void Start()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        moveBackOnCollision = GameObject.Find("Cars").GetComponent<MoveBackOnCollision>();
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = journey;
         audioSource.loop = true;
@@ -43,9 +51,12 @@ public class FollowPlayer : MonoBehaviour
         gameManager.modeeE = 7;
         audioListener = GetComponent<AudioListener>();
         UpdateStatusText();
+        CamStatus.SetActive(false);
+        particle.Stop();
     }
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.M))
         {
             audioListener.enabled = !audioListener.enabled;
@@ -61,9 +72,9 @@ public class FollowPlayer : MonoBehaviour
         }
         if (gameManager.modeeE == 1)
         {
-            audioSource.volume = 1.0f;
+            audioSource.volume = 3.0f;
             audioSource.Pause();
-            audioSource.clip = lagtrain;
+            audioSource.clip = thomas;
             audioSource.Play();
         }
         if (gameManager.modeeE == 2)
@@ -83,9 +94,8 @@ public class FollowPlayer : MonoBehaviour
         if (gameManager.modeeE == 4)
         {
             audioSource.Pause();
-            audioSource.clip = gsc;
+            audioSource.clip = goldenWind;
             audioSource.Play();
-            //Debug.Log("secondaudio");
         }
         if (gameManager.modeeE == 5)
         {
@@ -112,14 +122,29 @@ public class FollowPlayer : MonoBehaviour
         {
             audioSource.volume = 1.0f;
             audioSource.Pause();
-            audioSource.clip = thomas;
+            audioSource.clip = gsc;
             audioSource.Play();
         }
+        if (gameManager.modeeE == 9)
+        {
+            audioSource.volume = 1.0f;
+            audioSource.Pause();
+            audioSource.clip = error;
+            audioSource.Play();
+        }
+
+        if (moveBackOnCollision.boomboom == true)
+        {
+            particle.Play();
+        }
     }
+
+   
+
     // Update is called once per frame
     void LateUpdate()
     {
-
+        UpdateViewText();
         // Camera Offset
         //if (playerController.isAlive == true)
         {
@@ -127,6 +152,7 @@ public class FollowPlayer : MonoBehaviour
             {
                 if (gameManager.gameActive)
                 {
+                    CamStatus.SetActive(true);
                     if (playerController.isOnDead == false)
                     {
                         if (rotateonce)
@@ -147,6 +173,7 @@ public class FollowPlayer : MonoBehaviour
             {
                 if (gameManager.gameActive)
                 {
+                    CamStatus.SetActive(true);
                     if (playerController.isOnDead == false)
                     {
                         if (rotateonce)
@@ -178,6 +205,7 @@ public class FollowPlayer : MonoBehaviour
                         offsetX = new Vector3(-8, 16, 0);
                         // Update the flag to reflect the current state of the object
                         isFlipped = 2;
+                        UpdateViewText();
                     }
                     if (Input.GetKeyDown(KeyCode.X) && isFlipped == 2) // Check if the 'z' key is pressed
                     {
@@ -186,6 +214,7 @@ public class FollowPlayer : MonoBehaviour
                         offsetX = new Vector3(8, 16, 0);
                         // Update the flag to reflect the current state of the object
                         isFlipped = 1;
+                        UpdateViewText();
                     }
                 }
             }
@@ -200,6 +229,7 @@ public class FollowPlayer : MonoBehaviour
                         offsettwo = new Vector3(-12, 20, 0);
                         // Update the flag to reflect the current state of the object
                         isFlipped = 2;
+                        UpdateViewText();
                     }
                     if (Input.GetKeyDown(KeyCode.X) && isFlipped == 2) // Check if the 'z' key is pressed
                     {
@@ -208,7 +238,9 @@ public class FollowPlayer : MonoBehaviour
                         offsettwo = new Vector3(12, 20, 0);
                         // Update the flag to reflect the current state of the object
                         isFlipped = 1;
+                        UpdateViewText();
                     }
+                    CamStatus.SetActive(true);
                 }
             }
 
@@ -228,6 +260,19 @@ public class FollowPlayer : MonoBehaviour
             statusText.text = "MUSIC: OFF";
         }
     }
+    void UpdateViewText()
+    {
+        if (isFlipped == 1)
+        {
+            viewText.text = "Rear View - Press Q or Z to flip camera";
+        }
+        if (isFlipped == 2)
+        {
+            viewText.text = "Front View - Press E or X to flip camera";
+        }
+    }
+
+    
 }
 
 
