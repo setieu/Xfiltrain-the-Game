@@ -13,6 +13,59 @@ public class CommitInflationFraud : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //commit2
+        //commit3
+        //commit4
+        //commit5
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit//commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit//commit
+        //commit//commit
+        //commit//commit
+        //commit    //commit//commit
+        //commit//commit
+        //commit//commit
+        //commit
+        //commit
+
+        //commit
+        //commit
+        //commit
+        //commit
+        //commit
     }
 }
